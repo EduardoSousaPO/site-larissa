@@ -1,6 +1,3 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-
 // Componentes de seção
 import HeroSection from '../components/sections/HeroSection';
 import AboutSection from '../components/sections/AboutSection';

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { collection, addDoc, updateDoc, deleteDoc, getDocs, doc, Timestamp, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, deleteDoc, getDocs, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../services/firebase';
 
 // Tipos
