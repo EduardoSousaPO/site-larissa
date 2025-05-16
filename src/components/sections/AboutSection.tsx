@@ -44,7 +44,7 @@ const AboutSection = () => {
           >
             <div className="space-y-4">
               <p className="text-lg text-gray-700">
-                Psicóloga clínica (CRP 09/16269) especializada em Logoterapia, a abordagem 
+                Psicóloga clínica especializada em Logoterapia, a abordagem 
                 terapêutica desenvolvida por Viktor Frankl que considera a busca de sentido 
                 como a principal força motivadora do ser humano.
               </p>
