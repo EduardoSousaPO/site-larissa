@@ -18,7 +18,7 @@ const Footer = () => {
           >
             <Link to="/" className="inline-block mb-4">
               <h2 className="text-2xl font-bold text-white">Dra. Larissa Nunes</h2>
-              <p className="text-sm text-gray-400">Psicóloga CRP 09/16269</p>
+              <p className="text-sm text-gray-400">Psicóloga</p>
             </Link>
             <p className="text-gray-400 mb-4">
               Atendimento psicológico humanizado, com base na Logoterapia e foco na busca de sentido para a vida.
@@ -164,7 +164,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm">
           <p>© {currentYear} Dra. Larissa Nunes - Psicóloga. Todos os direitos reservados.</p>
           <p className="mt-2">
-            CRP 09/16269 | Este site não oferece atendimento de emergência.
+            Este site não oferece atendimento de emergência.
             Em caso de crise, procure um hospital ou ligue para o CVV (188).
           </p>
         </div>

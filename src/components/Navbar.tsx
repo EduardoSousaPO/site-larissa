@@ -38,7 +38,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <span className="font-bold text-xl md:text-2xl text-primary-700">Dra. Larissa Nunes</span>
-          <span className="ml-2 text-xs md:text-sm text-gray-600">Psicóloga CRP 09/16269</span>
+          <span className="ml-2 text-xs md:text-sm text-gray-600">Psicóloga</span>
         </Link>
 
         {/* Menu para desktop */}
