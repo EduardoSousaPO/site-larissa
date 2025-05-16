@@ -13,6 +13,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     cssMinify: true,
-    minify: 'terser',
+    minify: 'esbuild',
   },
 })
