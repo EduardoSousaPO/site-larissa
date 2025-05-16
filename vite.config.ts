@@ -11,19 +11,8 @@ export default defineConfig({
     },
   },
   build: {
+    outDir: 'dist',
     cssMinify: true,
     minify: 'terser',
-    outDir: 'dist',
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['framer-motion', 'react-icons'],
-        },
-      },
-    },
-  },
-  css: {
-    devSourcemap: true,
   },
 })
