@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Agendamentos - apenas leitura para autenticados, escrita para todos
+    match /agendamentos/{document=**} {
+      allow read: if request.auth != null;
+      allow create: if true;
+      allow update, delete: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Mensagens - apenas leitura para autenticados, escrita para todos
+    match /mensagens/{document=**} {
+      allow read: if request.auth != null;
+      allow create: if true;
+      allow update, delete: if request.auth != null && request.auth.token.admin == true;
+    }
+  }
+} 
