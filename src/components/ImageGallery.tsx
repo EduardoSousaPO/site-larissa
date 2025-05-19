@@ -7,11 +7,11 @@ interface ImageGalleryProps {
 
 const images = [
   {
-    src: '/images/larissa1.png',
+    src: 'images/larissa1.png',
     alt: 'Dra. Larissa Nunes - Retrato Profissional'
   },
   {
-    src: '/images/larissa2.jpeg',
+    src: 'images/larissa2.jpeg',
     alt: 'Dra. Larissa Nunes - Foto de Estúdio'
   }
 ];

@@ -19,15 +19,6 @@ const LogoImage: React.FC<LogoImageProps> = ({ className = '' }) => {
       {/* Container principal */}
       <div className="relative bg-white border-2 border-primary-200 rounded-xl p-3 shadow-lg">
         <div className="flex flex-col items-center">
-          {/* Foto miniatura da Dra. Larissa */}
-          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-primary-300 mb-2">
-            <img 
-              src="/images/freepik__lariultrarealistic-highresolution-portrait-of-a-c__98891.jpeg" 
-              alt="Dra. Larissa Nunes" 
-              className="w-full h-full object-cover object-top"
-            />
-          </div>
-          
           {/* Texto do logo */}
           <div className="text-center">
             <h1 className="font-bold text-primary-700 text-base md:text-lg leading-tight">

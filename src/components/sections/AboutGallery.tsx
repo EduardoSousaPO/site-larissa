@@ -19,8 +19,8 @@ const AboutGallery = () => {
   }, []);
 
   const images = [
-    '/images/larissa1.png',
-    '/images/larissa2.jpeg'
+    'images/larissa1.png',
+    'images/larissa2.jpeg'
   ];
 
   return (

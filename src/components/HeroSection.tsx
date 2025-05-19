@@ -69,7 +69,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <img 
-                  src="/images/larissa3.jpeg" 
+                  src="images/larissa3.jpeg" 
                   alt="Dra. Larissa Nunes - Psicóloga" 
                   className="w-full h-full object-cover"
                 />
