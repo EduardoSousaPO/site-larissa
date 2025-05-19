@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion';
+import PhotoAnimation from '../PhotoAnimation';
 
 const AboutSection = () => {
+  const images = [
+    '/images/freepik__lari-ultrarealistic-highresolution-portrait-of-a-c__98891.jpeg',
+    '/images/freepik__lariultrarealistic-highresolution-studio-portrait-__98889.png',
+    '/images/freepik__lariultrarealistic-highresolution-professional-por__98886.jpeg'
+  ];
+
   return (
     <section className="py-16 bg-white" id="sobre">
       <div className="container">
@@ -27,11 +34,14 @@ const AboutSection = () => {
           >
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-full h-full border-2 border-primary-300 rounded-lg"></div>
-              <img 
-                src="/images/Imagem do WhatsApp de 2025-05-09 à(s) 15.26.10_4a533d6e.jpg" 
-                alt="Dra. Larissa Nunes" 
-                className="rounded-lg shadow-lg relative z-10"
-              />
+              <div className="rounded-lg shadow-lg relative z-10 overflow-hidden aspect-[4/5]">
+                <PhotoAnimation
+                  images={images}
+                  effectType="fade"
+                  interval={6000}
+                  className="w-full h-full"
+                />
+              </div>
             </div>
           </motion.div>
 

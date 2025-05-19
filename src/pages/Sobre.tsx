@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import AboutGallery from '../components/sections/AboutGallery';
 
 const Sobre = () => {
   return (
@@ -33,14 +34,8 @@ const Sobre = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="md:w-2/5"
             >
-              <div className="rounded-lg overflow-hidden shadow-xl">
-                {/* Foto da psicóloga */}
-                <img 
-                  src="/images/Imagem do WhatsApp de 2025-05-09 à(s) 15.26.10_4a533d6e.jpg" 
-                  alt="Dra. Larissa Nunes - Psicóloga" 
-                  className="w-full h-auto"
-                />
-              </div>
+              {/* Usando o novo componente de galeria */}
+              <AboutGallery />
               
               <div className="mt-8 p-6 bg-primary-50 rounded-lg">
                 <h3 className="text-xl font-semibold mb-4 text-primary-800">Credenciais</h3>

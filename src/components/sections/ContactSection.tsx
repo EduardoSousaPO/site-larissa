@@ -183,7 +183,7 @@ const ContactSection = () => {
                   <div>
                     <h4 className="text-lg font-medium text-gray-900 mb-1">Telefone</h4>
                     <p className="text-gray-700">
-                      <a href="tel:+5562000000000" className="hover:text-primary-600">(62) 00000-0000</a>
+                      <a href="tel:+5562996290052" className="hover:text-primary-600">(62) 99629-0052</a>
                     </p>
                   </div>
                 </div>
@@ -197,7 +197,7 @@ const ContactSection = () => {
                   <div>
                     <h4 className="text-lg font-medium text-gray-900 mb-1">E-mail</h4>
                     <p className="text-gray-700">
-                      <a href="mailto:contato@larissanunespsicologa.com.br" className="hover:text-primary-600">contato@larissanunespsicologa.com.br</a>
+                      <a href="mailto:la.nunesdasilva@hotmail.com" className="hover:text-primary-600">la.nunesdasilva@hotmail.com</a>
                     </p>
                   </div>
                 </div>
@@ -243,7 +243,7 @@ const ContactSection = () => {
                 </a>
                 
                 <a 
-                  href="https://wa.me/5562000000000" 
+                  href="https://wa.me/5562996290052" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="mt-4 block w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white rounded-md text-center font-medium transition-colors inline-flex items-center justify-center"

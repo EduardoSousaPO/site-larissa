@@ -1,69 +1,14 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import HeroSection from '../components/HeroSection';
+import AboutSection from '../components/sections/AboutSection';
+import ContactSection from '../components/sections/ContactSection';
 
 const Home = () => {
   return (
     <div>
-      {/* Banner Principal */}
-      <section className="relative py-20 md:py-32 bg-gradient-to-b from-primary-50 to-white overflow-hidden">
-        <div className="container relative z-10">
-          <div className="flex flex-col md:flex-row items-center">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="md:w-1/2 text-center md:text-left mb-10 md:mb-0"
-            >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                Encontre sentido e equilíbrio em sua vida
-              </h1>
-              <p className="text-xl text-gray-700 mb-8 max-w-xl">
-                Dra. Larissa Nunes é psicóloga clínica especializada em Logoterapia, 
-                ajudando pacientes a encontrarem significado e propósito mesmo nas 
-                situações mais desafiadoras.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <Link 
-                  to="/agendamento" 
-                  className="btn btn-primary px-8 py-3 text-lg"
-                >
-                  Agendar Sessão
-                </Link>
-                <Link 
-                  to="/abordagem" 
-                  className="btn bg-white border border-gray-300 px-8 py-3 text-lg text-gray-700 hover:bg-gray-50"
-                >
-                  Conhecer Abordagem
-                </Link>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="md:w-1/2"
-            >
-              <div className="relative">
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary-100 rounded-full opacity-70"></div>
-                <div className="absolute -bottom-5 -left-5 w-24 h-24 bg-secondary-100 rounded-full opacity-70"></div>
-                <div className="rounded-lg overflow-hidden shadow-2xl border-8 border-white relative z-10">
-                  {/* Imagem da Dra. Larissa */}
-                  <img 
-                    src="/images/Imagem do WhatsApp de 2025-05-09 à(s) 15.26.10_4a533d6e.jpg" 
-                    alt="Dra. Larissa Nunes - Psicóloga" 
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-        
-        {/* Formas decorativas */}
-        <div className="absolute top-1/4 left-0 w-32 h-32 bg-primary-50 rounded-full opacity-50 blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-0 w-48 h-48 bg-secondary-50 rounded-full opacity-50 blur-3xl"></div>
-      </section>
+      {/* Banner Principal - Utilizando o novo componente */}
+      <HeroSection />
 
       {/* Citação */}
       <section className="py-16 bg-gradient-to-r from-primary-50 to-secondary-50">
@@ -196,32 +141,40 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Sobre */}
+      <AboutSection />
+
       {/* CTA */}
       <section className="py-16 bg-primary-50">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h2 className="text-3xl font-bold mb-6">Pronto para começar sua jornada?</h2>
-            <p className="text-gray-700 text-lg mb-8">
-              Dê o primeiro passo em direção a uma vida com mais sentido e equilíbrio. 
-              Agende sua sessão agora ou entre em contato para mais informações.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/agendamento" className="btn btn-primary px-8 py-3 text-lg">
-                Agendar Sessão
-              </Link>
-              <Link to="/contato" className="btn bg-white border border-gray-300 px-8 py-3 text-lg text-gray-700 hover:bg-gray-50">
-                Entre em Contato
-              </Link>
-            </div>
-          </motion.div>
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Pronto para transformar sua vida?
+              </h2>
+              <p className="text-xl text-gray-700 mb-8">
+                Agende sua sessão agora ou entre em contato para mais informações.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <Link to="/agendamento" className="btn btn-primary px-8 py-3 text-lg">
+                  Agendar Sessão
+                </Link>
+                <Link to="/contato" className="btn bg-white border border-gray-300 px-8 py-3 text-lg text-gray-700 hover:bg-gray-50">
+                  Entre em Contato
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
+
+      {/* Contato */}
+      <ContactSection />
     </div>
   );
 };
