@@ -34,7 +34,7 @@ const LogoImage: React.FC<LogoImageProps> = ({ className = '' }) => {
               Dra. Larissa Nunes
             </h1>
             <p className="text-xs text-gray-600 font-medium">
-              Psicóloga CRP 09/16269
+              Psicóloga
             </p>
           </div>
           

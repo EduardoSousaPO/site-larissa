@@ -58,7 +58,7 @@ const AboutGallery = () => {
           Dra. Larissa Nunes
         </h3>
         <p className="text-gray-700 text-sm">
-          Psicóloga especializada em Logoterapia (CRP 09/16269)
+          Psicóloga especializada em Logoterapia
         </p>
       </div>
     </div>
