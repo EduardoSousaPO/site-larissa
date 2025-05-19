@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ImageGallery from './ImageGallery';
 
 const HeroSection = () => {
   return (
@@ -62,10 +61,19 @@ const HeroSection = () => {
                 className="absolute -bottom-5 -left-5 w-24 h-24 bg-secondary-100 rounded-full"
               ></motion.div>
               
-              {/* Galeria com as novas imagens */}
-              <div className="rounded-lg overflow-hidden shadow-2xl border-8 border-white relative z-10 aspect-[3/4]">
-                <ImageGallery className="w-full h-full" />
-              </div>
+              {/* Imagem estática em vez da galeria */}
+              <motion.div 
+                className="rounded-lg overflow-hidden shadow-2xl border-8 border-white relative z-10 aspect-[3/4]"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <img 
+                  src="/images/freepik__lariultrarealistic-highresolution-studio-portrait-__98889.png" 
+                  alt="Dra. Larissa Nunes - Psicóloga" 
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
             </div>
           </motion.div>
         </div>
