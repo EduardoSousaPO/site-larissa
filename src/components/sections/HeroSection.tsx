@@ -46,7 +46,7 @@ const HeroSection = () => {
               <div className="absolute -bottom-5 -left-5 w-24 h-24 bg-secondary-100 rounded-full opacity-70"></div>
               <div className="rounded-lg overflow-hidden shadow-2xl border-8 border-white relative z-10">
                 <img 
-                  src="/images/Imagem do WhatsApp de 2025-05-09 à(s) 15.26.10_4a533d6e.jpg" 
+                  src="images/larissa3.jpeg" 
                   alt="Dra. Larissa Nunes - Psicóloga" 
                   className="w-full h-auto object-cover"
                 />
