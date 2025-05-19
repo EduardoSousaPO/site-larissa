@@ -7,16 +7,12 @@ interface ImageGalleryProps {
 
 const images = [
   {
-    src: '/images/freepik__lari-ultrarealistic-highresolution-portrait-of-a-c__98891.jpeg',
+    src: '/images/larissa1.png',
     alt: 'Dra. Larissa Nunes - Retrato Profissional'
   },
   {
-    src: '/images/freepik__lariultrarealistic-highresolution-studio-portrait-__98889.png',
+    src: '/images/larissa2.jpeg',
     alt: 'Dra. Larissa Nunes - Foto de Estúdio'
-  },
-  {
-    src: '/images/freepik__lariultrarealistic-highresolution-professional-por__98886.jpeg',
-    alt: 'Dra. Larissa Nunes - Retrato Profissional'
   }
 ];
 

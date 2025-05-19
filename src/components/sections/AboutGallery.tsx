@@ -19,9 +19,8 @@ const AboutGallery = () => {
   }, []);
 
   const images = [
-    '/images/freepik__lari-ultrarealistic-highresolution-portrait-of-a-c__98891.jpeg',
-    '/images/freepik__lariultrarealistic-highresolution-studio-portrait-__98889.png',
-    '/images/freepik__lariultrarealistic-highresolution-professional-por__98886.jpeg'
+    '/images/larissa1.png',
+    '/images/larissa2.jpeg'
   ];
 
   return (
