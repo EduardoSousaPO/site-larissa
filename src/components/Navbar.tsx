@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import LogoImage from './LogoImage';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,14 +32,13 @@ const Navbar = () => {
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+        isScrolled ? 'bg-white shadow-md py-2' : 'bg-white/80 backdrop-blur-sm py-4'
       }`}
     >
       <div className="container flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <span className="font-bold text-xl md:text-2xl text-primary-700">Dra. Larissa Nunes</span>
-          <span className="ml-2 text-xs md:text-sm text-gray-600">Psicóloga</span>
+          <LogoImage />
         </Link>
 
         {/* Menu para desktop */}
