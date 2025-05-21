@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../services/firebase';
+import { Helmet } from 'react-helmet-async';
 
 // Tipos
 interface BlogPost {
@@ -59,6 +60,41 @@ const PostDetail = () => {
     fetchPost();
   }, [postId]);
 
+  // Criar o schema BlogPosting/Article para SEO
+  const generateBlogPostingSchema = (post: BlogPost) => {
+    const websiteUrl = window.location.origin;
+    const articleUrl = `${websiteUrl}/blog/${post.id}`;
+    
+    return {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.titulo,
+      "description": post.resumo,
+      "image": post.imagem,
+      "author": {
+        "@type": "Person",
+        "name": post.autor || "Dra. Larissa Nunes"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Dra. Larissa Nunes - Psicóloga",
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${websiteUrl}/images/logo.png`
+        }
+      },
+      "datePublished": post.dataCriacao.toISOString(),
+      "dateModified": post.dataCriacao.toISOString(),
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": articleUrl
+      },
+      "keywords": post.tags.join(", "),
+      "articleSection": post.categoria,
+      "url": articleUrl
+    };
+  };
+
   if (isLoading) {
     return (
       <div className="container py-20 flex justify-center">
@@ -80,6 +116,21 @@ const PostDetail = () => {
 
   return (
     <section className="py-20 bg-gray-50">
+      <Helmet>
+        <title>{post.titulo} | Dra. Larissa Nunes - Psicóloga</title>
+        <meta name="description" content={post.resumo} />
+        {/* OpenGraph metatags para compartilhamento em redes sociais */}
+        <meta property="og:title" content={post.titulo} />
+        <meta property="og:description" content={post.resumo} />
+        <meta property="og:image" content={post.imagem} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={window.location.href} />
+        {/* JSON-LD para dados estruturados */}
+        <script type="application/ld+json">
+          {JSON.stringify(generateBlogPostingSchema(post))}
+        </script>
+      </Helmet>
+      
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
