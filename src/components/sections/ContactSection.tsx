@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
-import { db } from '../../services/firebase';
+import { supabase } from '../../services/supabase';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -28,12 +27,15 @@ const ContactSection = () => {
     setSubmitStatus({});
 
     try {
-      // Adicionar à coleção 'mensagens' no Firestore
-      await addDoc(collection(db, 'mensagens'), {
-        ...formData,
-        criado: Timestamp.now(),
-        lido: false
-      });
+      // Adicionar à tabela 'mensagens' no Supabase
+      const { error } = await supabase
+        .from('mensagens')
+        .insert({
+          ...formData,
+          lido: false
+        });
+      
+      if (error) throw error;
 
       // Sucesso
       setSubmitStatus({

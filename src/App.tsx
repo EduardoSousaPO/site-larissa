@@ -4,8 +4,11 @@ import HomePage from './pages/HomePage';
 import Agendamento from './pages/Agendamento';
 import BlogPage from './pages/BlogPage';
 import PostDetail from './pages/PostDetail';
+import Depoimentos from './pages/Depoimentos';
+import CriarArtigosBlog from './pages/CriarArtigosBlog';
 import BlogAdmin from './pages/BlogAdmin';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import { useAuth } from './services/auth';
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
@@ -37,11 +40,18 @@ function App() {
             <Route path="agendamento" element={<Agendamento />} />
             <Route path="blog" element={<BlogPage />} />
             <Route path="blog/:postId" element={<PostDetail />} />
+            <Route path="depoimentos" element={<Depoimentos />} />
             <Route path="*" element={<div className="container py-20 text-center"><h1 className="text-4xl">Página não encontrada</h1></div>} />
           </Route>
           
           {/* Rotas administrativas */}
           <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin/register" element={<Register />} />
+          <Route path="/admin/criar-artigos" element={
+            <ProtectedRoute>
+              <CriarArtigosBlog />
+            </ProtectedRoute>
+          } />
           <Route path="/admin/blog" element={
             <ProtectedRoute>
               <BlogAdmin />

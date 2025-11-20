@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
-import { db } from '../services/firebase';
+import { supabase } from '../services/supabase';
 
 const Agendamento = () => {
   const [formData, setFormData] = useState({
@@ -31,12 +30,15 @@ const Agendamento = () => {
     setSubmitStatus({});
 
     try {
-      // Adicionar à coleção 'agendamentos' no Firestore
-      await addDoc(collection(db, 'agendamentos'), {
-        ...formData,
-        criado: Timestamp.now(),
-        status: 'pendente'
-      });
+      // Adicionar à tabela 'agendamentos' no Supabase
+      const { error } = await supabase
+        .from('agendamentos')
+        .insert({
+          ...formData,
+          status: 'pendente'
+        });
+      
+      if (error) throw error;
 
       // Sucesso
       setSubmitStatus({

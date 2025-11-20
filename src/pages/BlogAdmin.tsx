@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { collection, addDoc, updateDoc, deleteDoc, getDocs, doc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../services/firebase';
+import { supabase } from '../services/supabase';
 
 // Tipos
 interface BlogPost {
@@ -47,26 +46,24 @@ const BlogAdmin = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'blog_posts'));
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .select('*')
+          .order('data_criacao', { ascending: false });
         
-        const postsList: BlogPost[] = [];
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          postsList.push({
-            id: doc.id,
-            titulo: data.titulo,
-            resumo: data.resumo,
-            conteudo: data.conteudo,
-            imagem: data.imagem,
-            categoria: data.categoria,
-            dataCriacao: data.dataCriacao.toDate(),
-            autor: data.autor || 'Dra. Larissa Nunes',
-            tags: data.tags || []
-          });
-        });
+        if (error) throw error;
         
-        // Ordenar por data (mais recentes primeiro)
-        postsList.sort((a, b) => b.dataCriacao.getTime() - a.dataCriacao.getTime());
+        const postsList: BlogPost[] = (data || []).map((item: any) => ({
+          id: item.id,
+          titulo: item.titulo,
+          resumo: item.resumo,
+          conteudo: item.conteudo,
+          imagem: item.imagem,
+          categoria: item.categoria,
+          dataCriacao: new Date(item.data_criacao),
+          autor: item.autor || 'Dra. Larissa Nunes',
+          tags: item.tags || []
+        }));
         
         setPosts(postsList);
       } catch (error) {
@@ -163,10 +160,17 @@ const BlogAdmin = () => {
 
       if (isEditing && formData.id) {
         // Atualizar post existente
-        await updateDoc(doc(db, 'blog_posts', formData.id), {
-          ...postData,
-          atualizado: serverTimestamp()
-        });
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .update({
+            ...postData,
+            atualizado: new Date().toISOString()
+          })
+          .eq('id', formData.id)
+          .select()
+          .single();
+
+        if (error) throw error;
 
         // Atualizar na lista local
         setPosts(prevPosts => 
@@ -187,18 +191,28 @@ const BlogAdmin = () => {
         });
       } else {
         // Criar novo post
-        const docRef = await addDoc(collection(db, 'blog_posts'), {
-          ...postData,
-          dataCriacao: serverTimestamp(),
-          visualizacoes: 0
-        });
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .insert({
+            ...postData,
+            visualizacoes: 0
+          })
+          .select()
+          .single();
 
-        // Adicionar à lista local (simulando a data de criação)
+        if (error) throw error;
+
+        // Adicionar à lista local
         const novoPost: BlogPost = {
-          id: docRef.id,
-          ...postData,
-          dataCriacao: new Date(),
-          tags: tagsArray
+          id: data.id,
+          titulo: data.titulo,
+          resumo: data.resumo,
+          conteudo: data.conteudo,
+          imagem: data.imagem,
+          categoria: data.categoria,
+          dataCriacao: new Date(data.data_criacao),
+          autor: data.autor,
+          tags: data.tags || []
         };
 
         setPosts(prevPosts => [novoPost, ...prevPosts]);

@@ -56,6 +56,12 @@ const Navbar = () => {
             Blog
           </Link>
           <Link 
+            to="/depoimentos" 
+            className={`text-gray-700 hover:text-primary-600 ${location.pathname === '/depoimentos' ? 'font-semibold text-primary-600' : ''}`}
+          >
+            Depoimentos
+          </Link>
+          <Link 
             to="/agendamento" 
             className={`text-gray-700 hover:text-primary-600 ${location.pathname === '/agendamento' ? 'font-semibold text-primary-600' : ''}`}
           >
@@ -108,6 +114,12 @@ const Navbar = () => {
             className={`py-3 text-lg ${location.pathname.includes('/blog') ? 'font-semibold text-primary-600' : 'text-gray-700'}`}
           >
             Blog
+          </Link>
+          <Link 
+            to="/depoimentos" 
+            className={`py-3 text-lg ${location.pathname === '/depoimentos' ? 'font-semibold text-primary-600' : 'text-gray-700'}`}
+          >
+            Depoimentos
           </Link>
           <Link 
             to="/agendamento" 

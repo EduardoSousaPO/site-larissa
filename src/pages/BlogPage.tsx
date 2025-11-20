@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-import { db } from '../services/firebase';
+import { supabase } from '../services/supabase';
 
 // Tipos
 interface BlogPost {
@@ -26,34 +25,41 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const q = query(collection(db, 'blog_posts'), orderBy('dataCriacao', 'desc'));
-        const querySnapshot = await getDocs(q);
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .select('*')
+          .order('data_criacao', { ascending: false });
+        
+        if (error) throw error;
         
         const postsList: BlogPost[] = [];
         const categoriasSet = new Set<string>();
         
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
+        (data || []).forEach((item: any) => {
           const post: BlogPost = {
-            id: doc.id,
-            titulo: data.titulo,
-            resumo: data.resumo,
-            conteudo: data.conteudo,
-            imagem: data.imagem,
-            categoria: data.categoria,
-            dataCriacao: data.dataCriacao.toDate(),
-            autor: data.autor,
-            tags: data.tags || []
+            id: item.id,
+            titulo: item.titulo,
+            resumo: item.resumo,
+            conteudo: item.conteudo,
+            imagem: item.imagem,
+            categoria: item.categoria,
+            dataCriacao: new Date(item.data_criacao),
+            autor: item.autor,
+            tags: item.tags || []
           };
           
           postsList.push(post);
-          categoriasSet.add(data.categoria);
+          categoriasSet.add(item.categoria);
         });
         
         setPosts(postsList);
         setCategorias(Array.from(categoriasSet));
-      } catch (error) {
+      } catch (error: any) {
         console.error('Erro ao buscar posts:', error);
+        // Mostrar erro no console para debug
+        if (error.message) {
+          console.error('Mensagem de erro:', error.message);
+        }
       } finally {
         setIsLoading(false);
       }
