@@ -51,6 +51,7 @@ const InstagramCard = ({ titulo, resumo, imagem, categoria, autor, onReady, form
         fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
         display: 'flex',
         flexDirection: 'column',
+        boxSizing: 'border-box',
       }}
     >
       {/* Imagem de fundo - parte superior */}
@@ -58,9 +59,10 @@ const InstagramCard = ({ titulo, resumo, imagem, categoria, autor, onReady, form
         style={{
           position: 'relative',
           width: '100%',
-          height: isStories ? '52%' : '48%',
+          height: isStories ? '1000px' : '520px', // Altura fixa para manter proporção
           overflow: 'hidden',
           background: '#f3f4f6',
+          flexShrink: 0,
         }}
       >
         <img
@@ -71,6 +73,12 @@ const InstagramCard = ({ titulo, resumo, imagem, categoria, autor, onReady, form
             width: '100%',
             height: '100%',
             objectFit: 'cover',
+            objectPosition: 'center',
+            display: 'block',
+            margin: 0,
+            padding: 0,
+            maxWidth: '100%',
+            maxHeight: '100%',
           }}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = 'none';
@@ -87,6 +95,7 @@ const InstagramCard = ({ titulo, resumo, imagem, categoria, autor, onReady, form
           justifyContent: 'space-between',
           padding: padding,
           background: '#ffffff',
+          minHeight: 0, // Permite que o flex funcione corretamente
         }}
       >
         {/* Topo: Categoria */}

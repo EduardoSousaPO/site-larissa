@@ -50,18 +50,27 @@ const InstagramCardGenerator = ({
         height: imageFormat === 'feed' ? 1080 : 1920,
         scale: 1,
         useCORS: true,
-        backgroundColor: '#667eea',
+        backgroundColor: '#ffffff',
         logging: false,
         allowTaint: true,
         imageTimeout: 20000,
         removeContainer: false,
+        windowWidth: imageFormat === 'feed' ? 1080 : 1080,
+        windowHeight: imageFormat === 'feed' ? 1080 : 1920,
         onclone: (clonedDoc) => {
-          // Garantir que o elemento clonado está visível
+          // Garantir que o elemento clonado está visível e mantém proporções
           const clonedElement = clonedDoc.querySelector('.instagram-card') as HTMLElement;
           if (clonedElement) {
             clonedElement.style.visibility = 'visible';
             clonedElement.style.opacity = '1';
+            clonedElement.style.transform = 'none';
           }
+          // Garantir que as imagens mantêm proporção
+          const images = clonedDoc.querySelectorAll('img');
+          images.forEach((img) => {
+            (img as HTMLImageElement).style.objectFit = 'cover';
+            (img as HTMLImageElement).style.objectPosition = 'center';
+          });
         },
       });
 
@@ -211,12 +220,13 @@ const InstagramCardGenerator = ({
             height: format === 'feed' ? '1080px' : '1920px',
             zIndex: 99999,
             pointerEvents: 'none',
-            overflow: 'hidden',
+            overflow: 'visible',
             // Renderizar fora da viewport mas ainda acessível para html2canvas
             transform: 'translateX(-200%)',
+            boxSizing: 'border-box',
           }}
         >
-          <div ref={cardRef} style={{ width: '100%', height: '100%' }}>
+          <div ref={cardRef} style={{ width: '100%', height: '100%', boxSizing: 'border-box' }}>
             <InstagramCard
               titulo={titulo}
               resumo={resumo}
