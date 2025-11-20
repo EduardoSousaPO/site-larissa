@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { supabase } from '../services/supabase';
 import { Helmet } from 'react-helmet-async';
+import InstagramCardGenerator from '../components/InstagramCardGenerator';
 
 // Tipos
 interface BlogPost {
@@ -215,6 +216,26 @@ const PostDetail = () => {
                 <h3 className="text-base font-semibold text-gray-900 mb-4">
                   Compartilhe este artigo
                 </h3>
+                
+                {/* Gerar Card para Instagram */}
+                <div className="mb-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
+                  <div className="mb-4">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Compartilhe no Instagram
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      Gere um card visual otimizado para compartilhar este artigo no Instagram Feed ou Stories.
+                    </p>
+                  </div>
+                  <InstagramCardGenerator
+                    titulo={post.titulo}
+                    resumo={post.resumo}
+                    imagem={post.imagem}
+                    categoria={post.categoria}
+                    autor={post.autor || 'Dra. Larissa Nunes'}
+                  />
+                </div>
+
                 <div className="flex flex-wrap gap-3">
                   <button
                     onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`, '_blank')}
