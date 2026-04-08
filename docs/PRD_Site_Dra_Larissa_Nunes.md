@@ -246,6 +246,7 @@ Entra no MVP o que atende a pelo menos um destes critérios:
 | RF-010 | LP Sessão de Resolução | Landing page com vídeo + sessão pontual R$200 | Pacientes | Must | Média | 3 |
 | RF-011 | SEO técnico completo | Sitemap, robots, structured data, Core Web Vitals | Google | Must | Média | 1 |
 | RF-012 | Otimização GEO | Conteúdo estruturado para aparecer em respostas de LLMs | LLMs | Should | Média | 1 |
+| RF-013 | Geração automática de capa | Imagem de capa gerada por IA (inference.sh) ao criar artigo | Admin | Must | Média | 2 |
 
 ### 8.2 Detalhamento por Funcionalidade
 
@@ -307,10 +308,11 @@ Entra no MVP o que atende a pelo menos um destes critérios:
   1. Dra. Larissa acessa painel admin
   2. Insere um tema, texto ou prompt sobre o artigo desejado
   3. Sistema envia para LLM (Claude Code/GPT/Groq) que pesquisa e redige artigo completo
-  4. Artigo gerado com: título SEO, resumo, conteúdo HTML, sugestão de imagens, tags, categoria
-  5. Artigo é exibido em modo preview para a Dra. Larissa
-  6. Dra. Larissa revisa, solicita ajustes ou aprova
-  7. Ao aprovar, artigo é publicado automaticamente no blog
+  4. Artigo gerado com: título SEO, resumo, conteúdo HTML, tags, categoria
+  5. Sistema gera automaticamente imagem de capa via inference.sh (IA) — sem texto, estilo editorial, tema visual baseado na categoria do artigo
+  6. Artigo é exibido em modo preview com imagem de capa para a Dra. Larissa
+  7. Dra. Larissa revisa, solicita ajustes ou aprova
+  8. Ao aprovar, artigo é publicado com imagem no blog
 - **Regras de negócio:** RN-003, RN-004
 - **Critérios de aceite:**
   - [ ] Campo de input de tema/prompt funcional no admin
@@ -622,3 +624,4 @@ Dra. Larissa envia tema → Agente IA pesquisa e redige → Preview do artigo �
 |--------|------|-------|------------|
 | 1.0 | 06/04/2026 | Consultor de Produto (Claude Code) | Versão inicial — discovery completo com 4 blocos de perguntas |
 | 1.1 | 07/04/2026 | Consultor de Produto (Claude Code) | Todas as 7 dúvidas pendentes resolvidas. Copy do site produzida. SPEC, PLAN e TASKS técnicos gerados. Estratégia de keywords pesquisada e documentada. Depoimentos fictícios sinalizados para remoção. CRP 09/16269 registrado. |
+| 1.2 | 08/04/2026 | Claude Code | Adicionado RF-013: geração automática de imagem de capa por IA (inference.sh, modelo pruna/p-image). Fluxo do RF-007 atualizado com etapa de geração de imagem. 30 cenas temáticas + 5 estilos = 150 combinações. Sem texto nas imagens. |

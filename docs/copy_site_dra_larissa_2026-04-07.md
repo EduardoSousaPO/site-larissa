@@ -517,6 +517,28 @@ CONCLUSAO + CTA (1-2 paragrafos)
 
 ---
 
+#### Diretrizes de Imagem de Capa (Geracao Automatica)
+
+A imagem de capa e gerada automaticamente por IA (inference.sh, modelo pruna/p-image) ao criar o artigo.
+
+**Regras da imagem:**
+- SEM texto, palavras, letras ou watermarks — nunca
+- Estilo: fotografia editorial profissional e realista
+- Aspecto: 16:9 (horizontal)
+- Sem rostos visiveis de pessoas
+- Tom: quente, acolhedor, esperancoso
+
+**Temas visuais por categoria:**
+- Logoterapia: consultorio acolhedor, livros, luz dourada, farol, estrada
+- Ansiedade: natureza serena, floresta, lago calmo, lavanda, cha quente
+- Depressao: nascer do sol, vela acesa, flores brotando, novo dia
+- Proposito: bussola, trilha, telescopio, semente brotando, ponte
+- Vocacional: portas coloridas, estudio, bifurcacao na trilha, biblioteca
+
+**Variacao:** O sistema sorteia 1 de 5 cenas + 1 de 5 estilos = 150 combinacoes possiveis.
+
+---
+
 #### Fluxo de Producao
 
 ```
@@ -529,10 +551,13 @@ Agente IA pesquisa keyword + concorrencia + perguntas relacionadas
 Agente IA redige artigo seguindo esta diretriz
        |
        v
-Preview para Dra. Larissa
+inference.sh gera imagem de capa automaticamente (sem texto)
        |
        v
-Dra. Larissa revisa (conteudo clinico + tom de voz)
+Preview com artigo + imagem para Dra. Larissa
+       |
+       v
+Dra. Larissa revisa (conteudo clinico + tom de voz + imagem)
        |
        v
 Solicita ajustes OU aprova

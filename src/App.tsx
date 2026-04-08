@@ -12,7 +12,6 @@ import HomePage from './pages/HomePage';
 import Agendamento from './pages/Agendamento';
 import BlogPage from './pages/BlogPage';
 import PostDetail from './pages/PostDetail';
-import Depoimentos from './pages/Depoimentos';
 import BlogAdmin from './pages/BlogAdmin';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -66,7 +65,7 @@ function App() {
             <Route path="agendamento" element={<Agendamento />} />
             <Route path="blog" element={<BlogPage />} />
             <Route path="blog/:slug" element={<PostDetail />} />
-            <Route path="depoimentos" element={<Depoimentos />} />
+
             <Route
               path="*"
               element={

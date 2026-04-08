@@ -9,6 +9,26 @@ export const CONTACT_PHONE_E164 = '+5562996290052';
 export const CONTACT_PHONE_DIGITS = '5562996290052';
 export const CONTACT_ADDRESS = 'Av. C-255, no 271, St. Nova Suica, Goiania - GO';
 export const CRP = 'CRP 09/16269';
+export const GOOGLE_REVIEWS_URL =
+  'https://www.google.com/maps/place/Psic%C3%B3loga+Larissa+Nunes/';
+export const GOOGLE_REVIEW_SUMMARY = {
+  ratingValue: 5,
+  reviewCount: 4,
+} as const;
+export const GOOGLE_REVIEW_HIGHLIGHTS = [
+  {
+    initial: 'E',
+    name: 'Eduardo Sousa',
+    rating: 5,
+    text: 'Larissa me ajudou em varias questoes, e eu a recomendo sem pensar duas vezes.',
+  },
+  {
+    initial: 'P',
+    name: 'Paciente verificado',
+    rating: 5,
+    text: 'Larissa e uma excelente profissional.',
+  },
+] as const;
 
 export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() ?? '';
 export const LLM_PROVIDER = (import.meta.env.VITE_LLM_PROVIDER?.trim() ?? 'openai') as

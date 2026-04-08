@@ -181,6 +181,12 @@
 - [x] **T-CODE-022** [CODEX] — Testar todos os CTAs WhatsApp
 - [x] **T-CODE-023** [CODEX] — Validar SEO (Lighthouse + Rich Results Test)
 - [x] **T-CODE-024** [CODEX] — Build final + deploy no Vercel
+- [x] **T-CODE-025** [CLAUDE] — Integrar geracao automatica de imagem de capa (inference.sh)
+  - Criado src/services/llm.ts: funcao generateCoverImage() com API inference.sh
+  - Modelo: pruna/p-image, 30 cenas + 5 estilos = 150 combinacoes
+  - Regra: sem texto na imagem, fallback graceful se API falhar
+  - Atualizado BlogAdmin.tsx para exibir imagem no preview e salvar ao publicar
+  - Adicionado VITE_INFSH_API_KEY no .env e config/site.ts
 - [x] **T-REVIEW-001** [CLAUDE] — Review final: SPEC vs implementacao
   - 16/16 RFs implementados
   - Anti-SPEC respeitada
@@ -198,10 +204,11 @@
 | CURSOR | 1 | 16 | 16 | 100% |
 | CODEX | 2 | 14 | 14 | 100% |
 | CODEX | 3 | 4 | 4 | 100% |
-| CODEX + CLAUDE | 4 | 7 | 7 | 100% |
-| **Total** | | **41** | **41** | **100%** |
+| CODEX + CLAUDE | 4 | 8 | 8 | 100% |
+| **Total** | | **42** | **42** | **100%** |
 
 **PROJETO CONCLUIDO — Aprovado para deploy em 07/04/2026**
+**Atualizado em 08/04/2026 — Adicionada geracao automatica de imagem de capa (T-CODE-025)**
 
 ---
 

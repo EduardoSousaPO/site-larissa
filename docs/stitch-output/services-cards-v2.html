@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#9a25ae",
+                      "on-background": "#201924",
+                      "on-tertiary-container": "#44e878",
+                      "tertiary-fixed-dim": "#3de273",
+                      "surface": "#fff7fc",
+                      "on-tertiary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "error-container": "#ffdad6",
+                      "primary": "#4f1c9e",
+                      "on-surface": "#201924",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#69007a",
+                      "background": "#fff7fc",
+                      "surface-tint": "#6f43c0",
+                      "surface-container-low": "#fdefff",
+                      "on-primary-fixed-variant": "#5727a6",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#faecfc",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#362e39",
+                      "tertiary": "#004a1d",
+                      "surface-container-highest": "#ecdeee",
+                      "outline": "#7b7484",
+                      "on-tertiary-fixed": "#002109",
+                      "on-secondary-fixed": "#35003f",
+                      "primary-fixed": "#ebddff",
+                      "secondary-fixed": "#ffd6fe",
+                      "primary-container": "#673ab7",
+                      "tertiary-container": "#00642b",
+                      "surface-dim": "#e3d6e5",
+                      "surface-container-high": "#f2e4f4",
+                      "on-surface-variant": "#4a4453",
+                      "on-primary-container": "#d8c2ff",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#f9abff",
+                      "inverse-primary": "#d3bbff",
+                      "tertiary-fixed": "#66ff8e",
+                      "outline-variant": "#ccc3d5",
+                      "surface-bright": "#fff7fc",
+                      "surface-container": "#f8e9fa",
+                      "surface-variant": "#ecdeee",
+                      "on-tertiary-fixed-variant": "#005322",
+                      "secondary-container": "#ed76fd",
+                      "on-primary-fixed": "#250059",
+                      "primary-fixed-dim": "#d3bbff",
+                      "on-secondary-fixed-variant": "#7b008f",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Newsreader"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .font-newsreader { font-family: 'Newsreader', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-inter antialiased">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-fuchsia-50/70 backdrop-blur-xl shadow-sm shadow-violet-900/5 px-8 py-4">
+<div class="max-w-7xl mx-auto flex justify-between items-center">
+<div class="text-2xl font-serif italic text-violet-950">Aura Mental Wellness</div>
+<div class="hidden md:flex items-center space-x-8 font-newsreader tracking-tight">
+<a class="text-violet-700 border-b-2 border-violet-700 pb-1" href="#">Services</a>
+<a class="text-zinc-600 hover:text-violet-900 transition-opacity duration-300" href="#">Approach</a>
+<a class="text-zinc-600 hover:text-violet-900 transition-opacity duration-300" href="#">About</a>
+<a class="text-zinc-600 hover:text-violet-900 transition-opacity duration-300" href="#">Resources</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="material-symbols-outlined text-violet-900 p-2 hover:opacity-80 transition-opacity">account_circle</button>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-xl font-medium hover:opacity-90 transition-all active:scale-95">Book Session</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-6">
+<!-- Header Section -->
+<header class="max-w-5xl mx-auto mb-20">
+<div class="inline-block px-4 py-1.5 rounded-full bg-surface-container-highest text-primary font-semibold text-xs tracking-widest uppercase mb-6">
+                Nossos Serviços
+            </div>
+<h1 class="text-5xl md:text-6xl font-newsreader font-medium tracking-tight text-on-surface leading-tight max-w-2xl italic">
+                Como posso te ajudar
+            </h1>
+<p class="mt-6 text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed">
+                Oferecemos um espaço seguro e acolhedor para que você possa explorar suas emoções e construir uma vida com mais propósito.
+            </p>
+</header>
+<!-- Services Grid -->
+<section class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+<!-- Card 2: Sessao de Resolucao (Placed first for asymmetry/editorial flow) -->
+<div class="bg-surface-container-low rounded-[2rem] p-10 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-2 group border border-transparent hover:border-outline-variant/20">
+<div>
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">target</span>
+</div>
+<h3 class="text-2xl font-newsreader font-semibold mb-4 text-on-surface">Sessao de Resolucao</h3>
+<p class="text-on-surface-variant leading-relaxed mb-6">
+                            Uma sessão pontual para quem precisa de clareza agora. Luto, decisão, conflito ou crise imediata.
+                        </p>
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container text-primary text-xs font-bold mb-8">
+                            Sessao única
+                        </div>
+</div>
+<div>
+<div class="mb-8">
+<span class="text-3xl font-newsreader font-bold text-on-surface">R$200</span>
+</div>
+<button class="w-full py-4 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                            Agendar Agora
+                        </button>
+</div>
+</div>
+<!-- Card 1: Psicoterapia Individual (FEATURED) -->
+<div class="relative bg-white rounded-[2.5rem] p-10 flex flex-col justify-between shadow-2xl shadow-primary/10 border-2 border-primary-container/30 transform lg:-mt-8 lg:mb-8 transition-transform duration-300 hover:scale-[1.02]">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-on-primary px-6 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg">
+                        Mais Procurado
+                    </div>
+<div>
+<div class="w-16 h-16 rounded-3xl bg-primary-container flex items-center justify-center mb-10 shadow-inner">
+<span class="material-symbols-outlined text-white text-4xl" style="font-variation-settings: 'FILL' 1;">heart_broken</span>
+</div>
+<h3 class="text-3xl font-newsreader font-bold mb-6 text-on-surface">Psicoterapia Individual</h3>
+<p class="text-lg text-on-surface-variant leading-relaxed mb-8">
+                            Sessões semanais com foco em encontrar sentido, superar crises profundas e construir uma vida com direção clara e resiliente.
+                        </p>
+<div class="p-4 rounded-2xl bg-primary-fixed/30 border border-primary-fixed mb-10">
+<p class="text-primary font-bold text-sm">Pacote mensal R$576</p>
+<p class="text-on-primary-fixed-variant text-xs opacity-80">(20% de desconto incluso)</p>
+</div>
+</div>
+<div>
+<div class="mb-10 flex items-baseline gap-2">
+<span class="text-4xl font-newsreader font-black text-primary">R$180</span>
+<span class="text-on-surface-variant font-medium">/sessão</span>
+</div>
+<button class="w-full py-5 rounded-2xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-lg shadow-xl shadow-primary/30 hover:shadow-primary/40 transition-all active:scale-95">
+                            Começar Jornada
+                        </button>
+</div>
+</div>
+<!-- Card 3: Orientacao Vocacional -->
+<div class="bg-surface-container-low rounded-[2rem] p-10 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-2 group border border-transparent hover:border-outline-variant/20">
+<div>
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">directions</span>
+</div>
+<h3 class="text-2xl font-newsreader font-semibold mb-4 text-on-surface">Orientacao Vocacional</h3>
+<p class="text-on-surface-variant leading-relaxed mb-10">
+                            Para quem sente que está na carreira errada ou não sabe que direção seguir. Um processo de autodescoberta profissional.
+                        </p>
+<div class="relative w-full h-40 rounded-2xl overflow-hidden mb-10 grayscale hover:grayscale-0 transition-all duration-500">
+<img alt="Minimalist study area" class="w-full h-full object-cover" data-alt="minimalist workspace with a single lamp and a journal on a light wooden desk, calm serene atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALyleVQPRFPoYIHjJ4aBjCf9njHE12kOcKhUgcK3Pv-9uZQ_vRLx2s21grsh7MoqZ45WygOkWKtCzF08Ozx_MkQSPgRtR3E3X1DfOeLkC5l7CwPHlQGQK_wyJFyidxzRHsyfGSj6v37P4OZyIlQAvtr_-MrwiyFmkXvPurFnuJxFfDzFki6RXi87qxTTy49QjWyrP-G9bzbAlu3U6kYDUvqwz-nzcfPO5E-_usJbFrKu8rDoK6pNJF5WI2yc9PHBZjyvg_uIN7m6w"/>
+</div>
+</div>
+<div>
+<button class="w-full py-4 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                            Saber Mais
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="mt-32 max-w-4xl mx-auto text-center">
+<p class="font-newsreader italic text-2xl text-on-surface-variant leading-relaxed">
+                "O autoconhecimento é o primeiro passo para a liberdade emocional. Vamos trilhar este caminho juntos, com respeito ao seu tempo e à sua história."
+            </p>
+<div class="mt-8 flex items-center justify-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Therapist Profile" class="w-full h-full object-cover" data-alt="portrait of a professional female therapist with a warm, empathetic smile in a bright airy studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGzD7Uw6TkSgGeaZld4Jkh2j7-5iVuxMhN7-N8up4xvbIEKQDy-U7AgndUQfAEky5jsm4UlA8zIi5PUxrzOQxqWzte1hK3G6dYVuqKj4MyEItGSe3o4Er6YbcdGkT0bhiBFd3DltNoE3fdrUJfJLKLaFd8IdSq7ug8DouIVq_3WqUqsgkONskdBxKX7K0L7xETN4qF8A2Wc9R440YO8rogMKMxXh8m6BSCOOHyHWBKsjtcLBqguN6mxkXQlp9Setb6yI6Milro7Hk"/>
+</div>
+<div class="text-left">
+<p class="font-bold text-on-surface">Dra. Clara Valença</p>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-bold">CRP 06/123456</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-20 bg-fuchsia-100 dark:bg-zinc-900">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-7xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="font-newsreader text-xl font-bold text-violet-900 mb-2">Aura Mental Wellness</div>
+<p class="text-zinc-500 text-sm font-inter tracking-wide italic">© 2024 Aura Mental Wellness. The Resilient Sanctuary.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 font-inter text-sm tracking-wide">
+<a class="text-zinc-500 hover:text-violet-700 hover:translate-x-1 transition-transform duration-200" href="#">Privacy Policy</a>
+<a class="text-zinc-500 hover:text-violet-700 hover:translate-x-1 transition-transform duration-200" href="#">Terms of Service</a>
+<a class="text-zinc-500 hover:text-violet-700 hover:translate-x-1 transition-transform duration-200" href="#">Contact</a>
+<a class="font-semibold text-violet-800 hover:translate-x-1 transition-transform duration-200" href="#">Emergency Support</a>
+</div>
+</div>
+</footer>
+<!-- FAB for direct contact (Contextual to Home/Services) -->
+<button class="fixed bottom-8 right-8 bg-tertiary-container text-tertiary-fixed flex items-center gap-3 px-6 py-4 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all z-40 group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform">chat</span>
+<span class="font-bold tracking-tight">WhatsApp</span>
+</button>
+</body></html>

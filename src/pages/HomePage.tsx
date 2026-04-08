@@ -3,6 +3,7 @@ import AboutSection from '../components/sections/AboutSection';
 import ApproachSection from '../components/sections/ApproachSection';
 import ServicesSection from '../components/sections/ServicesSection';
 import FAQSection from '../components/sections/FAQSection';
+import TestimonialsSection from '../components/sections/TestimonialsSection';
 import CTASection from '../components/sections/CTASection';
 import SEOHead from '../components/SEOHead';
 import { FAQ_ITEMS, LOCAL_BUSINESS_SCHEMA, PHYSICIAN_SCHEMA } from '../config/site';
@@ -36,6 +37,7 @@ const HomePage = () => {
         <ApproachSection />
         <ServicesSection />
         <FAQSection />
+        <TestimonialsSection />
         <CTASection page="home" />
       </div>
     </>

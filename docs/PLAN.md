@@ -194,6 +194,63 @@ O frontend admin tera um service (`src/services/llm.ts`) que abstrai o provider,
 
 ---
 
+## 4b. Integracao com inference.sh para Imagens de Capa
+
+### Arquitetura
+
+```
+Admin Panel (React)
+    │
+    │ 1. Apos LLM gerar artigo, chama inference.sh
+    │
+    ▼
+POST https://api.inference.sh/apps/run
+    │  App: pruna/p-image
+    │  Input: { prompt, aspect_ratio: "16:9" }
+    │
+    │ 2. Retorna task ID (async)
+    │
+    ▼
+GET https://api.inference.sh/tasks/{id}
+    │  Polling a cada 2s, max 30 tentativas (60s)
+    │
+    │ 3. Retorna output.image (URL publica)
+    │
+    ▼
+Admin Panel exibe preview com imagem
+    │
+    │ 4. Ao aprovar, salva image_url no blog_posts
+    │
+    ▼
+Blog publico exibe artigo com capa
+```
+
+### Geracao de Prompt de Imagem
+
+O sistema sorteia aleatoriamente entre:
+- **30 cenas tematicas** (5 por categoria: logoterapia, ansiedade, depressao, proposito, vocacional, geral)
+- **5 estilos fotograficos** (editorial, cinematic, fine art, documentary, minimalist)
+- Total: **150 combinacoes unicas**
+
+Regras do prompt:
+- NUNCA incluir texto na imagem (instrucao explicita no prompt)
+- NUNCA incluir rostos visiveis de pessoas
+- Sempre aspect ratio 16:9
+- Estilo: fotografia realista profissional
+
+### Configuracao
+
+```env
+VITE_INFSH_API_KEY=1nfsh-...  # API key inference.sh
+```
+
+### Custo
+- Modelo pruna/p-image: ~$0.003/imagem
+- 100 capas = ~R$1.50
+- Fallback: se API falhar, artigo e publicado sem imagem
+
+---
+
 ## 5. Autenticacao e Autorizacao
 
 ### Estrategia (manter existente)

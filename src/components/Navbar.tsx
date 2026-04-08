@@ -33,7 +33,6 @@ const Navbar = () => {
   const links = [
     { to: '/', label: 'Inicio', active: location.pathname === '/' },
     { to: '/blog', label: 'Blog', active: location.pathname.startsWith('/blog') },
-    { to: '/depoimentos', label: 'Depoimentos', active: location.pathname === '/depoimentos' },
   ];
 
   return (

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#f8e9fa",
+                        "on-surface-variant": "#4a4453",
+                        "surface": "#fff7fc",
+                        "on-tertiary-fixed-variant": "#005322",
+                        "tertiary-fixed-dim": "#3de273",
+                        "on-tertiary-fixed": "#002109",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#faecfc",
+                        "surface-container-low": "#fdefff",
+                        "on-tertiary-container": "#44e878",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#250059",
+                        "on-secondary-fixed": "#35003f",
+                        "on-primary-container": "#d8c2ff",
+                        "outline-variant": "#ccc3d5",
+                        "on-background": "#201924",
+                        "on-secondary-fixed-variant": "#7b008f",
+                        "surface-tint": "#6f43c0",
+                        "outline": "#7b7484",
+                        "on-secondary-container": "#69007a",
+                        "background": "#fff7fc",
+                        "on-error": "#ffffff",
+                        "secondary": "#9a25ae",
+                        "primary-fixed": "#ebddff",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#ecdeee",
+                        "primary": "#4f1c9e",
+                        "primary-fixed-dim": "#d3bbff",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#673ab7",
+                        "surface-dim": "#e3d6e5",
+                        "secondary-container": "#ed76fd",
+                        "tertiary-fixed": "#66ff8e",
+                        "on-surface": "#201924",
+                        "tertiary-container": "#00642b",
+                        "surface-bright": "#fff7fc",
+                        "on-primary-fixed-variant": "#5727a6",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#f9abff",
+                        "surface-container-highest": "#ecdeee",
+                        "surface-container-high": "#f2e4f4",
+                        "secondary-fixed": "#ffd6fe",
+                        "tertiary": "#004a1d",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#362e39",
+                        "inverse-primary": "#d3bbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .mesh-gradient {
+            background-color: #2e1065;
+            background-image: 
+                radial-gradient(at 0% 0%, #6d28d9 0, transparent 50%), 
+                radial-gradient(at 100% 0%, #4f1c9e 0, transparent 50%), 
+                radial-gradient(at 100% 100%, #2e1065 0, transparent 50%), 
+                radial-gradient(at 0% 100%, #673ab7 0, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fff7fc]/70 dark:bg-[#201924]/70 backdrop-blur-md shadow-[0_10px_40px_-15px_rgba(32,25,36,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-serif italic text-[#4f1c9e] dark:text-[#fdefff]">
+                Resilient Sanctuary
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-[#4f1c9e] border-b-2 border-[#4f1c9e] pb-1 font-semibold dark:text-[#fdefff] dark:border-[#fdefff] font-serif font-medium tracking-tight" href="#">Our Philosophy</a>
+<a class="text-[#201924]/70 dark:text-[#fdefff]/70 hover:text-[#4f1c9e] transition-colors font-serif font-medium tracking-tight" href="#">Logotherapy</a>
+<a class="text-[#201924]/70 dark:text-[#fdefff]/70 hover:text-[#4f1c9e] transition-colors font-serif font-medium tracking-tight" href="#">Therapists</a>
+<a class="text-[#201924]/70 dark:text-[#fdefff]/70 hover:text-[#4f1c9e] transition-colors font-serif font-medium tracking-tight" href="#">Resources</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary p-2 rounded-full hover:bg-[#f8e9fa] transition-all duration-300">account_circle</button>
+<button class="bg-primary-container text-on-primary px-6 py-2 rounded-xl font-medium hover:scale-95 duration-200 ease-in-out">Book Session</button>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 mesh-gradient">
+<!-- Subtle Particle/Grain Overlay -->
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0oxEfGVrHk4zGQsRilMhchADOTcFcGvR_5TqGB8xVQUom8XSMNuf43Bj7AF8ccrgK5iKHZK7b_A9QMba09QBsU52r_A3wCGos01qZr739WtonNHk8EKPBBdfYLjIJUoigYAvpYeiYjz4oEdzkAHbLSreB1yYzGQMvdOFpxpu1JzeM-RwTovszW_c4PSjY5jn_AKbkWhhPnAhuIogb4uzGl37yVtWWLePGs488jbnRc2nOV0vSJSVcaYhti2391eWwi66sRQFVbJI');"></div>
+<div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10 py-20 max-w-7xl">
+<!-- Left Column -->
+<div class="flex flex-col space-y-8 animate-fade-in">
+<h1 class="font-headline text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight">
+                        Quem tem um porquê, suporta qualquer como. <span class="italic font-normal block mt-2 opacity-90">Descubra o seu.</span>
+</h1>
+<p class="text-xl md:text-2xl text-on-primary-container font-light leading-relaxed max-w-xl">
+                        Psicoterapia com Logoterapia para você que sente que está vivendo sem rumo. Encontre o sentido que transforma sofrimento em direção.
+                    </p>
+<div class="flex flex-col space-y-4 pt-4">
+<a class="inline-flex items-center justify-center gap-3 bg-[#10b981] text-white px-8 py-5 rounded-xl font-semibold text-lg hover:scale-105 transition-transform duration-300 shadow-xl shadow-green-900/20 group w-fit" href="https://wa.me/yourlink">
+<span class="material-symbols-outlined" data-weight="fill">chat</span>
+                            Quero falar com a Dra. Larissa
+                        </a>
+<p class="text-on-primary-container/80 text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                            Atendimento online para todo o Brasil. Primeira conversa pelo WhatsApp.
+                        </p>
+</div>
+</div>
+<!-- Right Column -->
+<div class="relative flex justify-center items-center h-full">
+<!-- Glow Effect -->
+<div class="absolute w-80 h-80 md:w-[450px] md:h-[450px] bg-secondary/30 rounded-full blur-[80px] animate-pulse"></div>
+<!-- Profile Photo Container -->
+<div class="relative z-20">
+<div class="w-72 h-72 md:w-[400px] md:h-[400px] rounded-full p-2 bg-gradient-to-tr from-on-primary-container via-transparent to-on-primary-container shadow-2xl">
+<div class="w-full h-full rounded-full overflow-hidden border-4 border-white/10">
+<img alt="Dra. Larissa" class="w-full h-full object-cover" data-alt="Sophisticated professional portrait of a female psychologist in her 30s with a warm smile, wearing a professional blazer, soft studio lighting with violet tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADhyJ3dS-lHn4OAsaOQjgKgQww9vd5YXocstc_6uasLB669CTOfpRm-4RCpP3IVUMZDUdwJOHZTsJiGBZWX82c3uG4o8m13_OXmP69X8E3kQRqHuxku4pfzVX3q7LS1g9S9pn2mNZiEbZ5Hy8BIoaJ1wmICHWHrrLO31I7XXB-PzQN6cr3XoqMcC9oq7OEEz5AJu5yYKsuUtpJ760ReasG0PUIXx3786RZUJQGxZFQFb_DPmgoG3pJAxSRtadG7USgNSIIIwkpEv4"/>
+</div>
+</div>
+<!-- Floating Badges (Bento-like scattered arrangement) -->
+<div class="absolute -top-4 -right-4 glass-card px-4 py-3 rounded-xl flex items-center gap-2 text-white text-sm font-medium shadow-lg animate-bounce duration-[5000ms]">
+<span class="material-symbols-outlined text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>5.0 ★ Google</span>
+</div>
+<div class="absolute bottom-10 -left-12 glass-card px-4 py-3 rounded-xl flex items-center gap-2 text-white text-sm font-medium shadow-lg">
+<span class="material-symbols-outlined text-primary-fixed">verified</span>
+<span>CRP 09/16269</span>
+</div>
+<div class="absolute -bottom-6 right-10 glass-card px-4 py-3 rounded-xl flex items-center gap-2 text-white text-sm font-medium shadow-lg">
+<span class="material-symbols-outlined text-primary-fixed">public</span>
+<span>Online para todo Brasil</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Asymmetric Accent -->
+<div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-background to-transparent"></div>
+</section>
+<!-- Values Section (Tonal Shift) -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<h3 class="text-2xl font-headline font-semibold">Logoterapia</h3>
+<p class="text-on-surface-variant leading-relaxed">A psicologia do sentido. Focada na capacidade humana de transcender adversidades e encontrar um propósito real.</p>
+</div>
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<h3 class="text-2xl font-headline font-semibold">Acolhimento Digital</h3>
+<p class="text-on-surface-variant leading-relaxed">Sessões seguras via vídeo, garantindo privacidade e conforto no seu próprio espaço, onde quer que você esteja.</p>
+</div>
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">local_library</span>
+</div>
+<h3 class="text-2xl font-headline font-semibold">Base Ética</h3>
+<p class="text-on-surface-variant leading-relaxed">Atendimento pautado no rigor clínico e na humanidade, respeitando a singularidade de cada jornada existencial.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f8e9fa] dark:bg-[#201924] w-full py-12 px-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto">
+<div class="flex flex-col gap-2 items-center md:items-start">
+<div class="text-lg font-serif text-[#4f1c9e] dark:text-[#fdefff]">Resilient Sanctuary</div>
+<div class="text-sm font-sans leading-relaxed tracking-wide text-[#201924]/60 dark:text-[#fdefff]/60">© 2024 The Resilient Sanctuary. All rights reserved.</div>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-[#201924]/60 dark:text-[#fdefff]/60 hover:text-[#4f1c9e] font-bold underline decoration-2 underline-offset-4 transition-opacity" href="#">Privacy Policy</a>
+<a class="text-[#201924]/60 dark:text-[#fdefff]/60 hover:text-[#4f1c9e] underline decoration-2 underline-offset-4 transition-opacity" href="#">Terms of Service</a>
+<a class="text-[#201924]/60 dark:text-[#fdefff]/60 hover:text-[#4f1c9e] underline decoration-2 underline-offset-4 transition-opacity" href="#">Ethics Code</a>
+<a class="text-[#201924]/60 dark:text-[#fdefff]/60 hover:text-[#4f1c9e] underline decoration-2 underline-offset-4 transition-opacity" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

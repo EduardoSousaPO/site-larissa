@@ -68,6 +68,12 @@
 **Criterio de aceite:** CA-011
 **Notas:** Integracao com Claude/GPT/Groq via API. Diretrizes de copy e SEO definidas no guia de blog.
 
+### RF-017 — Geracao Automatica de Imagem de Capa para Artigos
+**Descricao:** Ao gerar um artigo via agente de IA, o sistema deve automaticamente gerar uma imagem de capa usando a API inference.sh (modelo pruna/p-image). A imagem deve ser realista, estilo fotografia editorial, sem texto sobreposto, com tema visual correspondente a categoria do artigo. O sistema deve sortear aleatoriamente entre 5 cenas por categoria e 5 estilos fotograficos para garantir variedade visual. Se a API falhar, o artigo e gerado sem imagem (fallback graceful).
+**Prioridade:** Alta
+**Criterio de aceite:** CA-017
+**Notas:** API key inference.sh via VITE_INFSH_API_KEY. Modelo: pruna/p-image (~$0.003/imagem). Polling assincrono com timeout de 60s. 30 cenas + 5 estilos = 150 combinacoes possiveis.
+
 ### RF-012 — Landing Page: Primeira Consulta (50% desconto)
 **Descricao:** O sistema deve ter pagina oculta (/primeira-consulta) com video promocional, oferta de primeira sessao por R$90, CTA para WhatsApp com mensagem especifica da oferta. Nao aparece no menu, nao indexada.
 **Prioridade:** Media
@@ -196,7 +202,8 @@
 4. Admin insere tema e envia
 5. Sistema envia prompt para LLM com diretrizes de copy e SEO
 6. LLM retorna artigo completo (titulo, resumo, conteudo HTML, tags, categoria)
-7. Sistema exibe artigo em modo preview
+7. Sistema gera imagem de capa via inference.sh (pruna/p-image) baseada no titulo + categoria
+8. Sistema exibe artigo em modo preview com imagem de capa
 8. Admin revisa conteudo
 9. Admin clica em "Solicitar ajustes" (volta ao passo 5 com feedback) OU "Aprovar e publicar"
 10. Sistema publica artigo no blog com SEO completo
@@ -420,6 +427,20 @@ Given: visitante acessa pagina de depoimentos
 When: a pagina carrega
 Then: exibe depoimentos com nome, localizacao, servico e nota
   And: Schema markup Review valido em cada depoimento
+```
+
+### CA-017 — Imagem de capa gerada automaticamente
+**Cobre:** RF-017
+```
+Given: admin autenticado clica em "Gerar preview com IA" com um tema
+When: o LLM retorna o artigo gerado
+Then: o sistema chama a API inference.sh (pruna/p-image) com prompt baseado na categoria
+  And: o prompt NAO contem texto para renderizar na imagem
+  And: o prompt e sorteado aleatoriamente entre 5 cenas da categoria + 5 estilos fotograficos
+  And: a imagem gerada aparece no preview acima do conteudo do artigo
+  And: ao aprovar e publicar, a image_url e salva no campo image_url do blog_posts
+  And: se a API inference.sh falhar, o artigo e gerado normalmente sem imagem
+  And: o timeout maximo de geracao de imagem e 60 segundos
 ```
 
 ---

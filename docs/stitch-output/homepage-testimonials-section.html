@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,700;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#6f43c0",
+                        "outline-variant": "#ccc3d5",
+                        "on-surface-variant": "#4a4453",
+                        "inverse-surface": "#362e39",
+                        "tertiary": "#004a1d",
+                        "surface-container": "#f8e9fa",
+                        "surface-bright": "#fff7fc",
+                        "primary": "#4f1c9e",
+                        "tertiary-fixed": "#66ff8e",
+                        "surface": "#fff7fc",
+                        "secondary-fixed": "#ffd6fe",
+                        "secondary-fixed-dim": "#f9abff",
+                        "on-surface": "#201924",
+                        "secondary-container": "#ed76fd",
+                        "on-tertiary-fixed": "#002109",
+                        "on-tertiary-container": "#44e878",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#d3bbff",
+                        "surface-container-high": "#f2e4f4",
+                        "primary-fixed": "#ebddff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#005322",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#5727a6",
+                        "surface-container-highest": "#ecdeee",
+                        "on-primary-fixed": "#250059",
+                        "outline": "#7b7484",
+                        "on-background": "#201924",
+                        "background": "#fff7fc",
+                        "on-secondary-fixed": "#35003f",
+                        "on-secondary-fixed-variant": "#7b008f",
+                        "on-secondary-container": "#69007a",
+                        "surface-dim": "#e3d6e5",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#00642b",
+                        "secondary": "#9a25ae",
+                        "surface-variant": "#ecdeee",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#d8c2ff",
+                        "inverse-on-surface": "#faecfc",
+                        "inverse-primary": "#d3bbff",
+                        "tertiary-fixed-dim": "#3de273",
+                        "surface-container-low": "#fdefff",
+                        "primary-container": "#673ab7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift-bg {
+            background-color: #fff7fc;
+            background-image: radial-gradient(at 0% 0%, #fdefff 0px, transparent 50%), radial-gradient(at 100% 100%, #f8e9fa 0px, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body antialiased">
+<!-- TopNavBar Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[#fff7fc]/70 dark:bg-[#201924]/70 backdrop-blur-xl shadow-[0_10px_40px_rgba(32,25,36,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-headline italic text-[#4f1c9e] dark:text-[#fdefff]">Sanctuary</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-headline font-light tracking-tight text-[#201924]/60 dark:text-[#ecdeee]/60 hover:text-[#673ab7] transition-colors duration-300" href="#">Practice</a>
+<a class="font-headline font-light tracking-tight text-[#4f1c9e] dark:text-[#fdefff] border-b-2 border-[#4f1c9e] pb-1 hover:text-[#673ab7] transition-colors duration-300" href="#">Therapy</a>
+<a class="font-headline font-light tracking-tight text-[#201924]/60 dark:text-[#ecdeee]/60 hover:text-[#673ab7] transition-colors duration-300" href="#">Resources</a>
+<a class="font-headline font-light tracking-tight text-[#201924]/60 dark:text-[#ecdeee]/60 hover:text-[#673ab7] transition-colors duration-300" href="#">Reviews</a>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-2 rounded-xl font-medium active:scale-95 duration-200">
+                Book Session
+            </button>
+</div>
+</nav>
+<main class="pt-24 pb-12">
+<!-- Compact Testimonials Section -->
+<section class="py-16 px-6 tonal-shift-bg">
+<div class="max-w-4xl mx-auto">
+<!-- Header -->
+<header class="text-center mb-4">
+<h2 class="font-headline text-3xl md:text-4xl text-on-surface tracking-tight leading-tight">
+                        O que dizem quem encontrou o caminho
+                    </h2>
+</header>
+<!-- Social Proof Badge -->
+<div class="flex justify-center mb-12">
+<div class="inline-flex items-center gap-3 px-4 py-2 bg-surface-container-lowest rounded-full shadow-[0_4px_20px_rgba(32,25,36,0.04)] border border-outline-variant/15">
+<div class="flex items-center gap-1">
+<span class="text-yellow-500 material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-label text-xs tracking-wider uppercase font-semibold text-on-surface-variant">
+                            Google Reviews 5.0 (4 avaliações)
+                        </p>
+</div>
+</div>
+<!-- Testimonial Cards Grid -->
+<div class="grid md:grid-cols-2 gap-8 mb-10">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl shadow-[0_10px_40px_rgba(32,25,36,0.06)] flex flex-col items-start gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold text-lg">
+                                E
+                            </div>
+<div>
+<h4 class="font-body font-semibold text-on-surface">Eduardo Sousa</h4>
+<div class="flex">
+<span class="text-yellow-500 material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<blockquote class="font-headline italic text-lg leading-relaxed text-on-surface/90">
+                            "Larissa me ajudou em várias questões, e eu a recomendo sem pensar duas vezes."
+                        </blockquote>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl shadow-[0_10px_40px_rgba(32,25,36,0.06)] flex flex-col items-start gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold text-lg">
+                                P
+                            </div>
+<div>
+<h4 class="font-body font-semibold text-on-surface">Paciente verificado</h4>
+<div class="flex">
+<span class="text-yellow-500 material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-yellow-500 material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<blockquote class="font-headline italic text-lg leading-relaxed text-on-surface/90">
+                            "Larissa é uma excelente profissional."
+                        </blockquote>
+</div>
+</div>
+<!-- Call to Action -->
+<div class="text-center">
+<a class="inline-flex items-center gap-2 font-label text-sm font-bold uppercase tracking-widest text-primary border-b-2 border-primary/20 hover:border-primary transition-all pb-1 group" href="#">
+                        Ver todas as avaliações no Google
+                        <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 bg-[#f8e9fa] dark:bg-[#2a242e] tonal-nesting-bg">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
+<div class="text-lg font-headline text-[#4f1c9e] flex items-center gap-2">
+<span class="material-symbols-outlined">spa</span>
+                Sanctuary
+            </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label text-sm tracking-wide text-[#201924]/70 dark:text-[#ecdeee]/70 hover:underline decoration-[#673ab7] decoration-2 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-label text-sm tracking-wide text-[#201924]/70 dark:text-[#ecdeee]/70 hover:underline decoration-[#673ab7] decoration-2 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-label text-sm tracking-wide text-[#201924]/70 dark:text-[#ecdeee]/70 hover:underline decoration-[#673ab7] decoration-2 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">Contact</a>
+<a class="font-label text-sm tracking-wide text-[#201924]/70 dark:text-[#ecdeee]/70 hover:underline decoration-[#673ab7] decoration-2 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">Ethics Code</a>
+</div>
+<p class="font-label text-sm tracking-wide text-[#201924]/70 dark:text-[#ecdeee]/70 text-center md:text-right">
+                © 2024 The Resilient Sanctuary. Professional Psychological Services.
+            </p>
+</div>
+</footer>
+</body></html>

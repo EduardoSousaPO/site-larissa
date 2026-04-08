@@ -123,18 +123,22 @@ export interface GeneratedArticle {
   category: BlogCategory
   tags: string[]
   suggested_slug: string
+  image_url?: string      // URL da imagem de capa gerada por inference.sh (pode ser undefined)
 }
 
 export function generateArticle(
   topic: string, 
   provider?: 'claude' | 'openai' | 'groq'
 ): Promise<GeneratedArticle>
+// Retorna artigo COM image_url se VITE_INFSH_API_KEY estiver configurada
+// Retorna artigo SEM image_url se API falhar (fallback graceful)
 
 export function regenerateArticle(
   topic: string, 
   feedback: string,
   previousArticle: GeneratedArticle
 ): Promise<GeneratedArticle>
+// Tambem regenera imagem de capa
 ```
 
 ---
@@ -186,6 +190,7 @@ export function regenerateArticle(
 | `VITE_LLM_PROVIDER` | string | Admin | claude/openai/groq |
 | `VITE_LLM_API_KEY` | string | Admin | Chave da API LLM |
 | `VITE_LLM_MODEL` | string | Admin | Modelo a usar |
+| `VITE_INFSH_API_KEY` | string | Admin | API key inference.sh para geracao de imagens de capa |
 | `VITE_WHATSAPP_NUMBER` | string | Frontend | 5562996290052 |
 | `VITE_WHATSAPP_DEFAULT_MESSAGE` | string | Frontend | Mensagem padrao WhatsApp |
 
