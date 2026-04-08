@@ -36,3 +36,7 @@ firebase-debug.*.log
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Claude Code config (contains API keys)
+.claude.json
+.claude/

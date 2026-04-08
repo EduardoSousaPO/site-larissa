@@ -7,12 +7,14 @@ interface ImageGalleryProps {
 
 const images = [
   {
-    src: 'images/larissa1.png',
-    alt: 'Dra. Larissa Nunes - Retrato Profissional'
+    src: '/images/larissa1.png',
+    webpSrc: '/images/larissa1.webp',
+    alt: 'Retrato profissional da Dra. Larissa Nunes em ambiente claro de consultorio'
   },
   {
-    src: 'images/larissa2.jpeg',
-    alt: 'Dra. Larissa Nunes - Foto de Estúdio'
+    src: '/images/larissa2.jpeg',
+    webpSrc: '/images/larissa2.webp',
+    alt: 'Dra. Larissa Nunes em foto de estudio para apresentacao profissional'
   }
 ];
 
@@ -82,10 +84,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ className = '' }) => {
     <div className={`relative overflow-hidden rounded-xl ${className}`}>
       <div className="relative w-full h-full">
         <AnimatePresence initial={false} custom={direction}>
-          <motion.img
+          <motion.div
             key={currentIndex}
-            src={images[currentIndex].src}
-            alt={images[currentIndex].alt}
             custom={direction}
             variants={variants}
             initial="enter"
@@ -106,8 +106,19 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ className = '' }) => {
                 handlePrev();
               }
             }}
-            className="absolute w-full h-full object-cover"
-          />
+            className="absolute w-full h-full"
+          >
+            <picture>
+              <source srcSet={images[currentIndex].webpSrc} type="image/webp" />
+              <img
+                src={images[currentIndex].src}
+                alt={images[currentIndex].alt}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover"
+              />
+            </picture>
+          </motion.div>
         </AnimatePresence>
       </div>
 

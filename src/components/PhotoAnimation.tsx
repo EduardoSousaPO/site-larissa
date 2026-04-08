@@ -2,7 +2,11 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 interface PhotoAnimationProps {
-  images: string[];
+  images: Array<{
+    src: string;
+    webpSrc?: string;
+    alt: string;
+  }>;
   className?: string;
   interval?: number;
   effectType?: 'fade' | 'slide' | 'zoom' | 'flip';
@@ -60,11 +64,18 @@ const PhotoAnimation: React.FC<PhotoAnimationProps> = ({
         variants={selectedVariant}
         className="w-full h-full"
       >
-        <img
-          src={images[currentImage]}
-          alt={`Dra. Larissa Nunes - Foto ${currentImage + 1}`}
-          className="w-full h-full object-cover"
-        />
+        <picture>
+          {images[currentImage].webpSrc ? (
+            <source srcSet={images[currentImage].webpSrc} type="image/webp" />
+          ) : null}
+          <img
+            src={images[currentImage].src}
+            alt={images[currentImage].alt}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover"
+          />
+        </picture>
       </motion.div>
     </div>
   );

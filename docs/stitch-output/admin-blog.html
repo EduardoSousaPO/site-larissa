@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Blog Management Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fff7fc",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#ed76fd",
+                        "on-tertiary-container": "#44e878",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#fdefff",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#e3d6e5",
+                        "tertiary-container": "#00642b",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#d3bbff",
+                        "secondary-fixed": "#ffd6fe",
+                        "on-background": "#201924",
+                        "error-container": "#ffdad6",
+                        "secondary": "#9a25ae",
+                        "surface": "#fff7fc",
+                        "on-secondary-container": "#69007a",
+                        "primary": "#4f1c9e",
+                        "on-tertiary-fixed-variant": "#005322",
+                        "inverse-on-surface": "#faecfc",
+                        "tertiary-fixed": "#66ff8e",
+                        "surface-bright": "#fff7fc",
+                        "surface-container": "#f8e9fa",
+                        "primary-container": "#673ab7",
+                        "tertiary": "#004a1d",
+                        "outline-variant": "#ccc3d5",
+                        "tertiary-fixed-dim": "#3de273",
+                        "on-surface-variant": "#4a4453",
+                        "surface-tint": "#6f43c0",
+                        "surface-container-high": "#f2e4f4",
+                        "surface-container-highest": "#ecdeee",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#d8c2ff",
+                        "secondary-fixed-dim": "#f9abff",
+                        "primary-fixed": "#ebddff",
+                        "on-tertiary-fixed": "#002109",
+                        "on-surface": "#201924",
+                        "surface-variant": "#ecdeee",
+                        "on-secondary-fixed": "#35003f",
+                        "inverse-surface": "#362e39",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#d3bbff",
+                        "outline": "#7b7484",
+                        "on-secondary-fixed-variant": "#7b008f",
+                        "on-primary-fixed-variant": "#5727a6",
+                        "on-primary-fixed": "#250059",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff7fc;
+            color: #201924;
+        }
+        h1, h2, h3, .font-newsreader {
+            font-family: 'Newsreader', serif;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased overflow-hidden h-screen flex">
+<!-- NavigationDrawer (Shared Component) -->
+<aside class="h-full w-72 flex flex-col p-6 fixed left-0 top-0 bg-[#fdefff] dark:bg-[#1a141d] rounded-r-2xl shadow-[40px_0_40px_rgba(32,25,36,0.06)] z-50">
+<div class="mb-10 px-4">
+<span class="font-['Newsreader'] font-bold text-[#4f1c9e] dark:text-[#d7bbf5] text-2xl tracking-tight">The Sanctuary</span>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-[#201924]/70 dark:text-[#fdefff]/70 hover:bg-[#ecdeee]/50 transition-colors duration-300 scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-[#ecdeee] dark:bg-[#3d2f42] text-[#4f1c9e] dark:text-[#d7bbf5] rounded-xl font-medium scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Articles</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#201924]/70 dark:text-[#fdefff]/70 hover:bg-[#ecdeee]/50 transition-colors duration-300 scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+<span>Media Library</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#201924]/70 dark:text-[#fdefff]/70 hover:bg-[#ecdeee]/50 transition-colors duration-300 scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto bg-[#f8e9fa] dark:bg-[#2d2230] p-4 rounded-xl flex items-center gap-4">
+<img alt="Dr. Aris" class="w-10 h-10 rounded-full object-cover" data-alt="Professional headshot of a mature male therapist with a kind expression and warm lighting in a modern office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_bVZYKEkYMa-IbbJKV7UbtnS-vEPBUxPkUiXqcyinXVH96IPis0oKhxuyNSdD_mHezpq_ww-PMUmtIHJh2MhGigRJcSo48Z9pOmWPiOyZjtsk-9rPOtpMLJJmwr9_nJvss6Go0jTRNxutow7YXOTB2bKqlfzecO_0hcer-IrA6__Ad0bNv-MPTMJBGCMWX5xgE912FlvZS0SnP9rn_AJZF6BTsPkvzT7EIK294MVgbMNN8Fog9WFmo8DbvhmKSAkFxAF548LI5Ec"/>
+<div class="flex flex-col overflow-hidden">
+<span class="font-['Newsreader'] italic tracking-tight text-[#201924] dark:text-[#fff7fc] text-lg leading-tight truncate">Dr. Aris</span>
+<span class="text-xs text-[#201924]/60 dark:text-[#fff7fc]/60">Practice Admin</span>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 ml-72 h-full flex flex-col relative overflow-hidden">
+<!-- TopAppBar (Shared Component) -->
+<header class="fixed top-0 right-0 left-0 z-40 flex items-center justify-between px-8 py-4 h-20 ml-72 bg-[#fff7fc]/70 dark:bg-[#1a141d]/70 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#4f1c9e] dark:text-[#d7bbf5] cursor-pointer active:opacity-60" data-icon="menu">menu</span>
+<h1 class="font-['Newsreader'] text-2xl font-light text-[#201924] dark:text-[#fff7fc]">Blog Management</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-container text-on-primary px-5 py-2.5 rounded-xl transition-all font-medium text-sm">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+                        New Article
+                    </button>
+<button class="p-2.5 bg-surface-container-highest hover:bg-surface-dim text-primary rounded-xl transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/30"></div>
+<div class="flex items-center gap-3 cursor-pointer">
+<span class="text-sm font-medium text-on-surface/70">Admin User</span>
+<img alt="Admin User" class="w-10 h-10 rounded-full border-2 border-surface-container" data-alt="Modern close-up portrait of a professional man with clean-cut appearance against a soft neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm7zBL9R42TfxAC-SCdAk5p796-B8-l-qkC0yeCx47azD5x-QG49AYoh-7yfq40YMh2lUgUAcAVu-DFieQsQbxeki31kJOWLvLg7bQwxfcS9STH7kF4S2pLcvNJZUL9vSZUexQwpylD5LcKHi2IS6WTSQo1PoGm388D712jiNIr_YPqtK5pTl9fOD7EZLUE16WExyAPrXUMHeDPO9rTGbkgs34xv_IWs-K6-4icZUV7vgfG1QoKTIgOZ73BSSEc_b8ZoiRrFgBYyo"/>
+</div>
+</div>
+</header>
+<!-- Content Split Layout -->
+<section class="mt-20 flex-1 flex overflow-hidden">
+<!-- Left List: Articles -->
+<div class="w-[400px] border-r border-outline-variant/10 flex flex-col bg-surface overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 bg-surface-container-low/30">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-xl" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border-none ring-1 ring-outline-variant/20 rounded-lg focus:ring-2 focus:ring-primary transition-all text-sm" placeholder="Search articles..." type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto hide-scrollbar p-2 space-y-1">
+<!-- Article Item Active -->
+<div class="p-4 rounded-xl bg-surface-container-highest/60 border-l-4 border-primary cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-primary">Wellness</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold">Published</span>
+</div>
+<h3 class="font-headline text-lg leading-tight mb-2 text-on-surface">Overcoming Anxiety: A Holistic Guide</h3>
+<p class="text-xs text-on-surface/50 font-medium">Updated Oct 24, 2023</p>
+</div>
+<!-- Article Item -->
+<div class="p-4 rounded-xl hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-on-surface/40">Mindfulness</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold">Draft</span>
+</div>
+<h3 class="font-headline text-lg leading-tight mb-2 text-on-surface/80">Mindfulness 101: Where to Start</h3>
+<p class="text-xs text-on-surface/50 font-medium">Updated Oct 22, 2023</p>
+</div>
+<!-- Article Item -->
+<div class="p-4 rounded-xl hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-on-surface/40">CBT</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold">Published</span>
+</div>
+<h3 class="font-headline text-lg leading-tight mb-2 text-on-surface/80">Reframing Negative Thought Patterns</h3>
+<p class="text-xs text-on-surface/50 font-medium">Updated Oct 18, 2023</p>
+</div>
+<!-- Article Item -->
+<div class="p-4 rounded-xl hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-on-surface/40">Lifestyle</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold">Draft</span>
+</div>
+<h3 class="font-headline text-lg leading-tight mb-2 text-on-surface/80">The Connection Between Sleep and Mood</h3>
+<p class="text-xs text-on-surface/50 font-medium">Updated Oct 12, 2023</p>
+</div>
+<!-- Article Item -->
+<div class="p-4 rounded-xl hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-on-surface/40">Wellness</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold">Published</span>
+</div>
+<h3 class="font-headline text-lg leading-tight mb-2 text-on-surface/80">Daily Habits for Long-term Resilience</h3>
+<p class="text-xs text-on-surface/50 font-medium">Updated Oct 05, 2023</p>
+</div>
+</div>
+</div>
+<!-- Content Area: Editor Form -->
+<div class="flex-1 overflow-y-auto bg-surface flex justify-center py-12 px-8">
+<div class="max-w-3xl w-full">
+<form class="space-y-12">
+<!-- Main Fields -->
+<div class="space-y-8">
+<div class="group">
+<label class="text-[10px] font-bold tracking-[0.1em] text-on-surface/40 uppercase mb-2 block">Article Title</label>
+<input class="w-full text-4xl font-headline italic border-none bg-transparent p-0 focus:ring-0 placeholder:text-outline-variant/30 text-on-surface border-b border-outline-variant/20 pb-4 focus:border-primary transition-all" type="text" value="Overcoming Anxiety: A Holistic Guide"/>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="text-[10px] font-bold tracking-[0.1em] text-on-surface/40 uppercase block">Category</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm cursor-pointer">
+<option>Wellness</option>
+<option>Mindfulness</option>
+<option>CBT</option>
+<option>Lifestyle</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold tracking-[0.1em] text-on-surface/40 uppercase block">Tags</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary text-sm" type="text" value="Anxiety, Mental Health, Healing"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold tracking-[0.1em] text-on-surface/40 uppercase block">Summary</label>
+<textarea class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary text-sm resize-none" placeholder="Enter a brief SEO summary..." rows="2">Explore integrative approaches to managing anxiety through mindfulness, physiological techniques, and therapeutic insights.</textarea>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold tracking-[0.1em] text-on-surface/40 uppercase block">Featured Image URL</label>
+<div class="flex gap-4">
+<input class="flex-1 bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary text-sm font-mono text-on-surface/60" type="text" value="image-article-featured-001"/>
+<button class="bg-surface-container-highest px-4 rounded-xl flex items-center justify-center hover:bg-surface-dim transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="upload">upload</span>
+</button>
+</div>
+<div class="mt-4 rounded-2xl overflow-hidden aspect-[21/9] bg-surface-container relative group">
+<img alt="Article Featured" class="w-full h-full object-cover" data-alt="Calm serene lake at sunrise with soft purple mist and silhouetted distant mountains, peaceful atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCR7ufeAMfSX3HXC6uxD5ly59JmaZHvsNLljm_abiQJ5jsBB76QO5Wohs_F_-S3dLYUhFCAm91b4exNltzPzGkbUn9uP6sN4fHgTp2MJat1FMitKoVtI1JgNc634LQXY_HCDAjRlxvBVrvAmTAG_8rLPPDk3XlkF1h9kvLmdi7F4yuXP8zvZGPApvGBy9d9dMccJ6RZUdDpVlIbsX_4x8E2r68p5vYvNb_bxNwH0mD9AYUlYnER8nfNAKt4Tw4251G_19vqs0UR7Ik"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-surface/90 px-4 py-2 rounded-full text-xs font-bold text-primary shadow-xl" type="button">Change Cover</button>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold tracking-[0.1em] text-on-surface/40 uppercase block">Content</label>
+<div class="bg-surface-container-low rounded-2xl min-h-[400px] p-8 border border-outline-variant/10">
+<div class="mb-6 flex items-center gap-4 border-b border-outline-variant/10 pb-4 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="format_bold">format_bold</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="format_italic">format_italic</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="format_list_bulleted">format_list_bulleted</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="link">link</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="format_quote">format_quote</span>
+<div class="h-4 w-[1px] bg-outline-variant/30"></div>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="undo">undo</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="redo">redo</span>
+</div>
+<textarea class="w-full bg-transparent border-none p-0 focus:ring-0 text-lg leading-relaxed text-on-surface/80 min-h-[300px]" placeholder="Start writing your story here...">Anxiety is more than just a feeling of being worried. It is a complex physiological response that affects millions of people daily. To truly overcome it, we must look at the whole person — mind, body, and spirit.
+
+In this guide, we will explore:
+1. The neuroscience of the stress response
+2. Breathwork techniques to calm the nervous system
+3. Cognitive reframing for intrusive thoughts
+4. The role of lifestyle and nutrition in emotional stability
+
+Understanding the mechanism is the first step toward mastery...</textarea>
+</div>
+</div>
+</div>
+<!-- Spacer for Footer -->
+<div class="h-12"></div>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer Actions Bar -->
+<footer class="h-20 bg-surface-container-lowest border-t border-outline-variant/10 flex items-center justify-end px-12 gap-4 z-40">
+<div class="mr-auto flex items-center gap-2 text-on-surface/40">
+<span class="material-symbols-outlined text-sm" data-icon="cloud_done">cloud_done</span>
+<span class="text-xs font-medium">Auto-saved 2 mins ago</span>
+</div>
+<button class="px-8 py-3 rounded-xl border-2 border-outline-variant text-on-surface-variant font-medium hover:bg-surface-container transition-colors active:scale-95">
+                Save Draft
+            </button>
+<button class="px-10 py-3 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all active:scale-95">
+                Publish Article
+            </button>
+</footer>
+</main>
+</body></html>

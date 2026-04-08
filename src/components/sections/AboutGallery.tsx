@@ -19,8 +19,16 @@ const AboutGallery = () => {
   }, []);
 
   const images = [
-    'images/larissa1.png',
-    'images/larissa2.jpeg'
+    {
+      src: '/images/larissa1.png',
+      webpSrc: '/images/larissa1.webp',
+      alt: 'Retrato da Dra. Larissa Nunes em consultorio iluminado',
+    },
+    {
+      src: '/images/larissa2.jpeg',
+      webpSrc: '/images/larissa2.webp',
+      alt: 'Foto profissional da Dra. Larissa Nunes para galeria institucional',
+    },
   ];
 
   return (

@@ -1,26 +1,35 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import Agendamento from './pages/Agendamento';
 import BlogPage from './pages/BlogPage';
 import PostDetail from './pages/PostDetail';
 import Depoimentos from './pages/Depoimentos';
-import CriarArtigosBlog from './pages/CriarArtigosBlog';
 import BlogAdmin from './pages/BlogAdmin';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import PrimeiraConsultaPage from './pages/PrimeiraConsultaPage';
+import SessaoResolucaoPage from './pages/SessaoResolucaoPage';
 import { useAuth } from './services/auth';
-import React from 'react';
-import { HelmetProvider } from 'react-helmet-async';
+import { initGA, trackPageView } from './services/analytics';
 
-// Componente para rotas protegidas
 const ProtectedRoute = ({ children }: { children: React.ReactElement }) => {
   const { currentUser, loading } = useAuth();
 
   if (loading) {
-    return <div className="flex justify-center items-center min-h-screen">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>
-    </div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-primary-600" />
+      </div>
+    );
   }
 
   if (!currentUser) {
@@ -30,33 +39,65 @@ const ProtectedRoute = ({ children }: { children: React.ReactElement }) => {
   return children;
 };
 
+const RouteAnalytics = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    initGA();
+  }, []);
+
+  useEffect(() => {
+    const path = `${location.pathname}${location.search}`;
+    trackPageView(path);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [location.pathname, location.search]);
+
+  return null;
+};
+
 function App() {
   return (
     <HelmetProvider>
       <Router>
+        <RouteAnalytics />
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
             <Route path="agendamento" element={<Agendamento />} />
             <Route path="blog" element={<BlogPage />} />
-            <Route path="blog/:postId" element={<PostDetail />} />
+            <Route path="blog/:slug" element={<PostDetail />} />
             <Route path="depoimentos" element={<Depoimentos />} />
-            <Route path="*" element={<div className="container py-20 text-center"><h1 className="text-4xl">Página não encontrada</h1></div>} />
+            <Route
+              path="*"
+              element={
+                <div className="container py-20 text-center">
+                  <h1 className="text-4xl font-bold text-gray-900">Pagina nao encontrada</h1>
+                </div>
+              }
+            />
           </Route>
-          
-          {/* Rotas administrativas */}
+
+          <Route path="/primeira-consulta" element={<PrimeiraConsultaPage />} />
+          <Route path="/sessao-de-resolucao" element={<SessaoResolucaoPage />} />
+
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/register" element={<Register />} />
-          <Route path="/admin/criar-artigos" element={
-            <ProtectedRoute>
-              <CriarArtigosBlog />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/blog" element={
-            <ProtectedRoute>
-              <BlogAdmin />
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/admin/criar-artigos"
+            element={
+              <ProtectedRoute>
+                <Navigate to="/admin/blog" replace />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/blog"
+            element={
+              <ProtectedRoute>
+                <BlogAdmin />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </HelmetProvider>

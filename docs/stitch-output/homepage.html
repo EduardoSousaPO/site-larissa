@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Sanctuary - Psicologia Clínica</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#ecdeee",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#ebddff",
+                        "secondary-fixed-dim": "#f9abff",
+                        "on-primary-container": "#d8c2ff",
+                        "surface-variant": "#ecdeee",
+                        "on-tertiary-fixed": "#002109",
+                        "on-surface": "#201924",
+                        "inverse-surface": "#362e39",
+                        "on-secondary-fixed": "#35003f",
+                        "on-primary-fixed-variant": "#5727a6",
+                        "on-secondary-fixed-variant": "#7b008f",
+                        "primary-fixed-dim": "#d3bbff",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#7b7484",
+                        "on-primary-fixed": "#250059",
+                        "error": "#ba1a1a",
+                        "surface-container": "#f8e9fa",
+                        "tertiary-fixed": "#66ff8e",
+                        "surface-bright": "#fff7fc",
+                        "primary-container": "#673ab7",
+                        "tertiary": "#004a1d",
+                        "outline-variant": "#ccc3d5",
+                        "on-surface-variant": "#4a4453",
+                        "tertiary-fixed-dim": "#3de273",
+                        "surface-tint": "#6f43c0",
+                        "surface-container-high": "#f2e4f4",
+                        "secondary-fixed": "#ffd6fe",
+                        "on-background": "#201924",
+                        "secondary": "#9a25ae",
+                        "error-container": "#ffdad6",
+                        "surface": "#fff7fc",
+                        "primary": "#4f1c9e",
+                        "on-secondary-container": "#69007a",
+                        "on-tertiary-fixed-variant": "#005322",
+                        "inverse-on-surface": "#faecfc",
+                        "background": "#fff7fc",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#ed76fd",
+                        "on-tertiary-container": "#44e878",
+                        "surface-container-low": "#fdefff",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#e3d6e5",
+                        "inverse-primary": "#d3bbff",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#00642b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .newsreader { font-family: 'Newsreader', serif; }
+        .hero-gradient {
+            background: linear-gradient(135deg, #4f1c9e 0%, #673ab7 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="bg-[#fff7fc]/70 dark:bg-[#201924]/70 backdrop-blur-md fixed top-0 w-full z-50 shadow-sm dark:shadow-none flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#4f1c9e] dark:text-[#ecdeee]">spa</span>
+<span class="text-xl font-bold italic text-[#4f1c9e] dark:text-[#ecdeee] font-['Newsreader'] tracking-tight">The Sanctuary</span>
+</div>
+<button class="text-[#4f1c9e] dark:text-[#ecdeee] font-semibold font-['Inter'] text-sm hover:opacity-80 transition-opacity active:scale-95 duration-200">
+            Chat Now
+        </button>
+</header>
+<main class="pt-20 pb-24">
+<!-- Hero Section -->
+<section class="px-6 pt-8 pb-12 overflow-hidden">
+<div class="relative z-10">
+<h1 class="text-display-lg text-4xl font-headline font-bold leading-tight tracking-tight text-on-surface mb-6">
+                    Quem tem um porquê, suporta qualquer como. <span class="text-primary italic">Descubra o seu.</span>
+</h1>
+<p class="text-body-lg text-on-surface-variant leading-relaxed mb-8 max-w-sm">
+                    Através da Logoterapia, exploramos a busca por sentido como a principal força motivadora da vida humana, transformando o sofrimento em resiliência.
+                </p>
+<a class="inline-flex items-center justify-center gap-2 bg-tertiary-container text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:brightness-110 transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+                    Agendar pelo WhatsApp
+                </a>
+</div>
+<div class="mt-12 relative">
+<div class="absolute -right-12 -top-12 w-64 h-64 bg-surface-container rounded-full blur-3xl opacity-50"></div>
+<img alt="Dra. Psicóloga" class="relative z-10 w-full h-[400px] object-cover rounded-3xl shadow-xl" data-alt="Professional smiling woman psychologist in a bright airy office setting, wearing a soft purple blazer, warm natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUEuqkUYHPUvEYx4LD8rO7ZWUgb_TCw0od5paLuvg9l2iySaIH_OeAVtGIExZuDKatSA_6k0j27LBCdqHadKVIggcPX-5CRB2vWaj4CMusUXw3stm-539t023WmjcI4wJZzYEKyVj8zVxCDKlwp89GBlFe2TT4qRGoqIXP3RMWRyXsbuFBmXLU5vqy7QkWf6JX2hiIVOBfZjawvNkibs3bVoBUyquftR8fhI36HUb6sTHPt8vyndXnWLf3eZQyHPXlu6itq-Bw12E"/>
+</div>
+</section>
+<!-- About Section -->
+<section class="bg-surface-container-low py-16 px-6">
+<div class="mb-12">
+<span class="label-md font-label uppercase tracking-widest text-primary text-xs font-bold block mb-4">Acolhimento</span>
+<h2 class="text-3xl font-headline font-bold text-on-surface">Quem vai caminhar com você</h2>
+</div>
+<div class="space-y-8">
+<img alt="Sobre a Dra." class="w-full aspect-[4/5] object-cover rounded-2xl shadow-sm" data-alt="Candid portrait of a female psychologist in a serene environment, thoughtful expression, soft focus background with indoor plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC5jLEb-T5IgV4UWjn44wSqdmJm1KlTTP1jj-OLWkL6A8QsKHWzjWQVbekOYsdSI2SzQFyvLc_M0u2hNuZMK2UcgNYIhUbecaPs5QtoUeC13lBwTIc8m6v5U41bgTW_HvcjMI1pMJHzWZQv0otV1Xl0RDaxW85DMJ09J3SW5CVXTd0rkCrX7gY412rBCcr75Lz2sITuG7M2ZmELHLosWF1OyG_WSyjbrxQqpN5qoWmvrsR4_Gb0RB26BtJxHjfrIRwcQl6N_7q0Lc"/>
+<div class="space-y-4 text-on-surface-variant leading-relaxed">
+<p>Sou psicóloga clínica dedicada a auxiliar pessoas a encontrarem clareza e propósito em meio às transições desafiadoras da vida.</p>
+<p>Meu trabalho é fundamentado na Logoterapia, focando no desenvolvimento da resiliência e na descoberta de valores que sustentam o bem-estar emocional e espiritual.</p>
+<p>Acredito que cada encontro clínico é um espaço sagrado de mútua descoberta e profundo respeito pela história individual de cada paciente.</p>
+</div>
+</div>
+</section>
+<!-- Approach Section (Logotherapy) -->
+<section class="py-16 px-6 bg-surface">
+<div class="relative bg-surface-container-high p-8 rounded-[2rem] overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-9xl">psychology</span>
+</div>
+<h2 class="text-2xl font-headline font-bold text-primary mb-6">A Abordagem: Logoterapia</h2>
+<p class="text-on-surface-variant leading-relaxed mb-8">
+                    Diferente de outras abordagens, a Logoterapia foca no futuro e nos significados a serem realizados. É a 'Terceira Escola Vienense de Psicoterapia', centrada na vontade de sentido.
+                </p>
+<blockquote class="border-l-4 border-primary pl-6 py-2 italic font-headline text-xl text-on-surface mb-6">
+                    "A vida nunca se torna insuportável por causa das circunstâncias, mas apenas por falta de sentido e propósito."
+                </blockquote>
+<p class="text-sm font-label text-primary font-bold">— Viktor Frankl</p>
+</div>
+</section>
+<!-- Services Section (Bento Cards) -->
+<section class="py-16 px-6">
+<h2 class="text-3xl font-headline font-bold text-on-surface mb-10 text-center">Formas de Atendimento</h2>
+<div class="grid gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container rounded-2xl p-6 flex flex-col gap-4 border border-outline-variant/15">
+<span class="material-symbols-outlined text-primary text-3xl">psychology_alt</span>
+<div>
+<h3 class="text-xl font-headline font-bold mb-2">Terapia Individual</h3>
+<p class="text-sm text-on-surface-variant mb-4">Sessões semanais focadas em autoconhecimento e tratamento de questões emocionais.</p>
+<p class="text-lg font-bold text-primary mb-4">R$ 180 <span class="text-xs font-normal text-on-surface-variant">/ sessão</span></p>
+</div>
+<a class="mt-auto w-full py-3 bg-tertiary-container text-white text-center rounded-xl font-semibold flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined text-sm">chat</span> Agendar
+                    </a>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container rounded-2xl p-6 flex flex-col gap-4 border border-outline-variant/15">
+<span class="material-symbols-outlined text-primary text-3xl">bolt</span>
+<div>
+<h3 class="text-xl font-headline font-bold mb-2">Sessão Resolutiva</h3>
+<p class="text-sm text-on-surface-variant mb-4">Foco em uma questão pontual e urgente que necessita de direcionamento imediato.</p>
+<p class="text-lg font-bold text-primary mb-4">R$ 200 <span class="text-xs font-normal text-on-surface-variant">/ sessão</span></p>
+</div>
+<a class="mt-auto w-full py-3 bg-tertiary-container text-white text-center rounded-xl font-semibold flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined text-sm">chat</span> Agendar
+                    </a>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container rounded-2xl p-6 flex flex-col gap-4 border border-outline-variant/15">
+<span class="material-symbols-outlined text-primary text-3xl">explore</span>
+<div>
+<h3 class="text-xl font-headline font-bold mb-2">Orientação Vocacional</h3>
+<p class="text-sm text-on-surface-variant mb-4">Processo estruturado para descoberta de talentos e escolha de carreira consciente.</p>
+<p class="text-sm text-primary font-bold mb-4 uppercase tracking-wider">Sob Consulta</p>
+</div>
+<a class="mt-auto w-full py-3 bg-tertiary-container text-white text-center rounded-xl font-semibold flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined text-sm">chat</span> Consultar
+                    </a>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-16 px-6 bg-surface-container-low">
+<h2 class="text-2xl font-headline font-bold text-on-surface mb-8">Perguntas Frequentes</h2>
+<div class="space-y-4">
+<details class="group bg-surface rounded-xl p-4 shadow-sm">
+<summary class="list-none flex justify-between items-center cursor-pointer font-semibold text-on-surface">
+<span>Como saber se preciso de terapia?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed text-sm">Se você sente que suas emoções estão impactando seu dia a dia, ou se busca um entendimento mais profundo sobre si mesmo e suas escolhas.</p>
+</details>
+<details class="group bg-surface rounded-xl p-4 shadow-sm">
+<summary class="list-none flex justify-between items-center cursor-pointer font-semibold text-on-surface">
+<span>Quanto tempo dura cada sessão?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed text-sm">As sessões de psicoterapia individual têm duração média de 50 minutos.</p>
+</details>
+<details class="group bg-surface rounded-xl p-4 shadow-sm">
+<summary class="list-none flex justify-between items-center cursor-pointer font-semibold text-on-surface">
+<span>A terapia online é eficaz?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed text-sm">Sim, estudos comprovam que a eficácia é equivalente à presencial, com o benefício do conforto e flexibilidade de local.</p>
+</details>
+<details class="group bg-surface rounded-xl p-4 shadow-sm">
+<summary class="list-none flex justify-between items-center cursor-pointer font-semibold text-on-surface">
+<span>Vocês aceitam planos de saúde?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed text-sm">Atendemos apenas de forma particular, mas fornecemos recibo para que você possa solicitar reembolso junto ao seu convênio.</p>
+</details>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="py-20 px-6 text-center">
+<div class="hero-gradient p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="text-3xl font-headline font-bold text-white mb-4">Você não precisa continuar carregando isso sozinho</h2>
+<p class="text-white/80 mb-8 leading-relaxed">Dê o primeiro passo para uma vida com mais sentido e leveza hoje mesmo.</p>
+<a class="inline-flex items-center justify-center gap-2 bg-tertiary-fixed text-tertiary font-bold px-10 py-5 rounded-full shadow-lg hover:scale-105 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+                        Falar com a Especialista
+                    </a>
+</div>
+<!-- Subtle texture overlay -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 24px 24px;"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f8e9fa] dark:bg-[#1a141d] w-full mt-auto px-8 py-12 flex flex-col gap-6 text-center border-t border-[#ccc3d5]/15">
+<div class="space-y-4">
+<div class="font-['Newsreader'] text-lg italic text-[#4f1c9e]">The Resilient Sanctuary</div>
+<p class="font-['Inter'] text-sm leading-relaxed text-[#201924]/70 dark:text-[#ecdeee]/70">
+                Dra. Psicóloga | CRP 09/16269<br/>
+                Av. das Tulipas, 1200 - Ed. Aurora, Sala 402<br/>
+                Segunda a Sexta: 08:00 - 20:00<br/>
+                Contato: (11) 98765-4321
+            </p>
+</div>
+<nav class="flex flex-wrap justify-center gap-4">
+<a class="text-[#201924]/70 dark:text-[#ecdeee]/70 text-sm hover:text-[#00642b] transition-colors" href="#">Privacy Policy</a>
+<a class="text-[#201924]/70 dark:text-[#ecdeee]/70 text-sm hover:text-[#00642b] transition-colors" href="#">Terms of Service</a>
+<a class="text-[#201924]/70 dark:text-[#ecdeee]/70 text-sm hover:text-[#00642b] transition-colors" href="#">Professional Credentials</a>
+</nav>
+<p class="text-xs text-[#201924]/50 dark:text-[#ecdeee]/50">
+            © 2024 The Resilient Sanctuary. Licensed Clinical Psychologist.
+        </p>
+</footer>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-[#fff7fc]/70 dark:bg-[#201924]/70 backdrop-blur-md shadow-[0_-4px_20px_rgba(32,25,36,0.06)] rounded-t-2xl">
+<a class="flex flex-col items-center justify-center bg-[#fdefff] dark:bg-[#4f1c9e]/30 text-[#4f1c9e] dark:text-[#ecdeee] rounded-xl p-2 transition-transform duration-300 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#201924]/50 dark:text-[#ecdeee]/50 p-2 hover:text-[#4f1c9e] dark:hover:text-[#ecdeee] transition-transform duration-300 active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">About</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#201924]/50 dark:text-[#ecdeee]/50 p-2 hover:text-[#4f1c9e] dark:hover:text-[#ecdeee] transition-transform duration-300 active:scale-90" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#201924]/50 dark:text-[#ecdeee]/50 p-2 hover:text-[#4f1c9e] dark:hover:text-[#ecdeee] transition-transform duration-300 active:scale-90" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">FAQ</span>
+</a>
+</nav>
+</body></html>

@@ -9,14 +9,10 @@ export default defineConfig({
     react(),
     sitemap({
       hostname: 'https://site-larissa-three.vercel.app',
-      // Opcional: adicione rotas dinâmicas do blog aqui se necessário no futuro
-      // dynamicRoutes: async () => {
-      //   const routes = [];
-      //   // Lógica para buscar posts do Firebase e gerar rotas
-      //   // Ex: const posts = await getPostsFromFirebase();
-      //   // posts.forEach(post => routes.push(`/blog/${post.slug}`));
-      //   return routes;
-      // },
+      dynamicRoutes: ['/', '/blog', '/depoimentos', '/agendamento'],
+      exclude: ['/admin', '/admin/login', '/admin/register', '/admin/blog', '/admin/criar-artigos', '/primeira-consulta', '/sessao-de-resolucao'],
+      generateRobotsTxt: false,
+      readable: true,
     })
   ],
   resolve: {

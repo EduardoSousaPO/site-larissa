@@ -68,11 +68,18 @@ const HeroSection = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <img 
-                  src="images/larissa3.jpeg" 
-                  alt="Dra. Larissa Nunes - Psicóloga" 
-                  className="w-full h-full object-cover"
-                />
+                <picture className="block w-full h-full">
+                  <source srcSet="/images/larissa3.webp" type="image/webp" />
+                  <img
+                    src="/images/larissa3.jpeg"
+                    alt="Dra. Larissa Nunes em retrato profissional para a secao principal"
+                    width="1024"
+                    height="1024"
+                    fetchPriority="high"
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                  />
+                </picture>
               </motion.div>
             </div>
           </motion.div>

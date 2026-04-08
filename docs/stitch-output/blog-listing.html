@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Sanctuary | Educational Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#f9abff",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#d3bbff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#9a25ae",
+                    "on-tertiary-container": "#44e878",
+                    "outline-variant": "#ccc3d5",
+                    "surface-variant": "#ecdeee",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#002109",
+                    "on-surface-variant": "#4a4453",
+                    "on-secondary-fixed": "#35003f",
+                    "tertiary-fixed-dim": "#3de273",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#ffd6fe",
+                    "on-background": "#201924",
+                    "surface-container-highest": "#ecdeee",
+                    "secondary-container": "#ed76fd",
+                    "on-surface": "#201924",
+                    "inverse-surface": "#362e39",
+                    "surface-tint": "#6f43c0",
+                    "tertiary-fixed": "#66ff8e",
+                    "surface-dim": "#e3d6e5",
+                    "on-primary-container": "#d8c2ff",
+                    "tertiary-container": "#00642b",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#fff7fc",
+                    "outline": "#7b7484",
+                    "on-secondary-container": "#69007a",
+                    "on-error": "#ffffff",
+                    "surface": "#fff7fc",
+                    "on-primary-fixed-variant": "#5727a6",
+                    "on-tertiary-fixed-variant": "#005322",
+                    "surface-container": "#f8e9fa",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#7b008f",
+                    "inverse-primary": "#d3bbff",
+                    "inverse-on-surface": "#faecfc",
+                    "primary-fixed": "#ebddff",
+                    "on-primary-fixed": "#250059",
+                    "tertiary": "#004a1d",
+                    "surface-container-low": "#fdefff",
+                    "primary-container": "#673ab7",
+                    "background": "#fff7fc",
+                    "primary": "#4f1c9e",
+                    "surface-container-high": "#f2e4f4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .editorial-shadow {
+            box-shadow: 0 40px 80px -20px rgba(32, 25, 36, 0.08);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fff7fc]/70 backdrop-blur-md shadow-sm flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#4f1c9e]" data-icon="spa">spa</span>
+<span class="text-xl font-bold italic text-[#4f1c9e] font-headline tracking-tight">The Sanctuary</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#4f1c9e] font-semibold font-headline" href="#">Home</a>
+<a class="text-[#201924]/60 hover:opacity-80 transition-opacity font-headline" href="#">About</a>
+<a class="text-[#201924]/60 hover:opacity-80 transition-opacity font-headline" href="#">Services</a>
+<a class="text-[#201924]/60 hover:opacity-80 transition-opacity font-headline" href="#">FAQ</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-on-surface" data-icon="search">search</span>
+</button>
+<button class="bg-primary text-on-primary px-5 py-2 rounded-full text-sm font-medium transition-transform active:scale-95 duration-200">
+                Chat Now
+            </button>
+</div>
+</header>
+<main class="pt-24 pb-32">
+<!-- Hero Section -->
+<section class="px-6 md:px-12 lg:px-24 py-12 md:py-20 bg-surface">
+<div class="max-w-4xl">
+<span class="font-label text-[0.75rem] uppercase tracking-widest text-primary mb-4 block">Psychological Insights</span>
+<h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tight text-on-surface mb-6 leading-[1.1]">
+                    Nurturing your <span class="italic text-primary">resilience</span> through wisdom.
+                </h1>
+<p class="font-body text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                    Explore our curated collection of articles on mental health, emotional intelligence, and the science of well-being, written by clinical experts.
+                </p>
+</div>
+</section>
+<!-- Category Filter Bar -->
+<section class="sticky top-[72px] z-40 bg-surface/90 backdrop-blur-md py-4 px-6 md:px-12 lg:px-24 mb-12">
+<div class="flex items-center gap-4 overflow-x-auto no-scrollbar pb-2">
+<button class="px-6 py-2 rounded-full bg-primary text-on-primary font-medium text-sm whitespace-nowrap">All articles</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-highest transition-colors font-medium text-sm whitespace-nowrap">Anxiety</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-highest transition-colors font-medium text-sm whitespace-nowrap">Depression</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-highest transition-colors font-medium text-sm whitespace-nowrap">Self-Care</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-highest transition-colors font-medium text-sm whitespace-nowrap">Relationships</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-highest transition-colors font-medium text-sm whitespace-nowrap">Mindfulness</button>
+</div>
+</section>
+<!-- Article Grid -->
+<section class="px-6 md:px-12 lg:px-24">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+<!-- Article Card 1 -->
+<article class="group cursor-pointer">
+<div class="relative aspect-[4/5] mb-6 overflow-hidden rounded-xl bg-surface-container">
+<img alt="Calm person breathing deeply in nature" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="a peaceful woman sitting on a cliff overlooking a calm ocean at sunrise with soft purple and orange light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8L3rrR39SjdjloYE_J51MWa9MN5eVnZ714dBVtoRMtaFJPyebCGAQoTLyqADlDKMgweO6pvt3w9MtKoH77H27J4tGIezqINA5Fa7_usJXHtjtFi3A36eWpCcqjLswF1Y8N1Hezc8M8I00mcC3DJcKEu1efRq0dd95Z9k6M7J_QqmaD6qafgjyTPVsc4XVWQoc13erIQqjKK5CAlY2ShelgtKQ9_M94Gy9KI7gLNAqRSCKP-Um8GCbirq8oCFQ1q73Aln-HAIF8yY"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest/90 backdrop-blur text-primary px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase">Self-Care</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-on-surface-variant text-xs font-medium">
+<span>Mar 12, 2024</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>6 min read</span>
+</div>
+<h3 class="font-headline text-2xl font-bold leading-snug text-on-surface group-hover:text-primary transition-colors">Finding Stillness: The Power of Intentional Breathing</h3>
+<p class="text-on-surface-variant line-clamp-2 leading-relaxed">Discover how simple somatic practices can rewire your nervous system and provide instant relief from daily stressors.</p>
+</div>
+</article>
+<!-- Article Card 2 -->
+<article class="group cursor-pointer">
+<div class="relative aspect-[4/5] mb-6 overflow-hidden rounded-xl bg-surface-container">
+<img alt="Abstract shapes representing anxiety" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="soft focus abstract art showing swirling light purples and deep violets resembling a peaceful dreamscape with subtle grain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6Sg8aerKzqzVmOSTk4oj5cOpPCCx1yjEV_yKIb32-NlBtBMVnGho-2qReOqJ1OLcTSHNzMpHXqvzv49bztWDnRULpj6SGvBeWbmA9wpeyPhiWpCN_yFMS1YgGmYEDHx1RpHUrTxjt-Bqa48HCnzRcwq4pOByrsURdNRlPpTWjRz4BmKkzM4_S7loQhbnQVZFUwXV1EH-jkp9U5k_8Rb4vqaPfxjCNrVt-m0RV7zRxbPPEsxUPAybGyZm-TRzxcfKJpc8yQvsjRko"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest/90 backdrop-blur text-primary px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase">Anxiety</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-on-surface-variant text-xs font-medium">
+<span>Mar 08, 2024</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>8 min read</span>
+</div>
+<h3 class="font-headline text-2xl font-bold leading-snug text-on-surface group-hover:text-primary transition-colors">Decoding the Language of Your Internal Worries</h3>
+<p class="text-on-surface-variant line-clamp-2 leading-relaxed">Anxiety isn't the enemy; it's a signal. Learn to interpret what your body is trying to communicate through tension.</p>
+</div>
+</article>
+<!-- Article Card 3 -->
+<article class="group cursor-pointer">
+<div class="relative aspect-[4/5] mb-6 overflow-hidden rounded-xl bg-surface-container">
+<img alt="Two people sitting together talking" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="two silhouetted figures sitting across from each other in a dimly lit high-end minimalist living room with large windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5JsXT31NQZgNKA3zxFK_CgBjcOXExZSO-kdEV1hyP5b5Oqi6EAaDHGcNqcfrtwgNaFEJ3X_iQWdSvuQTS5_N82XO7piBp1KmJpE49cb8IuUfNI9OJ4elvzWWyf2U3WSWDQmZU_qqkXEQawg-gGQjaq2x_NxgNfThKkR-woDsSSqTMy9ZlzjO79bvqbSIb9QfJrZIgJ0Ib5woVQ3mctJjDdC_wXjRlyPoRd0x0Fc6Fp7EacqgUELx8GAyddQtBzSx_ymwPDIuTbJE"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest/90 backdrop-blur text-primary px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase">Relationships</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-on-surface-variant text-xs font-medium">
+<span>Mar 05, 2024</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>10 min read</span>
+</div>
+<h3 class="font-headline text-2xl font-bold leading-snug text-on-surface group-hover:text-primary transition-colors">The Invisible Thread: Building Secure Attachments</h3>
+<p class="text-on-surface-variant line-clamp-2 leading-relaxed">Understanding your attachment style is the first step toward creating lasting, meaningful connections with others.</p>
+</div>
+</article>
+<!-- Article Card 4 -->
+<article class="group cursor-pointer">
+<div class="relative aspect-[4/5] mb-6 overflow-hidden rounded-xl bg-surface-container">
+<img alt="Journaling with a pen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="close up of an open leather bound journal on a light wooden table with a fountain pen and a small lavender sprig" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZEDEBqoPD9wTM-9CQ1l6HwpojoWoIPeGxvnv72K7P36mcvX3KJAiX_G9JpBT1_bwvEuTmARtDY43vbFcbDVayzWImvFzzipk8ZgHwYjNNlCR68u812Nnesgl-o3K1snqvh8iWTtLqSrJ4DqaKIRMXYzSI7rgP9rb8PCLYrI4fVQ65QnGGVuNpZ-RTW4pk3D1uDAVVuPMPMYk4mdNOXZaPmxVPP2dfgLFHAeHJBdlt-H8tXXbDukq2RHFJK810FiAY0hzQ9BtXq38"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest/90 backdrop-blur text-primary px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase">Depression</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-on-surface-variant text-xs font-medium">
+<span>Feb 28, 2024</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>5 min read</span>
+</div>
+<h3 class="font-headline text-2xl font-bold leading-snug text-on-surface group-hover:text-primary transition-colors">Small Victories: The Path Through Low Energy Days</h3>
+<p class="text-on-surface-variant line-clamp-2 leading-relaxed">When movement feels heavy, focusing on micro-goals can help shift the internal landscape toward hope.</p>
+</div>
+</article>
+<!-- Article Card 5 -->
+<article class="group cursor-pointer">
+<div class="relative aspect-[4/5] mb-6 overflow-hidden rounded-xl bg-surface-container">
+<img alt="A lone tree in a field" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="a majestic lone oak tree in a misty field at dawn with soft violet lighting and atmospheric fog" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvimuQ5Jiq1O5mD4MLKJmnlW1pUIVKFpza8SlHo2O_U7LuIOlM0ThaxhAPprraOhcgbHQg0-4i4cT6WF-dUvHdLV4yPjTVTyweM8ZqkQ5YXfiaqEHa5EhH9CTfwTjJ67vYHgh_vxjoHG5uOhnrzznXThDdsREUy6-bWTIly66X-ijTL2Ajud_U4nsgC-ERsgF2ASPKcwBC3MXvrURgw0sj_OcRmYdzPURteNtMAaq1__IVd9cGI54Cqe26My8e1oN8qoA3UvPVlB8"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest/90 backdrop-blur text-primary px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase">Self-Care</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-on-surface-variant text-xs font-medium">
+<span>Feb 22, 2024</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>7 min read</span>
+</div>
+<h3 class="font-headline text-2xl font-bold leading-snug text-on-surface group-hover:text-primary transition-colors">Radical Acceptance in a Modern World</h3>
+<p class="text-on-surface-variant line-clamp-2 leading-relaxed">Accepting reality exactly as it is creates the mental space necessary to choose a meaningful response.</p>
+</div>
+</article>
+<!-- Article Card 6 -->
+<article class="group cursor-pointer">
+<div class="relative aspect-[4/5] mb-6 overflow-hidden rounded-xl bg-surface-container">
+<img alt="A person looking at stars" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="a person's back as they look up at a clear night sky filled with stars and a hint of the milky way" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp_yGdgThcPyXmDFc_dK-ucExlGcuH2e6NL82OvLHoWSIovnpa8q0xEAXAp-rqBaVHtyRKQ-UnNFbwvN_LmYlCUWztmxjlYaU31Y_hm3tiLsB4HycdvXIfQmFjD7jSZtYqmwzAsAKj42iXPuBnfii8DGGwtmteNlA5oWbYcRfQcovK2ak3BkXJjr3pQXfKAE9oyhUt1UTInHyPrfV2fFy-pmL-NvzkzyWHSHTvtE_4T0qy_E7tz9CWsHdZtcBDKbicujvkw-_-gXU"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest/90 backdrop-blur text-primary px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase">Mindfulness</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-on-surface-variant text-xs font-medium">
+<span>Feb 15, 2024</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>12 min read</span>
+</div>
+<h3 class="font-headline text-2xl font-bold leading-snug text-on-surface group-hover:text-primary transition-colors">Cultivating Awe: Why Perspective Matters</h3>
+<p class="text-on-surface-variant line-clamp-2 leading-relaxed">Research shows that experiencing awe can significantly reduce stress and increase feelings of interconnectedness.</p>
+</div>
+</article>
+</div>
+</section>
+<!-- Newsletter Subscription -->
+<section class="mt-24 px-6 md:px-12 lg:px-24">
+<div class="bg-surface-container-low rounded-[2rem] p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 editorial-shadow">
+<div class="md:w-1/2 space-y-6 text-center md:text-left">
+<h2 class="font-headline text-4xl md:text-5xl font-bold text-on-surface leading-tight">Wisdom delivered to your <span class="italic text-primary">inbox</span>.</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed">Join 5,000+ others receiving weekly insights on psychological resilience and emotional well-being.</p>
+</div>
+<div class="md:w-1/2 w-full">
+<form class="flex flex-col sm:flex-row gap-4">
+<input class="flex-1 bg-surface-container-lowest border-none rounded-xl px-6 py-4 text-on-surface focus:ring-2 focus:ring-primary focus:outline-none transition-all shadow-sm" placeholder="Your email address" type="email"/>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-bold transition-transform active:scale-95" type="submit">Subscribe</button>
+</form>
+<p class="mt-4 text-xs text-on-surface-variant opacity-70 text-center md:text-left">We respect your privacy. Unsubscribe at any time.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-[#f8e9fa] px-8 py-12 flex flex-col gap-6 text-center border-t border-[#ccc3d5]/15 mt-auto">
+<div class="font-['Newsreader'] text-lg italic text-[#4f1c9e]">The Sanctuary</div>
+<div class="flex flex-wrap justify-center gap-8 font-['Inter'] text-sm">
+<a class="text-[#201924]/70 hover:text-[#00642b] transition-colors" href="#">Privacy Policy</a>
+<a class="text-[#201924]/70 hover:text-[#00642b] transition-colors" href="#">Terms of Service</a>
+<a class="text-[#201924]/70 hover:text-[#00642b] transition-colors" href="#">Professional Credentials</a>
+</div>
+<div class="text-[#201924]/50 font-['Inter'] text-sm">
+            © 2024 The Resilient Sanctuary. Licensed Clinical Psychologist.
+        </div>
+</footer>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-[#fff7fc]/70 backdrop-blur-md flex justify-around items-center px-4 pb-4 pt-2 shadow-[0_-4px_20px_rgba(32,25,36,0.06)] rounded-t-2xl">
+<a class="flex flex-col items-center justify-center text-[#201924]/50 p-2 font-['Inter'] text-[10px] uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+            Home
+        </a>
+<a class="flex flex-col items-center justify-center bg-[#fdefff] text-[#4f1c9e] rounded-xl p-2 font-['Inter'] text-[10px] uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+            About
+        </a>
+<a class="flex flex-col items-center justify-center text-[#201924]/50 p-2 font-['Inter'] text-[10px] uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="payments">payments</span>
+            Services
+        </a>
+<a class="flex flex-col items-center justify-center text-[#201924]/50 p-2 font-['Inter'] text-[10px] uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="quiz">quiz</span>
+            FAQ
+        </a>
+</nav>
+</body></html>

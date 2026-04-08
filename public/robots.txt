@@ -1,9 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /primeira-consulta
+Disallow: /sessao-de-resolucao
 
-# Sitemap
 Sitemap: https://site-larissa-three.vercel.app/sitemap.xml
-
-# Crawl-delay (opcional, ajustar se necessário)
-Crawl-delay: 1

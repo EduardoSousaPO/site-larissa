@@ -67,7 +67,9 @@ const InstagramCard = ({ titulo, resumo, imagem, categoria, autor, onReady, form
       >
         <img
           src={imagem}
-          alt=""
+          alt={`Imagem de capa do artigo ${titulo}`}
+          loading="lazy"
+          decoding="async"
           crossOrigin="anonymous"
           style={{
             width: '100%',

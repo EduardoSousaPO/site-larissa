@@ -1,85 +1,81 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import LogoImage from './LogoImage';
+import { createWhatsAppProps } from '../lib/whatsapp';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const pageName = location.pathname === '/' ? 'home' : location.pathname.replace(/\//g, '') || 'home';
+  const whatsappProps = createWhatsAppProps({
+    page: pageName,
+    section: 'navbar',
+  });
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // Efeito para detectar scroll
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 24);
     };
 
     window.addEventListener('scroll', handleScroll);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  // Fechar menu ao navegar
   useEffect(() => {
     setIsMenuOpen(false);
-  }, [location]);
+  }, [location.pathname]);
+
+  const links = [
+    { to: '/', label: 'Inicio', active: location.pathname === '/' },
+    { to: '/blog', label: 'Blog', active: location.pathname.startsWith('/blog') },
+    { to: '/depoimentos', label: 'Depoimentos', active: location.pathname === '/depoimentos' },
+  ];
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-white/80 backdrop-blur-sm py-4'
+    <header
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'border-b border-stone-200 bg-white/95 py-3 shadow-sm backdrop-blur'
+          : 'bg-white/80 py-5 backdrop-blur'
       }`}
     >
-      <div className="container flex justify-between items-center">
-        {/* Logo */}
+      <div className="container flex items-center justify-between">
         <Link to="/" className="flex items-center">
           <LogoImage />
         </Link>
 
-        {/* Menu para desktop */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <Link 
-            to="/" 
-            className={`text-gray-700 hover:text-primary-600 ${location.pathname === '/' ? 'font-semibold text-primary-600' : ''}`}
+        <nav className="hidden items-center gap-8 md:flex">
+          {links.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={`text-sm font-medium transition ${
+                link.active ? 'text-primary-700' : 'text-gray-700 hover:text-primary-700'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a
+            {...whatsappProps}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full bg-primary-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary-800"
           >
-            Início
-          </Link>
-          <Link 
-            to="/blog" 
-            className={`text-gray-700 hover:text-primary-600 ${location.pathname.includes('/blog') ? 'font-semibold text-primary-600' : ''}`}
-          >
-            Blog
-          </Link>
-          <Link 
-            to="/depoimentos" 
-            className={`text-gray-700 hover:text-primary-600 ${location.pathname === '/depoimentos' ? 'font-semibold text-primary-600' : ''}`}
-          >
-            Depoimentos
-          </Link>
-          <Link 
-            to="/agendamento" 
-            className={`text-gray-700 hover:text-primary-600 ${location.pathname === '/agendamento' ? 'font-semibold text-primary-600' : ''}`}
-          >
-            Agendamento
-          </Link>
-          <Link 
-            to="/agendamento" 
-            className="btn btn-primary"
-          >
-            Agende sua Sessão
-          </Link>
+            Falar no WhatsApp
+          </a>
         </nav>
 
-        {/* Botão menu mobile */}
-        <button 
-          className="md:hidden flex items-center text-gray-800 focus:outline-none" 
-          onClick={toggleMenu}
-          aria-label="Menu"
+        <button
+          type="button"
+          className="md:hidden"
+          aria-label="Abrir menu"
+          onClick={() => setIsMenuOpen((value) => !value)}
         >
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
             {isMenuOpen ? (
@@ -95,48 +91,38 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Menu mobile */}
-      <motion.div 
-        className={`md:hidden fixed inset-0 bg-white z-40 pt-20 px-4 ${isMenuOpen ? 'block' : 'hidden'}`}
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: isMenuOpen ? 1 : 0, x: isMenuOpen ? 0 : -20 }}
+      <motion.div
+        className={`border-t border-stone-200 bg-white px-6 pb-8 pt-6 md:hidden ${
+          isMenuOpen ? 'block' : 'hidden'
+        }`}
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : -8 }}
         transition={{ duration: 0.2 }}
       >
-        <nav className="flex flex-col space-y-4 text-center">
-          <Link 
-            to="/" 
-            className={`py-3 text-lg ${location.pathname === '/' ? 'font-semibold text-primary-600' : 'text-gray-700'}`}
+        <nav className="flex flex-col gap-4 text-center">
+          {links.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={`py-2 text-base font-medium ${
+                link.active ? 'text-primary-700' : 'text-gray-700'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a
+            {...whatsappProps}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center justify-center rounded-full bg-primary-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary-800"
           >
-            Início
-          </Link>
-          <Link 
-            to="/blog" 
-            className={`py-3 text-lg ${location.pathname.includes('/blog') ? 'font-semibold text-primary-600' : 'text-gray-700'}`}
-          >
-            Blog
-          </Link>
-          <Link 
-            to="/depoimentos" 
-            className={`py-3 text-lg ${location.pathname === '/depoimentos' ? 'font-semibold text-primary-600' : 'text-gray-700'}`}
-          >
-            Depoimentos
-          </Link>
-          <Link 
-            to="/agendamento" 
-            className={`py-3 text-lg ${location.pathname === '/agendamento' ? 'font-semibold text-primary-600' : 'text-gray-700'}`}
-          >
-            Agendamento
-          </Link>
-          <Link 
-            to="/agendamento" 
-            className="py-3 mx-auto mt-4 w-full max-w-xs btn btn-primary"
-          >
-            Agende sua Sessão
-          </Link>
+            Falar no WhatsApp
+          </a>
         </nav>
       </motion.div>
     </header>
   );
 };
 
-export default Navbar; 
+export default Navbar;

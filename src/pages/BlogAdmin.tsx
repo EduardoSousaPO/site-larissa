@@ -1,461 +1,632 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { supabase } from '../services/supabase';
+import type { BlogCategory, BlogPost, BlogStatus } from '../lib/blog';
+import {
+  BLOG_CATEGORY_OPTIONS,
+  calculateReadingTime,
+  ensureSummaryLength,
+  formatCategoryLabel,
+  getPublishedAt,
+  parseTags,
+} from '../lib/blog';
+import {
+  createBlogPost,
+  deleteBlogPost,
+  ensureUniqueSlug,
+  getBlogPostsForAdmin,
+  updateBlogPost,
+} from '../services/blogPosts';
+import type { GeneratedArticle } from '../services/llm';
+import { generateArticle, regenerateArticle } from '../services/llm';
 
-// Tipos
-interface BlogPost {
-  id: string;
-  titulo: string;
-  resumo: string;
-  conteudo: string;
-  imagem: string;
-  categoria: string;
-  dataCriacao: Date;
-  autor: string;
-  tags: string[];
-}
+type Feedback = {
+  type: 'success' | 'error';
+  message: string;
+};
 
-interface FormBlogPost {
+type EditorState = {
   id?: string;
-  titulo: string;
-  resumo: string;
-  conteudo: string;
-  imagem: string;
-  categoria: string;
-  autor: string;
+  title: string;
+  summary: string;
+  content: string;
+  image_url: string;
+  category: BlogCategory;
+  author: string;
   tags: string;
-}
+  seo_title: string;
+  seo_description: string;
+  status: BlogStatus;
+};
+
+const INITIAL_EDITOR: EditorState = {
+  title: '',
+  summary: '',
+  content: '',
+  image_url: '',
+  category: 'geral',
+  author: 'Dra. Larissa Nunes',
+  tags: '',
+  seo_title: '',
+  seo_description: '',
+  status: 'draft',
+};
 
 const BlogAdmin = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [formData, setFormData] = useState<FormBlogPost>({
-    titulo: '',
-    resumo: '',
-    conteudo: '',
-    imagem: '',
-    categoria: '',
-    autor: 'Dra. Larissa Nunes',
-    tags: ''
-  });
+  const [editor, setEditor] = useState<EditorState>(INITIAL_EDITOR);
   const [isLoading, setIsLoading] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [feedback, setFeedback] = useState<{ tipo: 'sucesso' | 'erro', mensagem: string } | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const [aiTopic, setAiTopic] = useState('');
+  const [aiFeedback, setAiFeedback] = useState('');
+  const [generatedArticle, setGeneratedArticle] = useState<GeneratedArticle | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
-  // Buscar posts
   useEffect(() => {
-    const fetchPosts = async () => {
+    const run = async () => {
       try {
-        const { data, error } = await supabase
-          .from('blog_posts')
-          .select('*')
-          .order('data_criacao', { ascending: false });
-        
-        if (error) throw error;
-        
-        const postsList: BlogPost[] = (data || []).map((item: any) => ({
-          id: item.id,
-          titulo: item.titulo,
-          resumo: item.resumo,
-          conteudo: item.conteudo,
-          imagem: item.imagem,
-          categoria: item.categoria,
-          dataCriacao: new Date(item.data_criacao),
-          autor: item.autor || 'Dra. Larissa Nunes',
-          tags: item.tags || []
-        }));
-        
-        setPosts(postsList);
-      } catch (error) {
-        console.error('Erro ao buscar posts:', error);
+        const data = await getBlogPostsForAdmin();
+        setPosts(data);
+      } catch (err) {
+        console.error(err);
         setFeedback({
-          tipo: 'erro',
-          mensagem: 'Erro ao carregar os posts. Por favor, recarregue a página.'
+          type: 'error',
+          message: 'Nao foi possivel carregar os artigos do blog.',
         });
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchPosts();
+    void run();
   }, []);
 
-  // Manipuladores de formulário
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  const currentPost = useMemo(
+    () => posts.find((post) => post.id === editor.id) ?? null,
+    [editor.id, posts],
+  );
 
-  const resetForm = () => {
-    setFormData({
-      titulo: '',
-      resumo: '',
-      conteudo: '',
-      imagem: '',
-      categoria: '',
-      autor: 'Dra. Larissa Nunes',
-      tags: ''
-    });
-    setIsEditing(false);
-  };
+  function resetEditor() {
+    setEditor(INITIAL_EDITOR);
+  }
 
-  const editPost = (post: BlogPost) => {
-    setFormData({
+  function startEdit(post: BlogPost) {
+    setEditor({
       id: post.id,
-      titulo: post.titulo,
-      resumo: post.resumo,
-      conteudo: post.conteudo,
-      imagem: post.imagem,
-      categoria: post.categoria,
-      autor: post.autor,
-      tags: post.tags.join(', ')
+      title: post.title,
+      summary: post.summary,
+      content: post.content,
+      image_url: post.image_url ?? '',
+      category: post.category,
+      author: post.author,
+      tags: post.tags?.join(', ') ?? '',
+      seo_title: post.seo_title ?? '',
+      seo_description: post.seo_description ?? '',
+      status: post.status,
     });
-    setIsEditing(true);
-  };
+    setGeneratedArticle(null);
+  }
 
-  const deletePost = async (postId: string) => {
-    if (!window.confirm('Tem certeza que deseja excluir este post? Esta ação não pode ser desfeita.')) {
-      return;
-    }
-    
-    try {
-      await deleteDoc(doc(db, 'blog_posts', postId));
-      
-      // Atualizar lista local
-      setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
-      
-      setFeedback({
-        tipo: 'sucesso',
-        mensagem: 'Post excluído com sucesso!'
-      });
-    } catch (error) {
-      console.error('Erro ao excluir post:', error);
-      setFeedback({
-        tipo: 'erro',
-        mensagem: 'Erro ao excluir o post. Por favor, tente novamente.'
-      });
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  async function persistManualPost(nextStatus: BlogStatus) {
+    setIsSaving(true);
     setFeedback(null);
 
     try {
-      const tagsArray = formData.tags
-        .split(',')
-        .map(tag => tag.trim())
-        .filter(tag => tag !== '');
-
-      const postData = {
-        titulo: formData.titulo,
-        resumo: formData.resumo,
-        conteudo: formData.conteudo,
-        imagem: formData.imagem,
-        categoria: formData.categoria,
-        autor: formData.autor,
-        tags: tagsArray
+      const slug = await ensureUniqueSlug(editor.title, editor.id);
+      const payload = {
+        title: editor.title.trim(),
+        slug,
+        summary: ensureSummaryLength(editor.summary),
+        content: editor.content.trim(),
+        image_url: editor.image_url.trim() || null,
+        category: editor.category,
+        tags: parseTags(editor.tags),
+        author: editor.author.trim() || 'Dra. Larissa Nunes',
+        status: nextStatus,
+        reading_time: calculateReadingTime(editor.content),
+        seo_title: editor.seo_title.trim() || editor.title.trim(),
+        seo_description: ensureSummaryLength(
+          editor.seo_description.trim() || editor.summary.trim(),
+        ),
+        published_at: getPublishedAt(nextStatus, currentPost?.published_at),
       };
 
-      if (isEditing && formData.id) {
-        // Atualizar post existente
-        const { data, error } = await supabase
-          .from('blog_posts')
-          .update({
-            ...postData,
-            atualizado: new Date().toISOString()
-          })
-          .eq('id', formData.id)
-          .select()
-          .single();
+      const saved = editor.id
+        ? await updateBlogPost(editor.id, payload)
+        : await createBlogPost(payload);
 
-        if (error) throw error;
+      setPosts((previous) => {
+        const exists = previous.some((post) => post.id === saved.id);
 
-        // Atualizar na lista local
-        setPosts(prevPosts => 
-          prevPosts.map(post => 
-            post.id === formData.id 
-              ? { 
-                  ...post, 
-                  ...postData,
-                  tags: tagsArray
-                } 
-              : post
-          )
-        );
+        if (exists) {
+          return previous.map((post) => (post.id === saved.id ? saved : post));
+        }
 
-        setFeedback({
-          tipo: 'sucesso',
-          mensagem: 'Post atualizado com sucesso!'
-        });
-      } else {
-        // Criar novo post
-        const { data, error } = await supabase
-          .from('blog_posts')
-          .insert({
-            ...postData,
-            visualizacoes: 0
-          })
-          .select()
-          .single();
+        return [saved, ...previous];
+      });
 
-        if (error) throw error;
-
-        // Adicionar à lista local
-        const novoPost: BlogPost = {
-          id: data.id,
-          titulo: data.titulo,
-          resumo: data.resumo,
-          conteudo: data.conteudo,
-          imagem: data.imagem,
-          categoria: data.categoria,
-          dataCriacao: new Date(data.data_criacao),
-          autor: data.autor,
-          tags: data.tags || []
-        };
-
-        setPosts(prevPosts => [novoPost, ...prevPosts]);
-        
-        setFeedback({
-          tipo: 'sucesso',
-          mensagem: 'Post criado com sucesso!'
-        });
-      }
-
-      // Resetar formulário
-      resetForm();
-    } catch (error) {
-      console.error('Erro ao salvar post:', error);
+      resetEditor();
       setFeedback({
-        tipo: 'erro',
-        mensagem: 'Erro ao salvar o post. Por favor, tente novamente.'
+        type: 'success',
+        message: nextStatus === 'published' ? 'Artigo publicado com sucesso.' : 'Rascunho salvo com sucesso.',
+      });
+    } catch (err) {
+      console.error(err);
+      setFeedback({
+        type: 'error',
+        message: err instanceof Error ? err.message : 'Erro ao salvar o artigo.',
       });
     } finally {
-      setIsSubmitting(false);
+      setIsSaving(false);
     }
-  };
+  }
+
+  async function handleDelete(postId: string) {
+    const confirmed = window.confirm('Tem certeza que deseja excluir este artigo?');
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      await deleteBlogPost(postId);
+      setPosts((previous) => previous.filter((post) => post.id !== postId));
+
+      if (editor.id === postId) {
+        resetEditor();
+      }
+
+      setFeedback({
+        type: 'success',
+        message: 'Artigo excluido com sucesso.',
+      });
+    } catch (err) {
+      console.error(err);
+      setFeedback({
+        type: 'error',
+        message: 'Nao foi possivel excluir o artigo.',
+      });
+    }
+  }
+
+  async function handleGenerate() {
+    if (!aiTopic.trim()) {
+      setFeedback({
+        type: 'error',
+        message: 'Informe um tema para gerar o artigo com IA.',
+      });
+      return;
+    }
+
+    setIsGenerating(true);
+    setFeedback(null);
+
+    try {
+      const article = await generateArticle(aiTopic.trim());
+      setGeneratedArticle(article);
+      setAiFeedback('');
+    } catch (err) {
+      console.error(err);
+      setFeedback({
+        type: 'error',
+        message: err instanceof Error ? err.message : 'Falha ao gerar artigo com IA.',
+      });
+    } finally {
+      setIsGenerating(false);
+    }
+  }
+
+  async function handleRegenerate() {
+    if (!generatedArticle || !aiTopic.trim() || !aiFeedback.trim()) {
+      setFeedback({
+        type: 'error',
+        message: 'Informe um ajuste para regenerar o artigo.',
+      });
+      return;
+    }
+
+    setIsGenerating(true);
+    setFeedback(null);
+
+    try {
+      const article = await regenerateArticle(aiTopic.trim(), aiFeedback.trim(), generatedArticle);
+      setGeneratedArticle(article);
+      setFeedback({
+        type: 'success',
+        message: 'Preview ajustado com sucesso. Revise antes de publicar.',
+      });
+    } catch (err) {
+      console.error(err);
+      setFeedback({
+        type: 'error',
+        message: err instanceof Error ? err.message : 'Falha ao ajustar o artigo com IA.',
+      });
+    } finally {
+      setIsGenerating(false);
+    }
+  }
+
+  async function handleApproveGenerated() {
+    if (!generatedArticle) {
+      return;
+    }
+
+    setIsSaving(true);
+    setFeedback(null);
+
+    try {
+      const slug = await ensureUniqueSlug(generatedArticle.suggested_slug || generatedArticle.title);
+      const saved = await createBlogPost({
+        title: generatedArticle.title,
+        slug,
+        summary: ensureSummaryLength(generatedArticle.summary),
+        content: generatedArticle.content,
+        image_url: null,
+        category: generatedArticle.category,
+        tags: generatedArticle.tags,
+        author: 'Dra. Larissa Nunes',
+        status: 'published',
+        reading_time: calculateReadingTime(generatedArticle.content),
+        seo_title: generatedArticle.seo_title,
+        seo_description: ensureSummaryLength(generatedArticle.seo_description),
+        published_at: new Date().toISOString(),
+      });
+
+      setPosts((previous) => [saved, ...previous]);
+      setGeneratedArticle(null);
+      setAiTopic('');
+      setAiFeedback('');
+      setFeedback({
+        type: 'success',
+        message: 'Artigo gerado pela IA publicado com aprovacao explicita.',
+      });
+    } catch (err) {
+      console.error(err);
+      setFeedback({
+        type: 'error',
+        message: err instanceof Error ? err.message : 'Nao foi possivel publicar o artigo gerado.',
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  }
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="min-h-screen bg-stone-50 py-12">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
+          transition={{ duration: 0.4 }}
+          className="mb-10"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Administração do Blog
-          </h1>
-          <p className="text-lg text-gray-700">
-            Crie, edite e gerencie as publicações do blog.
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-700">
+            Admin blog
+          </p>
+          <h1 className="mt-3 text-4xl font-bold text-gray-900">Painel de artigos</h1>
+          <p className="mt-4 max-w-3xl text-lg leading-8 text-gray-700">
+            Crie rascunhos, publique artigos e use a geracao com IA apenas com revisao humana.
           </p>
         </motion.div>
 
-        {/* Feedback */}
-        {feedback && (
-          <div className={`p-4 mb-6 rounded-md ${
-            feedback.tipo === 'sucesso' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
-          }`}>
-            {feedback.mensagem}
+        {feedback ? (
+          <div
+            className={`mb-6 rounded-2xl px-5 py-4 text-sm ${
+              feedback.type === 'success'
+                ? 'bg-green-50 text-green-700'
+                : 'bg-red-50 text-red-700'
+            }`}
+          >
+            {feedback.message}
           </div>
-        )}
+        ) : null}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* Formulário */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-xl font-semibold mb-4">
-                {isEditing ? 'Editar Post' : 'Novo Post'}
-              </h2>
-              
-              <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                  <label className="block text-gray-700 mb-2" htmlFor="titulo">
-                    Título*
-                  </label>
-                  <input
-                    type="text"
-                    id="titulo"
-                    name="titulo"
-                    value={formData.titulo}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  />
-                </div>
-                
-                <div className="mb-4">
-                  <label className="block text-gray-700 mb-2" htmlFor="categoria">
-                    Categoria*
-                  </label>
-                  <input
-                    type="text"
-                    id="categoria"
-                    name="categoria"
-                    value={formData.categoria}
-                    onChange={handleChange}
-                    required
-                    placeholder="Ex: Logoterapia, Ansiedade, Relacionamentos"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  />
-                </div>
-                
-                <div className="mb-4">
-                  <label className="block text-gray-700 mb-2" htmlFor="resumo">
-                    Resumo*
-                  </label>
-                  <textarea
-                    id="resumo"
-                    name="resumo"
-                    value={formData.resumo}
-                    onChange={handleChange}
-                    required
-                    rows={3}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  ></textarea>
-                </div>
-                
-                <div className="mb-4">
-                  <label className="block text-gray-700 mb-2" htmlFor="conteudo">
-                    Conteúdo*
-                  </label>
-                  <textarea
-                    id="conteudo"
-                    name="conteudo"
-                    value={formData.conteudo}
-                    onChange={handleChange}
-                    required
-                    rows={8}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  ></textarea>
-                  <p className="text-xs text-gray-500 mt-1">
-                    Você pode usar HTML básico para formatação: &lt;h2&gt;, &lt;p&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;ul&gt;, &lt;li&gt;
+        <div className="grid gap-8 xl:grid-cols-[1.1fr,0.9fr]">
+          <div className="space-y-8">
+            <div className="rounded-[2rem] border border-stone-200 bg-white p-8 shadow-sm">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {editor.id ? 'Editar artigo' : 'Novo artigo manual'}
+                  </h2>
+                  <p className="mt-2 text-sm text-gray-600">
+                    Slug e tempo de leitura sao calculados automaticamente ao salvar.
                   </p>
                 </div>
-                
-                <div className="mb-4">
-                  <label className="block text-gray-700 mb-2" htmlFor="imagem">
-                    URL da Imagem
-                  </label>
+                <button
+                  type="button"
+                  onClick={resetEditor}
+                  className="rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-stone-50"
+                >
+                  Limpar
+                </button>
+              </div>
+
+              <div className="mt-8 grid gap-5 md:grid-cols-2">
+                <label className="text-sm font-medium text-gray-700">
+                  Titulo
                   <input
-                    type="url"
-                    id="imagem"
-                    name="imagem"
-                    value={formData.imagem}
-                    onChange={handleChange}
-                    placeholder="https://exemplo.com/imagem.jpg"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    value={editor.title}
+                    onChange={(event) => setEditor((prev) => ({ ...prev, title: event.target.value }))}
+                    className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
                   />
-                </div>
-                
-                <div className="mb-4">
-                  <label className="block text-gray-700 mb-2" htmlFor="autor">
-                    Autor
-                  </label>
-                  <input
-                    type="text"
-                    id="autor"
-                    name="autor"
-                    value={formData.autor}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  />
-                </div>
-                
-                <div className="mb-6">
-                  <label className="block text-gray-700 mb-2" htmlFor="tags">
-                    Tags (separadas por vírgula)
-                  </label>
-                  <input
-                    type="text"
-                    id="tags"
-                    name="tags"
-                    value={formData.tags}
-                    onChange={handleChange}
-                    placeholder="Ex: saúde mental, terapia, ansiedade"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  />
-                </div>
-                
-                <div className="flex space-x-3">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`flex-grow py-2 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-md font-medium transition-colors ${
-                      isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
-                    }`}
+                </label>
+
+                <label className="text-sm font-medium text-gray-700">
+                  Categoria
+                  <select
+                    value={editor.category}
+                    onChange={(event) =>
+                      setEditor((prev) => ({ ...prev, category: event.target.value as BlogCategory }))
+                    }
+                    className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
                   >
-                    {isSubmitting ? 'Salvando...' : isEditing ? 'Atualizar' : 'Publicar'}
-                  </button>
-                  
-                  {isEditing && (
+                    {BLOG_CATEGORY_OPTIONS.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="text-sm font-medium text-gray-700 md:col-span-2">
+                  Resumo
+                  <textarea
+                    value={editor.summary}
+                    onChange={(event) => setEditor((prev) => ({ ...prev, summary: event.target.value }))}
+                    rows={3}
+                    className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
+                  />
+                </label>
+
+                <label className="text-sm font-medium text-gray-700 md:col-span-2">
+                  Conteudo HTML
+                  <textarea
+                    value={editor.content}
+                    onChange={(event) => setEditor((prev) => ({ ...prev, content: event.target.value }))}
+                    rows={12}
+                    className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3 font-mono text-sm"
+                  />
+                </label>
+
+                <label className="text-sm font-medium text-gray-700">
+                  URL da imagem
+                  <input
+                    value={editor.image_url}
+                    onChange={(event) => setEditor((prev) => ({ ...prev, image_url: event.target.value }))}
+                    className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
+                  />
+                </label>
+
+                <label className="text-sm font-medium text-gray-700">
+                  Autor
+                  <input
+                    value={editor.author}
+                    onChange={(event) => setEditor((prev) => ({ ...prev, author: event.target.value }))}
+                    className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
+                  />
+                </label>
+
+                <label className="text-sm font-medium text-gray-700">
+                  Tags
+                  <input
+                    value={editor.tags}
+                    onChange={(event) => setEditor((prev) => ({ ...prev, tags: event.target.value }))}
+                    placeholder="logoterapia, sentido, ansiedade"
+                    className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
+                  />
+                </label>
+
+                <label className="text-sm font-medium text-gray-700">
+                  Status
+                  <select
+                    value={editor.status}
+                    onChange={(event) =>
+                      setEditor((prev) => ({ ...prev, status: event.target.value as BlogStatus }))
+                    }
+                    className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
+                  >
+                    <option value="draft">Rascunho</option>
+                    <option value="published">Publicado</option>
+                  </select>
+                </label>
+
+                <label className="text-sm font-medium text-gray-700">
+                  SEO title
+                  <input
+                    value={editor.seo_title}
+                    onChange={(event) => setEditor((prev) => ({ ...prev, seo_title: event.target.value }))}
+                    className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
+                  />
+                </label>
+
+                <label className="text-sm font-medium text-gray-700">
+                  SEO description
+                  <textarea
+                    value={editor.seo_description}
+                    onChange={(event) =>
+                      setEditor((prev) => ({ ...prev, seo_description: event.target.value }))
+                    }
+                    rows={3}
+                    className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
+                  />
+                </label>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  disabled={isSaving}
+                  onClick={() => void persistManualPost('draft')}
+                  className="rounded-full border border-stone-300 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:bg-stone-50 disabled:opacity-60"
+                >
+                  {isSaving ? 'Salvando...' : 'Salvar rascunho'}
+                </button>
+                <button
+                  type="button"
+                  disabled={isSaving}
+                  onClick={() => void persistManualPost('published')}
+                  className="rounded-full bg-primary-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary-800 disabled:opacity-60"
+                >
+                  {isSaving ? 'Publicando...' : 'Publicar'}
+                </button>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-stone-200 bg-white p-8 shadow-sm">
+              <h2 className="text-2xl font-bold text-gray-900">Novo artigo com IA</h2>
+              <p className="mt-2 text-sm text-gray-600">
+                A IA gera um preview. Nada e publicado sem o clique explicito em "Aprovar e publicar".
+              </p>
+
+              <label className="mt-6 block text-sm font-medium text-gray-700">
+                Tema ou prompt
+                <textarea
+                  value={aiTopic}
+                  onChange={(event) => setAiTopic(event.target.value)}
+                  rows={3}
+                  className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
+                  placeholder="Ex.: Crise existencial: o que e e como a Logoterapia pode ajudar"
+                />
+              </label>
+
+              <div className="mt-5">
+                <button
+                  type="button"
+                  disabled={isGenerating}
+                  onClick={() => void handleGenerate()}
+                  className="rounded-full bg-gray-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-black disabled:opacity-60"
+                >
+                  {isGenerating ? 'Gerando preview...' : 'Gerar preview com IA'}
+                </button>
+              </div>
+
+              {generatedArticle ? (
+                <div className="mt-8 space-y-6 rounded-[2rem] bg-stone-50 p-6">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary-700">
+                      Preview gerado
+                    </p>
+                    <h3 className="mt-3 text-2xl font-bold text-gray-900">{generatedArticle.title}</h3>
+                    <p className="mt-3 text-base leading-8 text-gray-700">{generatedArticle.summary}</p>
+                  </div>
+
+                  <div className="rounded-[1.5rem] bg-white p-5">
+                    <div className="article-content" dangerouslySetInnerHTML={{ __html: generatedArticle.content }} />
+                  </div>
+
+                  <div className="rounded-[1.5rem] border border-stone-200 bg-white p-5 text-sm text-gray-700">
+                    <p>
+                      <strong>Categoria:</strong> {formatCategoryLabel(generatedArticle.category)}
+                    </p>
+                    <p className="mt-2">
+                      <strong>Tags:</strong> {generatedArticle.tags.join(', ') || '—'}
+                    </p>
+                    <p className="mt-2">
+                      <strong>Slug sugerido:</strong> {generatedArticle.suggested_slug}
+                    </p>
+                  </div>
+
+                  <label className="block text-sm font-medium text-gray-700">
+                    Solicitar ajustes
+                    <textarea
+                      value={aiFeedback}
+                      onChange={(event) => setAiFeedback(event.target.value)}
+                      rows={3}
+                      className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
+                      placeholder="Ex.: deixe o tom mais direto e reforce a secao Como a Logoterapia ajuda"
+                    />
+                  </label>
+
+                  <div className="flex flex-wrap gap-3">
                     <button
                       type="button"
-                      onClick={resetForm}
-                      className="py-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-md font-medium transition-colors"
+                      disabled={isGenerating}
+                      onClick={() => void handleRegenerate()}
+                      className="rounded-full border border-stone-300 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:bg-white disabled:opacity-60"
                     >
-                      Cancelar
+                      Solicitar ajustes
                     </button>
-                  )}
+                    <button
+                      type="button"
+                      disabled={isSaving}
+                      onClick={() => void handleApproveGenerated()}
+                      className="rounded-full bg-green-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-700 disabled:opacity-60"
+                    >
+                      Aprovar e publicar
+                    </button>
+                  </div>
                 </div>
-              </form>
+              ) : null}
             </div>
           </div>
-          
-          {/* Lista de Posts */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-xl font-semibold mb-4">
-                Posts Publicados
-              </h2>
-              
-              {isLoading ? (
-                <div className="flex justify-center py-10">
-                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>
-                </div>
-              ) : posts.length === 0 ? (
-                <div className="text-center py-10 text-gray-500">
-                  Nenhum post publicado ainda. Crie seu primeiro post!
-                </div>
-              ) : (
-                <div className="divide-y divide-gray-200">
-                  {posts.map(post => (
-                    <div key={post.id} className="py-4 first:pt-0 last:pb-0">
-                      <div className="flex flex-col md:flex-row md:items-center justify-between">
-                        <div className="flex-grow">
-                          <h3 className="text-lg font-medium text-gray-900">
-                            {post.titulo}
-                          </h3>
-                          <div className="flex items-center text-sm text-gray-500 mt-1">
-                            <span>{post.categoria}</span>
-                            <span className="mx-2">•</span>
-                            <span>{post.dataCriacao.toLocaleDateString('pt-BR')}</span>
-                          </div>
-                        </div>
-                        
-                        <div className="flex space-x-2 mt-3 md:mt-0">
-                          <button
-                            onClick={() => editPost(post)}
-                            className="px-3 py-1 bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-md text-sm transition-colors"
+
+          <div className="rounded-[2rem] border border-stone-200 bg-white p-8 shadow-sm">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">Artigos existentes</h2>
+                <p className="mt-2 text-sm text-gray-600">
+                  Lista com titulo, status e data para edicao rapida.
+                </p>
+              </div>
+            </div>
+
+            {isLoading ? (
+              <div className="flex justify-center py-16">
+                <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-primary-600" />
+              </div>
+            ) : posts.length === 0 ? (
+              <div className="mt-8 rounded-2xl bg-stone-50 p-8 text-center text-gray-600">
+                Nenhum artigo cadastrado ainda.
+              </div>
+            ) : (
+              <div className="mt-8 space-y-4">
+                {posts.map((post) => (
+                  <div
+                    key={post.id}
+                    className="rounded-[1.5rem] border border-stone-200 p-5 transition hover:border-primary-200"
+                  >
+                    <div className="flex flex-wrap items-start justify-between gap-4">
+                      <div>
+                        <div className="flex flex-wrap items-center gap-3">
+                          <h3 className="text-lg font-bold text-gray-900">{post.title}</h3>
+                          <span
+                            className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                              post.status === 'published'
+                                ? 'bg-green-50 text-green-700'
+                                : 'bg-amber-50 text-amber-700'
+                            }`}
                           >
-                            Editar
-                          </button>
-                          
-                          <button
-                            onClick={() => deletePost(post.id)}
-                            className="px-3 py-1 bg-red-100 text-red-700 hover:bg-red-200 rounded-md text-sm transition-colors"
-                          >
-                            Excluir
-                          </button>
+                            {post.status === 'published' ? 'Publicado' : 'Rascunho'}
+                          </span>
                         </div>
+                        <p className="mt-2 text-sm text-gray-600">
+                          {formatCategoryLabel(post.category)} ·{' '}
+                          {new Date(post.published_at || post.created_at).toLocaleDateString('pt-BR')}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        <button
+                          type="button"
+                          onClick={() => startEdit(post)}
+                          className="rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-stone-50"
+                        >
+                          Editar
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => void handleDelete(post.id)}
+                          className="rounded-full border border-red-200 px-4 py-2 text-sm font-medium text-red-700 transition hover:bg-red-50"
+                        >
+                          Excluir
+                        </button>
                       </div>
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -463,4 +634,4 @@ const BlogAdmin = () => {
   );
 };
 
-export default BlogAdmin; 
+export default BlogAdmin;
