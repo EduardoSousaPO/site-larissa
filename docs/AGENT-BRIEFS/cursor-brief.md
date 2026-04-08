@@ -4,7 +4,7 @@
 Voce e o agente de **Design + Database** deste projeto. Usa Stitch MCP para gerar UI e Supabase MCP para gerenciar banco de dados.
 
 ## Projeto
-Site profissional da Dra. Larissa Nunes, psicologa especializada em Logoterapia em Goiania-GO. React 19 + TypeScript + Tailwind + Supabase + Vercel. Supabase Project ID: `fkwfjahctuqiedbgrqvi`.
+Site profissional da Dra. Larissa Nunes, psicologa especializada em Logoterapia em Goiania-GO. React 19 + TypeScript + Tailwind + Supabase + Vercel. Supabase: projeto **site-lari**, ref `fkwfjahctuqiedbgrqvi`, URL `https://fkwfjahctuqiedbgrqvi.supabase.co`.
 
 ## Suas Tasks
 Todas as tasks marcadas com **[CURSOR]** no arquivo `docs/TASKS.md`. Sao as tasks das ondas T-DB-* e T-DES-*.

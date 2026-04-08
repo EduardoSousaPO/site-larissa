@@ -189,6 +189,8 @@ export function regenerateArticle(
 | `VITE_WHATSAPP_NUMBER` | string | Frontend | 5562996290052 |
 | `VITE_WHATSAPP_DEFAULT_MESSAGE` | string | Frontend | Mensagem padrao WhatsApp |
 
+**Projeto Supabase (unico):** dashboard `site-lari`, ref `fkwfjahctuqiedbgrqvi`, URL `https://fkwfjahctuqiedbgrqvi.supabase.co`. Nao usar outro Project ID neste repo.
+
 Nenhum agente deve hardcodar valores. Sempre usar import.meta.env.NOME_DA_VAR.
 
 ---

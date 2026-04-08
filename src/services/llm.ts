@@ -1,4 +1,4 @@
-import { LLM_API_KEY, LLM_MODEL, LLM_PROVIDER } from '../config/site';
+import { INFSH_API_KEY, LLM_API_KEY, LLM_MODEL, LLM_PROVIDER } from '../config/site';
 import { slugify, type BlogCategory } from '../lib/blog';
 
 export interface GeneratedArticle {
@@ -10,6 +10,7 @@ export interface GeneratedArticle {
   category: BlogCategory;
   tags: string[];
   suggested_slug: string;
+  image_url?: string;
 }
 
 const BLOG_SYSTEM_PROMPT = `Voce escreve artigos para o blog da Dra. Larissa Nunes, psicologa especializada em Logoterapia.
@@ -190,6 +191,149 @@ function buildPrompt(topic: string, feedback?: string, previousArticle?: Generat
   return parts.join('\n');
 }
 
+// ---------------------------------------------------------------------------
+// Inference.sh — geracao de imagem de capa
+// ---------------------------------------------------------------------------
+
+const INFSH_BASE = 'https://api.inference.sh';
+const INFSH_IMAGE_MODEL = 'pruna/p-image';
+const INFSH_POLL_INTERVAL = 2000;
+const INFSH_MAX_POLLS = 30; // 60 segundos max
+
+function buildImagePrompt(title: string, category: string): string {
+  const themePool: Record<string, string[]> = {
+    logoterapia: [
+      'cozy therapy room with leather armchair, warm lamp light, bookshelf with old books, indoor plants',
+      'open journal on wooden desk next to a cup of tea, morning sunlight through curtains, peaceful study',
+      'a lighthouse on a calm coast at golden hour, guiding light, sense of direction',
+      'stacked stones balanced on a beach at sunrise, zen, equilibrium, calm ocean background',
+      'an open road through green fields leading to distant mountains, journey, purpose',
+    ],
+    ansiedade: [
+      'misty forest path with sunlight breaking through tall trees, tranquility, fresh air',
+      'hands holding a warm cup of herbal tea, cozy blanket, rainy window background, comfort',
+      'calm turquoise ocean seen from above, gentle waves, aerial photography, vastness',
+      'lavender field at sunset, soft purple tones, gentle breeze, rural landscape',
+      'person silhouette sitting under a large tree in open meadow, solitude, peace, wide angle',
+    ],
+    depressao: [
+      'sunrise breaking through dark storm clouds over a valley, hope after darkness',
+      'single candle flame glowing in a dim room, warmth, small light in darkness',
+      'spring flowers blooming through cracks in concrete, resilience, new life',
+      'morning dew on grass with soft bokeh sunlight, new day, fresh start',
+      'bird flying over calm water at dawn, freedom, new beginning, pastel sky colors',
+    ],
+    proposito: [
+      'compass on an old wooden map, adventure, direction, warm vintage tones',
+      'winding trail through autumn forest with golden leaves, the path ahead',
+      'telescope pointing at starry night sky, searching, wonder, exploration',
+      'seeds sprouting in rich dark soil, growth, potential, close-up macro photography',
+      'bridge over a deep valley connecting two cliffs, crossing, connection, aerial view',
+    ],
+    vocacional: [
+      'multiple colorful doors in a white corridor, choices, possibilities, surreal',
+      'artist studio with paintbrushes and canvases, creativity, vocation, natural light',
+      'fork in a forest trail with two distinct paths, decision, autumn setting',
+      'hand planting a small tree sapling, nurturing, building something meaningful',
+      'old library with tall bookshelves and warm reading lights, knowledge, discovery',
+    ],
+    geral: [
+      'minimalist zen garden with raked sand and stones, simplicity, balance',
+      'window with sheer white curtains blowing gently, fresh air, light, openness',
+      'watercolor palette with soft pastel colors, creativity, expression, artistic',
+      'mountain lake reflection at golden hour, mirror water, symmetry, peace',
+      'indoor green plants in ceramic pots on wooden shelves, wellness, nurture',
+    ],
+  };
+
+  const pool = themePool[category] || themePool.geral;
+  const randomTheme = pool[Math.floor(Math.random() * pool.length)];
+
+  const styles = [
+    'professional editorial photography, high quality, realistic',
+    'cinematic photography, shallow depth of field, film grain',
+    'fine art photography, soft natural light, muted tones',
+    'documentary style photography, authentic, natural lighting',
+    'minimalist photography, clean composition, elegant',
+  ];
+  const randomStyle = styles[Math.floor(Math.random() * styles.length)];
+
+  return `${randomTheme}. ${randomStyle}. IMPORTANT: absolutely no text, no words, no letters, no watermarks, no titles, no captions anywhere in the image.`;
+}
+
+async function generateCoverImage(title: string, category: string): Promise<string | undefined> {
+  if (!INFSH_API_KEY) {
+    return undefined;
+  }
+
+  try {
+    // 1. Criar task
+    const createRes = await fetch(`${INFSH_BASE}/apps/run`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${INFSH_API_KEY}`,
+      },
+      body: JSON.stringify({
+        app: INFSH_IMAGE_MODEL,
+        input: {
+          prompt: buildImagePrompt(title, category),
+          aspect_ratio: '16:9',
+        },
+      }),
+    });
+
+    if (!createRes.ok) {
+      console.warn('Falha ao criar task de imagem:', createRes.status);
+      return undefined;
+    }
+
+    const createData = await createRes.json();
+    const taskId = createData.data?.id;
+
+    if (!taskId) {
+      return undefined;
+    }
+
+    // 2. Polling ate completar
+    for (let i = 0; i < INFSH_MAX_POLLS; i++) {
+      await new Promise((r) => setTimeout(r, INFSH_POLL_INTERVAL));
+
+      const pollRes = await fetch(`${INFSH_BASE}/tasks/${taskId}`, {
+        headers: { Authorization: `Bearer ${INFSH_API_KEY}` },
+      });
+
+      if (!pollRes.ok) {
+        continue;
+      }
+
+      const pollData = await pollRes.json();
+      const status = pollData.data?.status;
+
+      // status 10 = complete
+      if (status === 10 && pollData.data?.output?.image) {
+        return pollData.data.output.image as string;
+      }
+
+      // status >= 20 = erro
+      if (status >= 20) {
+        console.warn('Task de imagem falhou com status:', status);
+        return undefined;
+      }
+    }
+
+    console.warn('Timeout ao gerar imagem de capa');
+    return undefined;
+  } catch (err) {
+    console.warn('Erro ao gerar imagem de capa:', err);
+    return undefined;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Funcoes publicas
+// ---------------------------------------------------------------------------
+
 export async function generateArticle(
   topic: string,
   provider: 'claude' | 'openai' | 'groq' = LLM_PROVIDER,
@@ -197,15 +341,24 @@ export async function generateArticle(
   assertConfig();
   const prompt = buildPrompt(topic);
 
+  let article: GeneratedArticle;
+
   if (provider === 'claude') {
-    return callAnthropic(prompt);
+    article = await callAnthropic(prompt);
+  } else if (provider === 'groq') {
+    article = await callOpenAICompatible(prompt, 'https://api.groq.com/openai/v1');
+  } else {
+    article = await callOpenAICompatible(prompt, 'https://api.openai.com/v1');
   }
 
-  if (provider === 'groq') {
-    return callOpenAICompatible(prompt, 'https://api.groq.com/openai/v1');
+  // Gerar imagem de capa em paralelo (nao bloqueia se falhar)
+  const imageUrl = await generateCoverImage(article.title, article.category);
+
+  if (imageUrl) {
+    article.image_url = imageUrl;
   }
 
-  return callOpenAICompatible(prompt, 'https://api.openai.com/v1');
+  return article;
 }
 
 export async function regenerateArticle(
@@ -216,13 +369,22 @@ export async function regenerateArticle(
   assertConfig();
   const prompt = buildPrompt(topic, feedback, previousArticle);
 
+  let article: GeneratedArticle;
+
   if (LLM_PROVIDER === 'claude') {
-    return callAnthropic(prompt);
+    article = await callAnthropic(prompt);
+  } else if (LLM_PROVIDER === 'groq') {
+    article = await callOpenAICompatible(prompt, 'https://api.groq.com/openai/v1');
+  } else {
+    article = await callOpenAICompatible(prompt, 'https://api.openai.com/v1');
   }
 
-  if (LLM_PROVIDER === 'groq') {
-    return callOpenAICompatible(prompt, 'https://api.groq.com/openai/v1');
+  // Regerar imagem tambem
+  const imageUrl = await generateCoverImage(article.title, article.category);
+
+  if (imageUrl) {
+    article.image_url = imageUrl;
   }
 
-  return callOpenAICompatible(prompt, 'https://api.openai.com/v1');
+  return article;
 }

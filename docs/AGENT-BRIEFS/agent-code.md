@@ -4,7 +4,7 @@
 Voce e o agente de codigo do projeto. Seu trabalho e implementar toda a logica React, integrar os designs do Stitch, configurar SEO/GA4 e criar os services.
 
 ## Projeto
-Site React 19 + TypeScript + Vite + Tailwind CSS + Supabase. Projeto existente em `c:\Users\edusp\Projetos_App_Desktop\site-larissa-projeto`. Deploy no Vercel.
+Site React 19 + TypeScript + Vite + Tailwind CSS + Supabase. Projeto existente em `c:\Users\edusp\Projetos_App_Desktop\site-larissa-projeto`. Deploy no Vercel. Supabase alvo: **site-lari** (`fkwfjahctuqiedbgrqvi`).
 
 ## Documentos de Referencia (LEIA TODOS ANTES DE COMECAR)
 - `docs/CONTRACTS.md` — Tipos, interfaces e convencoes (OBRIGATORIO)

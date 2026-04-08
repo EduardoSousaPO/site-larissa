@@ -309,6 +309,16 @@ Vite plugin sitemap ja configurado. Adicionar novas rotas (LPs com noindex separ
 
 ## 9. Deploy e Infraestrutura
 
+### Projeto Supabase (referencia unica)
+Valores conforme **Project Settings → General** no dashboard:
+| Campo | Valor |
+|-------|--------|
+| Nome do projeto (dashboard) | `site-lari` |
+| Project ID (ref, APIs e URLs) | `fkwfjahctuqiedbgrqvi` |
+| URL publica da API | `https://fkwfjahctuqiedbgrqvi.supabase.co` |
+
+Usar sempre este projeto em `.env`, MCP Supabase e documentacao. IDs ou URLs de outros projetos Supabase sao obsoletos para este repositorio.
+
 ### Ambientes
 | Ambiente | URL | Branch | Deploy |
 |----------|-----|--------|--------|
@@ -317,8 +327,8 @@ Vite plugin sitemap ja configurado. Adicionar novas rotas (LPs com noindex separ
 
 ### Variaveis de Ambiente
 ```env
-# Supabase
-VITE_SUPABASE_URL=
+# Supabase (projeto site-lari — ref fkwfjahctuqiedbgrqvi)
+VITE_SUPABASE_URL=https://fkwfjahctuqiedbgrqvi.supabase.co
 VITE_SUPABASE_ANON_KEY=
 
 # Google Analytics

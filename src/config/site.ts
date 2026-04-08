@@ -17,6 +17,7 @@ export const LLM_PROVIDER = (import.meta.env.VITE_LLM_PROVIDER?.trim() ?? 'opena
   | 'groq';
 export const LLM_API_KEY = import.meta.env.VITE_LLM_API_KEY?.trim() ?? '';
 export const LLM_MODEL = import.meta.env.VITE_LLM_MODEL?.trim() ?? '';
+export const INFSH_API_KEY = import.meta.env.VITE_INFSH_API_KEY?.trim() ?? '';
 
 export const WHATSAPP_NUMBER =
   import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/\D/g, '') || CONTACT_PHONE_DIGITS;

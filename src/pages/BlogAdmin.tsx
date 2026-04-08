@@ -261,7 +261,7 @@ const BlogAdmin = () => {
         slug,
         summary: ensureSummaryLength(generatedArticle.summary),
         content: generatedArticle.content,
-        image_url: null,
+        image_url: generatedArticle.image_url || null,
         category: generatedArticle.category,
         tags: generatedArticle.tags,
         author: 'Dra. Larissa Nunes',
@@ -510,6 +510,17 @@ const BlogAdmin = () => {
                     <h3 className="mt-3 text-2xl font-bold text-gray-900">{generatedArticle.title}</h3>
                     <p className="mt-3 text-base leading-8 text-gray-700">{generatedArticle.summary}</p>
                   </div>
+
+                  {generatedArticle.image_url ? (
+                    <div className="overflow-hidden rounded-[1.5rem]">
+                      <img
+                        src={generatedArticle.image_url}
+                        alt={`Capa: ${generatedArticle.title}`}
+                        className="w-full object-cover"
+                        style={{ aspectRatio: '16/9' }}
+                      />
+                    </div>
+                  ) : null}
 
                   <div className="rounded-[1.5rem] bg-white p-5">
                     <div className="article-content" dangerouslySetInnerHTML={{ __html: generatedArticle.content }} />

@@ -2,6 +2,7 @@
 > Projeto: Site Dra. Larissa Nunes
 > Data: 07/04/2026
 > Versao: 3.0
+> Supabase: projeto **site-lari**, ref `fkwfjahctuqiedbgrqvi` (URL em `.env.example` e `docs/PLAN.md`).
 
 ---
 

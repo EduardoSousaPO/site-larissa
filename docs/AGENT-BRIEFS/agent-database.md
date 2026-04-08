@@ -4,7 +4,7 @@
 Voce e o agente de banco de dados do projeto. Seu trabalho e configurar toda a infraestrutura de dados usando o Supabase MCP.
 
 ## Projeto
-Site profissional da Dra. Larissa Nunes. Banco de dados PostgreSQL no Supabase (free tier). Project ID: `fkwfjahctuqiedbgrqvi`.
+Site profissional da Dra. Larissa Nunes. Banco de dados PostgreSQL no Supabase (free tier). **Projeto no dashboard:** `site-lari`. **Project ID (ref):** `fkwfjahctuqiedbgrqvi`. **URL:** `https://fkwfjahctuqiedbgrqvi.supabase.co`.
 
 ## Seu MCP
 **Supabase** (29 tools): list_tables, apply_migration, execute_sql, generate_typescript_types, get_project_url, get_anon_key, etc.
