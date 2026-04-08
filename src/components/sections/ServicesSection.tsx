@@ -52,7 +52,7 @@ const ServicesSection = () => {
   ] as const;
 
   return (
-    <section className="bg-white py-20" id="servicos">
+    <section className="scroll-mt-28 bg-white py-20" id="servicos">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

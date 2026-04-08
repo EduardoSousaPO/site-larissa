@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dra. Larissa Nunes - Premium Navigation Preview</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ebddff",
+                        "on-tertiary-fixed-variant": "#005322",
+                        "on-secondary-fixed": "#35003f",
+                        "surface-tint": "#6f43c0",
+                        "on-secondary-container": "#69007a",
+                        "surface-bright": "#fff7fc",
+                        "secondary-fixed": "#ffd6fe",
+                        "surface-container": "#f8e9fa",
+                        "on-primary-fixed-variant": "#5727a6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#7b008f",
+                        "tertiary-fixed-dim": "#3de273",
+                        "on-primary-container": "#d8c2ff",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#4a4453",
+                        "inverse-on-surface": "#faecfc",
+                        "tertiary-fixed": "#66ff8e",
+                        "surface-container-highest": "#ecdeee",
+                        "inverse-primary": "#d3bbff",
+                        "error": "#ba1a1a",
+                        "surface": "#fff7fc",
+                        "secondary-fixed-dim": "#f9abff",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "background": "#fff7fc",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-background": "#201924",
+                        "on-tertiary-container": "#44e878",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#e3d6e5",
+                        "primary": "#4f1c9e",
+                        "surface-container-high": "#f2e4f4",
+                        "on-primary-fixed": "#250059",
+                        "outline": "#7b7484",
+                        "surface-variant": "#ecdeee",
+                        "secondary": "#9a25ae",
+                        "secondary-container": "#ed76fd",
+                        "tertiary": "#004a1d",
+                        "primary-fixed-dim": "#d3bbff",
+                        "outline-variant": "#ccc3d5",
+                        "tertiary-container": "#00642b",
+                        "on-tertiary-fixed": "#002109",
+                        "surface-container-low": "#fdefff",
+                        "on-surface": "#201924",
+                        "primary-container": "#673ab7",
+                        "inverse-surface": "#362e39"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .serif-font { font-family: 'Newsreader', serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Anchor (Based on Shared Components JSON) -->
+<nav class="fixed top-0 w-full h-[70px] z-50 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-xl shadow-[0_10px_40px_rgba(32,25,36,0.06)] flex items-center">
+<div class="flex justify-between items-center w-full px-8 max-w-7xl mx-auto">
+<!-- Left: Identity Cluster -->
+<div class="flex flex-col">
+<span class="text-xl font-serif text-violet-800 dark:text-violet-200 tracking-tight leading-tight serif-font font-bold">
+                    Dra. Larissa Nunes
+                </span>
+<span class="font-label tracking-widest uppercase text-[10px] text-on-surface-variant/70">
+                    Psicóloga • Logoterapia • CRP 09/16269
+                </span>
+</div>
+<!-- Center: Navigation Links -->
+<div class="hidden md:flex items-center gap-10">
+<!-- Active Link: Início -->
+<a class="text-violet-800 dark:text-violet-300 font-semibold relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-violet-600 after:rounded-full transition-all duration-300" href="#">
+                    Início
+                </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-violet-500 transition-colors" href="#">Sobre</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-violet-500 transition-colors" href="#">Abordagem</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-violet-500 transition-colors" href="#">Serviços</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-violet-500 transition-colors" href="#">Blog</a>
+</div>
+<!-- Right: Primary Action -->
+<div class="flex items-center gap-4">
+<a class="bg-tertiary-container text-tertiary-fixed px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 hover:opacity-80 transition-opacity duration-300 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+                    Falar no WhatsApp
+                </a>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas (Preview Area) -->
+<main class="pt-[70px] min-h-screen">
+<!-- Hero Section Preview -->
+<section class="relative h-[819px] flex items-center overflow-hidden bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="relative z-10">
+<span class="label-md uppercase tracking-[0.2em] text-primary font-semibold mb-6 block">Um refúgio para sua mente</span>
+<h1 class="display-lg serif-font text-on-surface leading-[1.1] mb-8 -tracking-[0.02em] font-medium">
+                        Resgate o <span class="italic text-primary">sentido</span> em meio aos desafios da vida.
+                    </h1>
+<p class="body-lg text-on-surface-variant max-w-lg mb-10 leading-relaxed">
+                        Através da Logoterapia, ofereço um espaço de acolhimento e escuta ativa para quem busca reencontrar seu propósito e equilíbrio emocional.
+                    </p>
+<div class="flex flex-wrap gap-6 items-center">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl text-lg font-medium shadow-lg hover:opacity-90 transition-all duration-300 active:scale-[0.98]">
+                            Agendar Sessão
+                        </button>
+<button class="text-primary font-semibold border-b-2 border-primary/20 pb-1 hover:border-primary transition-all">
+                            Saiba mais sobre a Logoterapia
+                        </button>
+</div>
+</div>
+<!-- Intentional Asymmetry Layout -->
+<div class="relative hidden lg:block h-full min-h-[500px]">
+<div class="absolute inset-0 bg-surface-container-highest rounded-[40px] rotate-3 -z-10 translate-x-8"></div>
+<img class="w-full h-full object-cover rounded-[40px] shadow-2xl grayscale-[20%] hover:grayscale-0 transition-all duration-700" data-alt="Modern therapist office interior with soft natural lighting, a comfortable velvet armchair, and elegant minimalist decor in shades of cream and lavender" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbw_XdNLk8uwcS59IAJ6qTruNZJR07KbFCXHbUBh0nIfkH6OBN2ZxpW-aVB8NCHHsE5qkXxFQAuowAIR_Flq9tVvdIBZVsRuMc56ddJwzlnHgvL-leUY29fjQG9bnWQ-oDBIbItXBCue24TOsdc7Tw3P0D8ml_6htX6sjT1uaLp1n7t5rVG9hPhnTNmZC_mPYkSdCg-pfnqahmp4seFjgbH2kkm4k3Xjm8Hu91lvaaiJS86GUCB3Dz9snOabeAn3-lkBWlQaZXZ2E"/>
+</div>
+</div>
+</section>
+<!-- Placeholder Content to show stickiness -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="p-8 rounded-3xl bg-surface-container transition-transform hover:-translate-y-2 duration-500">
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="psychology">psychology</span>
+<h3 class="headline-lg serif-font mb-4">Apoio Emocional</h3>
+<p class="body-lg text-on-surface-variant">Um caminho de autodescoberta para lidar com ansiedade, estresse e transições de vida.</p>
+</div>
+<div class="p-8 rounded-3xl bg-surface-container-low border border-outline-variant/10 transition-transform hover:-translate-y-2 duration-500">
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="self_improvement">self_improvement</span>
+<h3 class="headline-lg serif-font mb-4">Busca de Sentido</h3>
+<p class="body-lg text-on-surface-variant">A Logoterapia foca no potencial humano de transcender o sofrimento através do propósito.</p>
+</div>
+<div class="p-8 rounded-3xl bg-surface-container transition-transform hover:-translate-y-2 duration-500">
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="diversity_3">diversity_3</span>
+<h3 class="headline-lg serif-font mb-4">Terapia Individual</h3>
+<p class="body-lg text-on-surface-variant">Sessões personalizadas focadas na sua história única e nas suas necessidades atuais.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Anchor (Based on Shared Components JSON) -->
+<footer class="w-full py-12 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 flex flex-col items-center gap-4 px-6">
+<div class="flex flex-col items-center gap-2">
+<span class="font-serif text-lg text-violet-800 serif-font font-semibold uppercase tracking-wider">
+                Dra. Larissa Nunes
+            </span>
+</div>
+<div class="flex gap-8 text-zinc-500 hover:text-violet-500 transition-colors text-sm font-sans">
+<a class="hover:text-violet-600 transition-colors" href="#">Termos de Uso</a>
+<a class="hover:text-violet-600 transition-colors" href="#">Política de Privacidade</a>
+</div>
+<p class="font-sans text-sm text-zinc-500 mt-4">
+            © 2024 Dra. Larissa Nunes • Psicóloga • CRP 09/16269
+        </p>
+</footer>
+</body></html>

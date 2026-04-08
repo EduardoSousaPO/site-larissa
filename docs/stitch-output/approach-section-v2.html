@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#7b7484",
+                    "on-error-container": "#93000a",
+                    "background": "#fff7fc",
+                    "tertiary-container": "#00642b",
+                    "on-surface-variant": "#4a4453",
+                    "surface-container-low": "#fdefff",
+                    "surface-bright": "#fff7fc",
+                    "secondary-container": "#ed76fd",
+                    "on-tertiary-fixed-variant": "#005322",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#5727a6",
+                    "on-background": "#201924",
+                    "on-tertiary-container": "#44e878",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#69007a",
+                    "tertiary": "#004a1d",
+                    "on-secondary-fixed-variant": "#7b008f",
+                    "secondary-fixed-dim": "#f9abff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#6f43c0",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#362e39",
+                    "surface-container-highest": "#ecdeee",
+                    "inverse-on-surface": "#faecfc",
+                    "primary-container": "#673ab7",
+                    "surface-variant": "#ecdeee",
+                    "on-primary-fixed": "#250059",
+                    "tertiary-fixed": "#66ff8e",
+                    "inverse-primary": "#d3bbff",
+                    "secondary": "#9a25ae",
+                    "outline-variant": "#ccc3d5",
+                    "error": "#ba1a1a",
+                    "surface": "#fff7fc",
+                    "surface-container-high": "#f2e4f4",
+                    "surface-dim": "#e3d6e5",
+                    "primary-fixed-dim": "#d3bbff",
+                    "on-tertiary-fixed": "#002109",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#ebddff",
+                    "on-secondary-fixed": "#35003f",
+                    "primary": "#4f1c9e",
+                    "on-primary-container": "#d8c2ff",
+                    "tertiary-fixed-dim": "#3de273",
+                    "surface-container": "#f8e9fa",
+                    "secondary-fixed": "#ffd6fe",
+                    "on-surface": "#201924"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Inter", "sans-serif"],
+                    "label": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 10px 40px -10px rgba(32, 25, 36, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-fuchsia-50/70 dark:bg-zinc-950/70 backdrop-blur-xl shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<span class="text-2xl font-serif italic text-violet-900 dark:text-violet-100">Sanctuary</span>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-violet-900 dark:text-violet-100 font-semibold border-b-2 border-violet-400 pb-1 hover:text-violet-900 dark:hover:text-violet-100 transition-colors duration-300" href="#">Our Approach</a>
+<a class="text-violet-700/60 dark:text-violet-300/60 font-medium hover:text-violet-900 dark:hover:text-violet-100 transition-colors duration-300" href="#">Practitioners</a>
+<a class="text-violet-700/60 dark:text-violet-300/60 font-medium hover:text-violet-900 dark:hover:text-violet-100 transition-colors duration-300" href="#">Resources</a>
+<a class="text-violet-700/60 dark:text-violet-300/60 font-medium hover:text-violet-900 dark:hover:text-violet-100 transition-colors duration-300" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-2.5 rounded-xl font-medium hover:scale-95 duration-200 ease-in-out">
+                    Book Session
+                </button>
+<span class="material-symbols-outlined text-violet-900 cursor-pointer md:hidden" data-icon="menu">menu</span>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Hero Header -->
+<header class="mb-20 max-w-3xl">
+<span class="font-label text-primary text-xs font-bold tracking-[0.2em] mb-4 block uppercase">ABORDAGEM</span>
+<h1 class="font-headline text-5xl md:text-6xl text-on-surface leading-[1.1] mb-6 -tracking-[0.02em] italic">
+                Uma terapia que não fica presa no passado
+            </h1>
+<p class="text-on-surface-variant text-lg md:text-xl leading-relaxed max-w-2xl font-light">
+                Acreditamos que a cura não vem apenas de revisitar velhas feridas, mas de encontrar um sentido concreto para o seu amanhã. Nossa metodologia é focada na descoberta de propósito e na responsabilidade frente à vida.
+            </p>
+</header>
+<!-- Asymmetric Approach Cards -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-32 items-stretch">
+<!-- Left Column: The Problem -->
+<div class="md:col-span-5 flex">
+<div class="bg-surface-container-lowest p-10 rounded-[2rem] editorial-shadow flex flex-col justify-between border border-outline-variant/10 w-full">
+<div>
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="progress_activity">progress_activity</span>
+</div>
+<h3 class="font-label text-[0.7rem] font-bold tracking-widest text-on-surface-variant mb-6 uppercase">
+                            O PROBLEMA DAS ABORDAGENS CONVENCIONAIS
+                        </h3>
+<p class="text-on-surface-variant leading-relaxed text-lg font-light">
+                            Muitas terapias focam excessivamente no "porquê" das dores, mantendo o paciente em um ciclo de introspecção sem saída. Sem <strong class="text-primary font-semibold">lastros</strong> ou direção clara, a vida continua parecendo um mar revolto, onde você apenas sobrevive aos sintomas sem nunca ancorar no significado.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Right Column: The Solution Hero -->
+<div class="md:col-span-7 flex">
+<div class="bg-gradient-to-br from-primary to-on-primary-fixed-variant p-12 rounded-[2.5rem] shadow-xl flex flex-col justify-between relative overflow-hidden w-full">
+<!-- Decorative Radial Glow -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-secondary-container/20 blur-[80px] rounded-full"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-10">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed/10 backdrop-blur-sm border border-tertiary-fixed/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary-fixed text-2xl" data-icon="explore" data-weight="fill" style="font-variation-settings: 'FILL' 1;">explore</span>
+</div>
+<h3 class="font-label text-[0.7rem] font-bold tracking-widest text-tertiary-fixed uppercase">
+                                O DIFERENCIAL DA LOGOTERAPIA
+                            </h3>
+</div>
+<div class="border-l-4 border-tertiary-fixed pl-8 mb-12">
+<blockquote class="font-headline italic text-3xl md:text-4xl text-on-primary-container leading-tight">
+                                "Quem tem um porquê para viver suporta quase qualquer como."
+                            </blockquote>
+<cite class="block mt-4 text-tertiary-fixed/80 font-medium not-italic text-sm tracking-wide">
+                                — VIKTOR FRANKL
+                            </cite>
+</div>
+</div>
+<div class="relative z-10 pt-8 border-t border-on-primary-container/10">
+<p class="text-on-primary-container/90 text-lg leading-relaxed">
+                            A Logoterapia olha para a frente. Identificamos as fendas de sentido na sua rotina e construímos pontes práticas para seus valores inegociáveis.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- For Whom Section (2x2 Grid) -->
+<section class="bg-surface-container/50 rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
+<div class="text-center mb-16 relative z-10">
+<h2 class="font-headline text-4xl text-on-surface mb-4">Para quem é este caminho?</h2>
+<div class="w-24 h-1 bg-primary/20 mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl flex items-start gap-6 editorial-shadow border border-outline-variant/5">
+<div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="text-on-surface text-lg">Você sente que está no piloto automático, vivendo uma rotina sem cor ou real conexão com o que importa.</p>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl flex items-start gap-6 editorial-shadow border border-outline-variant/5">
+<div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="text-on-surface text-lg">Você está passando por um momento difícil e busca forças para transformar o sofrimento em uma conquista humana.</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl flex items-start gap-6 editorial-shadow border border-outline-variant/5">
+<div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="text-on-surface text-lg">Você quer organizar sua vida e suas prioridades sob a luz de valores sólidos e transcendentais.</p>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl flex items-start gap-6 editorial-shadow border border-outline-variant/5">
+<div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="text-on-surface text-lg">Você busca uma terapia que dá resultados, centrada na ação e na descoberta da sua missão única no mundo.</p>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="mt-24 text-center">
+<button class="inline-flex items-center gap-3 bg-primary text-on-primary px-10 py-5 rounded-full text-lg font-semibold hover:bg-on-primary-fixed-variant transition-all hover:scale-[1.02] shadow-lg shadow-primary/20">
+                Quero encontrar meu porquê
+                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<p class="mt-6 text-on-surface-variant/60 text-sm font-medium tracking-wide">AGENDE UMA PRIMEIRA SESSÃO DE DESCOBERTA</p>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-[2rem] mt-24 bg-violet-50 dark:bg-zinc-900 bg-fuchsia-100/30 dark:bg-zinc-800/30">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 max-w-7xl mx-auto">
+<div class="flex flex-col gap-4 text-center md:text-left">
+<span class="text-xl font-serif text-violet-900 dark:text-violet-100">Sanctuary</span>
+<p class="text-violet-900 dark:text-violet-200 font-sans text-sm tracking-wide">© 2024 Sanctuary Logotherapy. Finding meaning in every moment.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-violet-700/70 dark:text-violet-300/70 font-sans text-sm tracking-wide hover:underline decoration-violet-300 transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-violet-700/70 dark:text-violet-300/70 font-sans text-sm tracking-wide hover:underline decoration-violet-300 transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-violet-700/70 dark:text-violet-300/70 font-sans text-sm tracking-wide hover:underline decoration-violet-300 transition-opacity opacity-80 hover:opacity-100" href="#">Contact</a>
+<a class="text-violet-700/70 dark:text-violet-300/70 font-sans text-sm tracking-wide hover:underline decoration-violet-300 transition-opacity opacity-80 hover:opacity-100" href="#">Ethics Code</a>
+</div>
+</div>
+</footer>
+</body></html>

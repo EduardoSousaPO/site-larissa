@@ -48,8 +48,49 @@ const RouteAnalytics = () => {
   useEffect(() => {
     const path = `${location.pathname}${location.search}`;
     trackPageView(path);
-    window.scrollTo({ top: 0, behavior: 'auto' });
   }, [location.pathname, location.search]);
+
+  useEffect(() => {
+    let timeoutId: number | undefined;
+
+    const scrollToHash = (attempt = 0) => {
+      if (!location.hash) {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        return;
+      }
+
+      const targetId = decodeURIComponent(location.hash.slice(1));
+      const target = document.getElementById(targetId);
+
+      if (!target) {
+        if (attempt < 12) {
+          timeoutId = window.setTimeout(() => scrollToHash(attempt + 1), 50);
+        }
+        return;
+      }
+
+      const headerHeight =
+        document.querySelector('header')?.getBoundingClientRect().height ?? 88;
+      const top = target.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+
+      window.scrollTo({
+        top: Math.max(top, 0),
+        behavior: 'smooth',
+      });
+    };
+
+    if (location.hash) {
+      timeoutId = window.setTimeout(() => scrollToHash(), 0);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+
+    return () => {
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+    };
+  }, [location.pathname, location.search, location.hash]);
 
   return null;
 };
