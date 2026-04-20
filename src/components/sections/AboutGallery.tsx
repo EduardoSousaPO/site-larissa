@@ -22,7 +22,7 @@ const AboutGallery = () => {
     {
       src: '/images/larissa1.png',
       webpSrc: '/images/larissa1.webp',
-      alt: 'Retrato da Dra. Larissa Nunes em consultorio iluminado',
+      alt: 'Retrato da Dra. Larissa Nunes em consultório iluminado',
     },
     {
       src: '/images/larissa2.jpeg',
@@ -65,7 +65,7 @@ const AboutGallery = () => {
           Dra. Larissa Nunes
         </h3>
         <p className="text-gray-700 text-sm">
-          Psicóloga especializada em Logoterapia
+          Psicóloga • Criadora do Método S.E.R.
         </p>
       </div>
     </div>

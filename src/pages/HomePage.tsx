@@ -1,4 +1,5 @@
 import HeroSection from '../components/sections/HeroSection';
+import MetodoSERSection from '../components/sections/MetodoSERSection';
 import AboutSection from '../components/sections/AboutSection';
 import ApproachSection from '../components/sections/ApproachSection';
 import ServicesSection from '../components/sections/ServicesSection';
@@ -25,19 +26,20 @@ const HomePage = () => {
   return (
     <>
       <SEOHead
-        title="Psicologa em Goiania e online com foco em Logoterapia"
-        description="Psicoterapia com Logoterapia para quem sente que esta vivendo sem rumo. Atendimento online para todo o Brasil e presencial em Goiania."
+        title="Psicóloga em Goiânia e online | Método S.E.R. — Dra. Larissa Nunes"
+        description="Psicoterapia com o Método S.E.R. (Segurança Emocional Reconstruída) para mulheres que se sentem não vistas, guardam mágoa e estão emocionalmente cansadas. Online para todo o Brasil e presencial em Goiânia."
         path="/"
-        keywords="psicologa goiania, logoterapia goiania, terapia online, crise existencial, sentido da vida, Viktor Frankl"
+        keywords="psicóloga Goiânia, terapia para mulher, cansaço emocional, não me sinto vista, Método S.E.R., segurança emocional, logoterapia Goiânia, terapia online, mágoa acumulada, reagir pela dor"
         schema={[LOCAL_BUSINESS_SCHEMA, PHYSICIAN_SCHEMA, faqSchema]}
       />
       <div className="overflow-hidden">
         <HeroSection />
+        <MetodoSERSection />
         <AboutSection />
         <ApproachSection />
         <ServicesSection />
-        <FAQSection />
         <TestimonialsSection />
+        <FAQSection />
         <CTASection page="home" />
       </div>
     </>

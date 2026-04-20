@@ -72,7 +72,7 @@ const HeroSection = () => {
                   <source srcSet="/images/larissa3.webp" type="image/webp" />
                   <img
                     src="/images/larissa3.jpeg"
-                    alt="Dra. Larissa Nunes em retrato profissional para a secao principal"
+                    alt="Dra. Larissa Nunes em retrato profissional para a seção principal"
                     width="1024"
                     height="1024"
                     fetchPriority="high"

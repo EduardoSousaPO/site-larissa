@@ -19,7 +19,7 @@ export default function FAQSection() {
             FAQ
           </p>
           <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">
-            Perguntas que quase todo mundo faz antes de comecar
+            Antes de me mandar mensagem, talvez você esteja se perguntando…
           </h2>
         </motion.div>
 

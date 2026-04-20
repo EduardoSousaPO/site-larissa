@@ -32,8 +32,8 @@ const Footer = () => {
               <h2 className="text-2xl font-bold">Dra. Larissa Nunes</h2>
             </Link>
             <p className="mt-4 text-sm leading-7 text-gray-400">
-              Psicologa clinica especializada em Logoterapia, com atendimento online para todo
-              o Brasil e presencial em Goiania.
+              Psicóloga clínica. Criadora do Método S.E.R. — Segurança Emocional Reconstruída.
+              Atendimento online para todo o Brasil e presencial em Goiânia.
             </p>
             <p className="mt-4 text-sm font-medium text-primary-300">{CRP}</p>
           </motion.div>
@@ -44,21 +44,21 @@ const Footer = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold">Navegacao</h3>
+            <h3 className="text-lg font-semibold">Navegação</h3>
             <ul className="mt-4 space-y-3 text-sm text-gray-400">
+              <li>
+                <a href="/#metodo" className="transition hover:text-white">
+                  Método S.E.R.
+                </a>
+              </li>
               <li>
                 <a href="/#sobre" className="transition hover:text-white">
                   Sobre
                 </a>
               </li>
               <li>
-                <a href="/#abordagem" className="transition hover:text-white">
-                  Abordagem
-                </a>
-              </li>
-              <li>
                 <a href="/#servicos" className="transition hover:text-white">
-                  Servicos
+                  Serviços
                 </a>
               </li>
               <li>
@@ -136,7 +136,7 @@ const Footer = () => {
         <div className="mt-12 border-t border-white/10 pt-8 text-center text-sm text-gray-500">
           <p>© {currentYear} Dra. Larissa Nunes. Todos os direitos reservados.</p>
           <p className="mt-2">
-            Este site nao oferece atendimento de emergencia. Em caso de crise, procure um
+            Este site não oferece atendimento de emergência. Em caso de crise, procure um
             hospital ou ligue para o CVV (188).
           </p>
         </div>

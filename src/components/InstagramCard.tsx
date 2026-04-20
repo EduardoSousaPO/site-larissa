@@ -177,7 +177,7 @@ const InstagramCard = ({ titulo, resumo, imagem, categoria, autor, onReady, form
                 fontWeight: '400',
               }}
             >
-              Psicóloga | Logoterapia
+              Psicóloga | Método S.E.R.
             </div>
           </div>
           <div

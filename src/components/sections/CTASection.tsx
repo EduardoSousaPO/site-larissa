@@ -24,15 +24,15 @@ export default function CTASection({ page, message }: CTASectionProps) {
           className="mx-auto max-w-4xl rounded-[2rem] border border-white/10 bg-gradient-to-br from-primary-800 via-primary-700 to-emerald-700 p-10 text-center shadow-2xl md:p-14"
         >
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-white/70">
-            Proximo passo
+            Próximo passo
           </p>
           <h2 className="mx-auto mb-6 max-w-3xl text-3xl font-bold leading-tight md:text-5xl">
-            Voce nao precisa continuar carregando isso sozinho
+            Você não precisa continuar carregando isso sozinha
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg leading-8 text-white/85">
-            O primeiro passo e o mais dificil — e tambem o mais importante. Me mande uma
-            mensagem no WhatsApp, me conte o que voce esta vivendo, e vamos juntos descobrir o
-            seu porque.
+            Me manda uma mensagem no WhatsApp, me conta como você está se sentindo — com
+            suas palavras, sem precisar ensaiar. A primeira conversa é leve, sem pressão e
+            sem compromisso de continuar.
           </p>
           <a
             {...whatsappProps}
@@ -40,11 +40,11 @@ export default function CTASection({ page, message }: CTASectionProps) {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-base font-semibold text-primary-800 transition hover:bg-stone-100"
           >
-            Falar com a Dra. Larissa no WhatsApp
+            Quero começar minha mudança
           </a>
           <div className="mt-6 space-y-1 text-sm text-white/75">
-            <p>Atendimento online para todo o Brasil | Presencial em Goiania-GO</p>
-            <p>Seg a Sex: 8h as 18h | Sab: 8h as 12h</p>
+            <p>Atendimento online para todo o Brasil | Presencial em Goiânia-GO</p>
+            <p>Seg a Sex: 8h às 18h | Sáb: 8h às 12h</p>
           </div>
         </motion.div>
       </div>

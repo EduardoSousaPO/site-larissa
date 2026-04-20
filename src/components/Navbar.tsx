@@ -7,8 +7,13 @@ import { createWhatsAppProps } from '../lib/whatsapp';
 const NAV_LINKS = [
   {
     to: '/',
-    label: 'Inicio',
+    label: 'Início',
     isActive: (pathname: string, hash: string) => pathname === '/' && (!hash || hash === '#'),
+  },
+  {
+    to: '/#metodo',
+    label: 'Método S.E.R.',
+    isActive: (pathname: string, hash: string) => pathname === '/' && hash === '#metodo',
   },
   {
     to: '/#sobre',
@@ -16,13 +21,8 @@ const NAV_LINKS = [
     isActive: (pathname: string, hash: string) => pathname === '/' && hash === '#sobre',
   },
   {
-    to: '/#abordagem',
-    label: 'Abordagem',
-    isActive: (pathname: string, hash: string) => pathname === '/' && hash === '#abordagem',
-  },
-  {
     to: '/#servicos',
-    label: 'Servicos',
+    label: 'Serviços',
     isActive: (pathname: string, hash: string) => pathname === '/' && hash === '#servicos',
   },
   {
@@ -77,7 +77,7 @@ const Navbar = () => {
             Dra. Larissa Nunes
           </span>
           <span className="mt-1 block text-xs text-gray-400">
-            Psicologa • Logoterapia • {CRP}
+            Psicóloga • Método S.E.R. • {CRP}
           </span>
         </Link>
 

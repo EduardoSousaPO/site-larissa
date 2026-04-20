@@ -20,7 +20,7 @@ const BlogPage = () => {
         setPosts(data);
       } catch (err) {
         console.error(err);
-        setError('Nao foi possivel carregar os artigos agora.');
+        setError('Não foi possível carregar os artigos agora.');
       } finally {
         setIsLoading(false);
       }
@@ -45,10 +45,10 @@ const BlogPage = () => {
   return (
     <>
       <SEOHead
-        title="Blog de Logoterapia, ansiedade e proposito"
-        description="Artigos da Dra. Larissa Nunes sobre Logoterapia, ansiedade, depressao, proposito e terapia online com foco em clareza e direcao."
+        title="Blog | Emoções, relações e o Método S.E.R."
+        description="Artigos da Dra. Larissa Nunes sobre segurança emocional, mágoa acumulada, cansaço emocional, ansiedade, logoterapia e o Método S.E.R. — para mulheres que querem entender o que sentem e construir relações mais leves."
         path="/blog"
-        keywords="blog logoterapia, terapia online, ansiedade, depressao, crise existencial, proposito"
+        keywords="blog psicologia, método S.E.R., segurança emocional, cansaço emocional, mágoa, ansiedade, logoterapia, terapia para mulher"
       />
       <section className="bg-stone-50 py-20">
         <div className="container">
@@ -62,13 +62,12 @@ const BlogPage = () => {
               Blog
             </p>
             <h1 className="text-4xl font-bold text-gray-900 md:text-5xl">
-              Conteudo para transformar sofrimento em direcao
+              Para entender o que você sente e construir relações mais leves
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-700">
-              A Logoterapia e uma abordagem psicoterapeutica criada por Viktor Frankl que ajuda
-              a encontrar sentido mesmo nos momentos mais dificeis. Neste blog, a Dra. Larissa
-              Nunes compartilha artigos para responder duvidas reais sobre ansiedade,
-              depressao, crise existencial, proposito e terapia.
+              Artigos da Dra. Larissa Nunes sobre segurança emocional, mágoa acumulada, cansaço
+              emocional, ansiedade e o Método S.E.R. Conteúdo direto, firme e acolhedor para
+              mulheres que se cansaram de se esforçar sem ser vistas.
             </p>
           </motion.div>
 
@@ -108,10 +107,10 @@ const BlogPage = () => {
             <div className="mt-12 rounded-3xl bg-red-50 p-8 text-center text-red-700">{error}</div>
           ) : filteredPosts.length === 0 ? (
             <div className="mt-12 rounded-3xl bg-white p-10 text-center shadow-sm">
-              <h2 className="text-2xl font-bold text-gray-900">Em breve novos conteudos</h2>
+              <h2 className="text-2xl font-bold text-gray-900">Em breve, novos conteúdos</h2>
               <p className="mt-4 text-lg leading-8 text-gray-700">
-                A Dra. Larissa Nunes esta preparando novos artigos sobre Logoterapia, terapia e
-                busca de sentido.
+                A Dra. Larissa Nunes está preparando novos artigos sobre o Método S.E.R.,
+                relações, segurança emocional e terapia.
               </p>
             </div>
           ) : (

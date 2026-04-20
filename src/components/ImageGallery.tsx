@@ -9,12 +9,12 @@ const images = [
   {
     src: '/images/larissa1.png',
     webpSrc: '/images/larissa1.webp',
-    alt: 'Retrato profissional da Dra. Larissa Nunes em ambiente claro de consultorio'
+    alt: 'Retrato profissional da Dra. Larissa Nunes em ambiente claro de consultório'
   },
   {
     src: '/images/larissa2.jpeg',
     webpSrc: '/images/larissa2.webp',
-    alt: 'Dra. Larissa Nunes em foto de estudio para apresentacao profissional'
+    alt: 'Dra. Larissa Nunes em foto de estúdio para apresentação profissional'
   }
 ];
 

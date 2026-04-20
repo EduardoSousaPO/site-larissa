@@ -23,7 +23,7 @@ const PrimeiraConsultaPage = () => {
   const whatsappProps = createWhatsAppProps({
     page: 'primeira-consulta',
     section: 'offer',
-    message: 'Ola! Vi a oferta de primeira consulta por R$90 e gostaria de agendar.',
+    message: 'Olá! Vi a oferta da primeira sessão por R$90 e gostaria de agendar.',
   });
 
   useEffect(() => {
@@ -33,8 +33,8 @@ const PrimeiraConsultaPage = () => {
   return (
     <>
       <SEOHead
-        title="Primeira sessao de Logoterapia por R$90"
-        description="Primeira sessao com 50% de desconto para conhecer a Logoterapia com a Dra. Larissa Nunes. Pagina exclusiva e nao indexada."
+        title="Primeira sessão com o Método S.E.R. por R$90"
+        description="Sua primeira sessão com 50% de desconto para experimentar o Método S.E.R. (Segurança Emocional Reconstruída) com a Dra. Larissa Nunes. Página exclusiva e não indexada."
         path="/primeira-consulta"
         type="website"
         noindex
@@ -50,22 +50,23 @@ const PrimeiraConsultaPage = () => {
             >
               <div className="mx-auto max-w-3xl text-center">
                 <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-primary-700">
-                  Oferta especial
+                  Oferta especial — vagas limitadas
                 </p>
                 <h1 className="text-4xl font-bold leading-tight text-gray-900 md:text-6xl">
-                  Sua primeira sessao de Logoterapia por R$90
+                  Sua primeira sessão com o Método S.E.R. por R$90
                 </h1>
                 <p className="mt-6 text-lg leading-8 text-gray-700">
-                  50% de desconto para voce conhecer uma abordagem que ja ajudou milhares de
-                  pessoas a encontrar sentido — mesmo nos momentos mais dificeis.
+                  50% de desconto para você experimentar, sem compromisso, um processo que já
+                  ajudou mulheres cansadas de se esforçar sem ser vistas a voltar a se sentir
+                  seguras por dentro.
                 </p>
               </div>
 
               <div className="mt-10 overflow-hidden rounded-[2rem] border border-primary-100 bg-gray-950">
                 <div className="aspect-video w-full bg-[radial-gradient(circle_at_center,_rgba(124,58,237,0.35),_transparent_55%),linear-gradient(135deg,_#0f172a,_#1f2937)]" />
                 <div className="flex items-center justify-between border-t border-white/10 px-5 py-4 text-sm text-white/70">
-                  <span>Video promocional</span>
-                  <span>Adicione o video final neste componente</span>
+                  <span>Vídeo de apresentação</span>
+                  <span>Em breve</span>
                 </div>
               </div>
 
@@ -73,39 +74,48 @@ const PrimeiraConsultaPage = () => {
                 <div className="space-y-8">
                   <div className="rounded-[2rem] bg-stone-50 p-8">
                     <h2 className="text-2xl font-bold text-gray-900">
-                      Voce sente que esta vivendo no piloto automatico?
+                      Você se reconhece em alguma dessas frases?
                     </h2>
-                    <div className="mt-5 space-y-5 text-lg leading-8 text-gray-700">
-                      <p>
-                        Acorda, trabalha, cumpre obrigacoes — mas no fundo sabe que falta algo.
-                        Um sentido. Uma direcao. Um porque que justifique o esforco de cada dia.
-                      </p>
-                      <p>
-                        Voce ja tentou resolver sozinho. Leu livros, assistiu videos, rezou,
-                        conversou com amigos. Mas o vazio continua.
-                      </p>
-                      <p>Nao e falta de forca. E falta de um caminho claro.</p>
-                    </div>
+                    <ul className="mt-5 space-y-4 text-lg leading-8 text-gray-700">
+                      <li>"Eu me esforço, me doo, e mesmo assim não sou vista."</li>
+                      <li>"Guardo mágoa até explodir — e depois me culpo por ter explodido."</li>
+                      <li>"Me sinto invisível dentro da minha própria casa."</li>
+                      <li>"Estou cansada de ser forte o tempo todo."</li>
+                      <li>"Já entendi racionalmente o que sinto, mas ainda reajo do mesmo jeito."</li>
+                    </ul>
+                    <p className="mt-6 text-lg leading-8 text-gray-700">
+                      Se isso aparece na sua vida, essa sessão foi pensada pra você.
+                    </p>
                   </div>
 
                   <div className="rounded-[2rem] border border-primary-200 bg-primary-950 p-8 text-white">
                     <h2 className="text-2xl font-bold">
-                      A Logoterapia e diferente de tudo que voce ja viu sobre terapia.
+                      O que é o Método S.E.R.
                     </h2>
                     <div className="mt-5 space-y-5 text-lg leading-8 text-white/85">
                       <p>
-                        Criada por Viktor Frankl — um psiquiatra que sobreviveu ao Holocausto —
-                        essa abordagem parte de uma ideia que muda tudo:
+                        S.E.R. é <strong className="font-semibold text-white">Segurança
+                        Emocional Reconstruída</strong> — um processo clínico em três passos
+                        que desenvolvi a partir da Logoterapia e da prática com mulheres que
+                        chegavam exaustas no meu consultório.
                       </p>
-                      <blockquote className="border-l-2 border-primary-300 pl-5 text-2xl font-semibold text-white">
-                        Voce nao precisa entender todo o seu passado para seguir em frente. Voce
-                        precisa encontrar um sentido forte o suficiente para sustentar o presente.
+                      <ul className="space-y-3 text-base leading-7 text-white/85">
+                        <li>
+                          <strong className="font-semibold text-white">S — Sentir com consciência:</strong>{' '}
+                          reconhecer o que você está sentindo antes da raiva, do cansaço, da explosão.
+                        </li>
+                        <li>
+                          <strong className="font-semibold text-white">E — Entender a origem:</strong>{' '}
+                          descobrir por que certas situações te afetam tanto e por que você ainda carrega mágoas que achava superadas.
+                        </li>
+                        <li>
+                          <strong className="font-semibold text-white">R — Responder com intenção:</strong>{' '}
+                          agir com leveza, clareza e segurança — sem se apagar, sem explodir, sem se culpar depois.
+                        </li>
+                      </ul>
+                      <blockquote className="mt-6 border-l-2 border-primary-300 pl-5 text-xl font-semibold text-white">
+                        Quando você sabe o que sente, para de reagir pela dor.
                       </blockquote>
-                      <p>
-                        A Dra. Larissa Nunes e uma das poucas profissionais no Centro-Oeste com
-                        experiencia pratica em Logoterapia. Ja acompanhou pessoas em tratamentos
-                        de hemodialise, perdas devastadoras e crises que pareciam sem saida.
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -113,7 +123,7 @@ const PrimeiraConsultaPage = () => {
                 <div className="space-y-6">
                   <div className="rounded-[2rem] border border-stone-200 bg-white p-8 shadow-lg">
                     <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-700">
-                      Sua primeira sessao
+                      Sua primeira sessão
                     </p>
                     <div className="mt-4 flex items-end gap-3">
                       <span className="text-5xl font-bold text-gray-900">R$90</span>
@@ -121,10 +131,10 @@ const PrimeiraConsultaPage = () => {
                     </div>
                     <ul className="mt-6 space-y-3 text-base leading-7 text-gray-700">
                       {[
-                        'Sessao completa de 50 minutos',
-                        'Online ou presencial em Goiania',
-                        'Sem compromisso de continuidade',
-                        'Voce conhece a abordagem e decide se faz sentido pra voce',
+                        'Sessão completa de 50 minutos',
+                        'Online para todo o Brasil ou presencial em Goiânia',
+                        'Sem compromisso de continuar depois',
+                        'Espaço seguro para você falar com suas palavras — sem precisar ensaiar',
                       ].map((item) => (
                         <li key={item} className="flex gap-3">
                           <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary-600" />
@@ -135,10 +145,11 @@ const PrimeiraConsultaPage = () => {
                   </div>
 
                   <div className="rounded-[2rem] bg-amber-50 p-8">
-                    <h2 className="text-xl font-bold text-gray-900">Vagas limitadas por semana.</h2>
+                    <h2 className="text-xl font-bold text-gray-900">Poucas vagas por semana.</h2>
                     <p className="mt-4 text-base leading-8 text-gray-700">
-                      A Dra. Larissa atende um numero reduzido de pacientes para garantir
-                      qualidade no acompanhamento.
+                      A Dra. Larissa atende um número reduzido de pacientes novas por semana
+                      para manter a profundidade do acompanhamento. Se surgiu no seu caminho
+                      agora, vale garantir a sua.
                     </p>
                   </div>
 
@@ -148,13 +159,13 @@ const PrimeiraConsultaPage = () => {
                     rel="noopener noreferrer"
                     className="inline-flex w-full items-center justify-center rounded-full bg-green-600 px-8 py-4 text-center text-base font-semibold text-white transition hover:bg-green-700"
                   >
-                    Quero minha primeira sessao por R$90
+                    Quero minha primeira sessão por R$90
                   </a>
                   <p className="text-center text-sm text-gray-600">
-                    Ao clicar, voce sera direcionado para o WhatsApp para agendar sua sessao.
+                    Ao clicar, você será direcionada ao WhatsApp para escolher o horário.
                   </p>
                   <p className="text-center text-sm text-gray-500">
-                    Seus dados estao seguros. A conversa no WhatsApp e confidencial.
+                    Tudo que você compartilhar é confidencial. Sigilo profissional garantido pelo CRP.
                   </p>
                 </div>
               </div>
@@ -163,7 +174,7 @@ const PrimeiraConsultaPage = () => {
         </main>
         <CTASection
           page="primeira-consulta"
-          message="Ola! Vi a oferta de primeira consulta por R$90 e gostaria de agendar."
+          message="Olá! Vi a oferta da primeira sessão por R$90 e gostaria de agendar."
         />
         <Footer />
         <WhatsAppFloat />

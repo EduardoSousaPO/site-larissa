@@ -23,7 +23,7 @@ const SessaoResolucaoPage = () => {
   const whatsappProps = createWhatsAppProps({
     page: 'sessao-de-resolucao',
     section: 'offer',
-    message: 'Ola! Gostaria de agendar uma sessao de resolucao.',
+    message: 'Olá! Gostaria de agendar uma Sessão de Resolução.',
   });
 
   useEffect(() => {
@@ -33,8 +33,8 @@ const SessaoResolucaoPage = () => {
   return (
     <>
       <SEOHead
-        title="Sessao de Resolucao por R$200"
-        description="Uma sessao pontual com foco em clareza, direcao e resolucao para momentos dificeis. Pagina exclusiva e nao indexada."
+        title="Sessão de Resolução | Uma conversa profunda quando você precisa de clareza agora"
+        description="Sessão única para mulheres que estão no meio de uma crise emocional, um luto, uma decisão travada ou uma explosão com culpa depois. Espaço seguro para ser ouvida e sair com direção."
         path="/sessao-de-resolucao"
         type="website"
         noindex
@@ -50,22 +50,23 @@ const SessaoResolucaoPage = () => {
             >
               <div className="mx-auto max-w-3xl text-center">
                 <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-primary-700">
-                  Sessao pontual
+                  Sessão pontual
                 </p>
                 <h1 className="text-4xl font-bold leading-tight text-gray-900 md:text-6xl">
-                  Uma sessao. Uma decisao. Um caminho mais claro.
+                  Uma conversa profunda para quando você precisa de clareza agora
                 </h1>
                 <p className="mt-6 text-lg leading-8 text-gray-700">
-                  Para voce que esta passando por um momento dificil e precisa de clareza agora
-                  — nao daqui a seis meses.
+                  Para você que está no meio de uma crise emocional e não consegue esperar
+                  meses de terapia para respirar. Uma sessão estruturada para ser ouvida,
+                  nomear o que sente e sair com direção.
                 </p>
               </div>
 
               <div className="mt-10 overflow-hidden rounded-[2rem] border border-primary-100 bg-gray-950">
                 <div className="aspect-video w-full bg-[radial-gradient(circle_at_center,_rgba(16,185,129,0.25),_transparent_50%),linear-gradient(135deg,_#111827,_#1f2937)]" />
                 <div className="flex items-center justify-between border-t border-white/10 px-5 py-4 text-sm text-white/70">
-                  <span>Video explicativo</span>
-                  <span>Adicione o video final neste componente</span>
+                  <span>Vídeo explicativo</span>
+                  <span>Em breve</span>
                 </div>
               </div>
 
@@ -73,37 +74,38 @@ const SessaoResolucaoPage = () => {
                 <div className="space-y-8">
                   <div className="rounded-[2rem] bg-stone-50 p-8">
                     <h2 className="text-2xl font-bold text-gray-900">
-                      As vezes a vida coloca voce numa encruzilhada.
+                      Quando a vida aperta, a espera pesa mais
                     </h2>
                     <div className="mt-5 space-y-5 text-lg leading-8 text-gray-700">
                       <p>
-                        Um luto que voce nao sabe como processar. Uma decisao que tira seu sono.
-                        Um conflito que esta consumindo sua energia. Uma fase que parece nao ter
-                        fim.
+                        Uma discussão que não termina. Um luto que sufoca sem aviso. Uma
+                        decisão que trava o sono. Uma mágoa que explodiu e deixou culpa.
+                        Uma fase que parece não ter fim.
                       </p>
                       <p>
-                        Voce nao precisa de meses de terapia para ter clareza sobre o que fazer
-                        agora. As vezes, voce precisa de uma conversa profunda com alguem que
-                        sabe te ouvir e te dar direcao.
+                        Você não precisa começar uma terapia longa agora. Às vezes, o que
+                        você precisa é de uma conversa profunda, com alguém que saiba te
+                        escutar sem julgamento e te ajudar a enxergar o próximo passo.
                       </p>
                     </div>
                   </div>
 
                   <div className="rounded-[2rem] border border-primary-200 bg-primary-950 p-8 text-white">
                     <h2 className="text-2xl font-bold">
-                      A Sessao de Resolucao e um encontro unico com a Dra. Larissa Nunes, focado
-                      no que voce esta vivendo agora.
+                      Não é um desabafo sem rumo. É uma sessão com método.
                     </h2>
                     <div className="mt-5 space-y-5 text-lg leading-8 text-white/85">
                       <p>
-                        Nao e um desabafo sem rumo. E uma sessao estruturada com base na
-                        Logoterapia — a abordagem do sentido — para te ajudar a:
+                        A Sessão de Resolução é estruturada pelo{' '}
+                        <strong className="font-semibold text-white">Método S.E.R. —
+                        Segurança Emocional Reconstruída</strong>. Em 50 minutos você vai
+                        conseguir:
                       </p>
                       <ul className="space-y-3 text-base leading-7 text-white/85">
                         {[
-                          'Enxergar a situacao com mais clareza',
-                          'Identificar o que realmente importa nesse momento',
-                          'Sair com uma direcao concreta para os proximos passos',
+                          'Sentir com consciência: nomear o que está por trás da raiva, da culpa ou do cansaço',
+                          'Entender a origem: identificar o que essa situação específica toca em você',
+                          'Responder com intenção: sair com 1 a 3 próximos passos concretos — sem pressão de decidir tudo agora',
                         ].map((item) => (
                           <li key={item} className="flex gap-3">
                             <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary-300" />
@@ -111,6 +113,9 @@ const SessaoResolucaoPage = () => {
                           </li>
                         ))}
                       </ul>
+                      <blockquote className="mt-6 border-l-2 border-primary-300 pl-5 text-xl font-semibold text-white">
+                        Quem se sente segura por dentro para de se apagar por fora.
+                      </blockquote>
                     </div>
                   </div>
                 </div>
@@ -118,15 +123,16 @@ const SessaoResolucaoPage = () => {
                 <div className="space-y-6">
                   <div className="rounded-[2rem] border border-stone-200 bg-white p-8 shadow-lg">
                     <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-700">
-                      Essa sessao e para voce se
+                      Essa sessão é para você se…
                     </p>
                     <ul className="mt-6 space-y-3 text-base leading-7 text-gray-700">
                       {[
-                        'Esta passando por um luto ou perda recente',
-                        'Precisa tomar uma decisao importante e esta paralisado',
-                        'Vive um conflito (familiar, profissional, pessoal) que esta te consumindo',
-                        'Sente que esta num beco sem saida e precisa de um olhar externo',
-                        'Quer testar a terapia antes de se comprometer com um acompanhamento continuo',
+                        'Está passando por um luto ou perda recente e não sabe como processar',
+                        'Precisa tomar uma decisão importante e está paralisada',
+                        'Vive um conflito (conjugal, familiar, profissional) que está te consumindo',
+                        'Explodiu com alguém próximo e está se culpando desde então',
+                        'Sente um cansaço emocional que não melhora com descanso',
+                        'Quer testar como é ser ouvida por mim antes de começar um acompanhamento contínuo',
                       ].map((item) => (
                         <li key={item} className="flex gap-3">
                           <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary-600" />
@@ -137,13 +143,13 @@ const SessaoResolucaoPage = () => {
                   </div>
 
                   <div className="rounded-[2rem] bg-emerald-50 p-8">
-                    <h2 className="text-xl font-bold text-gray-900">Sessao de Resolucao: R$200</h2>
+                    <h2 className="text-xl font-bold text-gray-900">Sessão de Resolução: R$200</h2>
                     <ul className="mt-4 space-y-3 text-base leading-7 text-gray-700">
                       {[
-                        'Uma sessao completa de 50 minutos',
-                        '100% online — de onde voce estiver',
-                        'Foco total no que voce precisa resolver agora',
-                        'Sem compromisso de continuidade — mas se quiser seguir, conversamos sobre o pacote mensal',
+                        '50 minutos de conversa focada no que você está vivendo agora',
+                        '100% online — de onde você estiver',
+                        'Estruturada pelo Método S.E.R.',
+                        'Sem compromisso de continuar — se quiser seguir, conversamos sobre o pacote mensal',
                       ].map((item) => (
                         <li key={item} className="flex gap-3">
                           <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-600" />
@@ -159,14 +165,13 @@ const SessaoResolucaoPage = () => {
                     rel="noopener noreferrer"
                     className="inline-flex w-full items-center justify-center rounded-full bg-green-600 px-8 py-4 text-center text-base font-semibold text-white transition hover:bg-green-700"
                   >
-                    Quero agendar minha sessao de resolucao
+                    Quero agendar minha Sessão de Resolução
                   </a>
                   <p className="text-center text-sm text-gray-600">
-                    Ao clicar, voce sera direcionado para o WhatsApp para escolher o melhor horario.
+                    Ao clicar, você será direcionada ao WhatsApp para escolher o horário.
                   </p>
                   <p className="text-center text-sm text-gray-500">
-                    Tudo que voce compartilhar e 100% confidencial. Sigilo profissional garantido
-                    pelo CRP.
+                    Tudo que você compartilhar é 100% confidencial. Sigilo profissional garantido pelo CRP.
                   </p>
                 </div>
               </div>
@@ -175,7 +180,7 @@ const SessaoResolucaoPage = () => {
         </main>
         <CTASection
           page="sessao-de-resolucao"
-          message="Ola! Gostaria de agendar uma sessao de resolucao."
+          message="Olá! Gostaria de agendar uma Sessão de Resolução."
         />
         <Footer />
         <WhatsAppFloat />

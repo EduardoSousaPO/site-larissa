@@ -17,12 +17,15 @@ const TestimonialsSection = () => {
           className="mx-auto max-w-4xl text-center"
         >
           <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">
-            O que dizem quem encontrou o caminho
+            O que dizem quem voltou a se sentir segura por dentro
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-gray-600">
+            Relatos reais de pacientes que passaram pelo processo e encontraram leveza, clareza e segurança emocional.
+          </p>
 
           <div className="mt-6 flex justify-center">
             <div className="inline-flex flex-col items-center gap-2 rounded-full bg-primary-50 px-5 py-3 text-sm font-semibold text-primary-700 shadow-sm sm:flex-row sm:gap-3">
-              <span>Google Reviews {GOOGLE_REVIEW_SUMMARY.ratingValue.toFixed(1)}</span>
+              <span>Avaliações no Google {GOOGLE_REVIEW_SUMMARY.ratingValue.toFixed(1)}</span>
               <span className="flex gap-0.5" aria-hidden="true">
                 {Array.from({ length: 5 }).map((_, index) => (
                   <span key={index} className="text-yellow-400">
@@ -30,7 +33,7 @@ const TestimonialsSection = () => {
                   </span>
                 ))}
               </span>
-              <span>({GOOGLE_REVIEW_SUMMARY.reviewCount} avaliacoes)</span>
+              <span>({GOOGLE_REVIEW_SUMMARY.reviewCount} avaliações)</span>
             </div>
           </div>
         </motion.div>
@@ -81,7 +84,7 @@ const TestimonialsSection = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-semibold text-primary-700 transition hover:text-primary-800"
           >
-            Ver todas as avaliacoes no Google <span aria-hidden="true">&rarr;</span>
+            Ver todas as avaliações no Google <span aria-hidden="true">&rarr;</span>
           </a>
         </motion.div>
       </div>

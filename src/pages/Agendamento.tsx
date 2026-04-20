@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { supabase } from '../services/supabase';
+import { CONTACT_PHONE_DIGITS } from '../config/site';
 
 const Agendamento = () => {
   const [formData, setFormData] = useState({
@@ -77,11 +78,11 @@ const Agendamento = () => {
           className="text-center mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Agende sua Consulta
+            Agende sua consulta
           </h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Dê o primeiro passo em direção ao seu bem-estar emocional. 
-            Preencha o formulário abaixo para solicitar um horário.
+            Dê o primeiro passo para voltar a se sentir segura emocionalmente.
+            Preencha o formulário abaixo e retorno pelo canal que você preferir.
           </p>
         </motion.div>
 
@@ -193,7 +194,7 @@ const Agendamento = () => {
                     value={formData.mensagem}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    placeholder="Conte um pouco sobre o que você busca com a terapia..."
+                    placeholder="Me conte com suas palavras o que você está sentindo. Sem pressão — só o que vier."
                   ></textarea>
                 </div>
                 
@@ -209,11 +210,11 @@ const Agendamento = () => {
               </form>
               
               <div className="mt-8 pt-6 border-t border-gray-200">
-                <p className="text-center text-gray-600 mb-4">Preferência por contato direto?</p>
-                <a 
-                  href="https://wa.me/5562000000000" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <p className="text-center text-gray-600 mb-4">Prefere falar direto comigo?</p>
+                <a
+                  href={`https://wa.me/${CONTACT_PHONE_DIGITS}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-center w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white rounded-md font-medium transition-colors"
                 >
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">

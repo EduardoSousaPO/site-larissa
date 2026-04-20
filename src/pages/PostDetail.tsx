@@ -29,7 +29,7 @@ const PostDetail = () => {
   useEffect(() => {
     const run = async () => {
       if (!slug) {
-        setError('Slug do artigo nao informado.');
+        setError('Slug do artigo não informado.');
         setIsLoading(false);
         return;
       }
@@ -38,7 +38,7 @@ const PostDetail = () => {
         const article = await getPublishedBlogPostBySlug(slug);
 
         if (!article) {
-          throw new Error('Artigo nao encontrado.');
+          throw new Error('Artigo não encontrado.');
         }
 
         setPost(article);
@@ -105,7 +105,7 @@ const PostDetail = () => {
     page: 'blog-article',
     section: 'article-cta',
     message: post
-      ? `Ola! Li o artigo "${post.title}" e gostaria de conversar sobre esse tema.`
+      ? `Olá! Li o artigo "${post.title}" e gostaria de conversar sobre esse tema.`
       : undefined,
   });
 
@@ -153,7 +153,7 @@ const PostDetail = () => {
   if (error || !post) {
     return (
       <div className="container py-20 text-center">
-        <h1 className="text-3xl font-bold text-gray-900">{error || 'Artigo nao encontrado.'}</h1>
+        <h1 className="text-3xl font-bold text-gray-900">{error || 'Artigo não encontrado.'}</h1>
         <Link to="/blog" className="mt-6 inline-flex rounded-full bg-primary-700 px-6 py-3 font-semibold text-white">
           Voltar para o blog
         </Link>
@@ -244,12 +244,12 @@ const PostDetail = () => {
 
                 <div className="mt-12 rounded-[2rem] bg-primary-50 p-8">
                   <h2 className="text-2xl font-bold text-gray-900">
-                    Identificou-se com esse tema?
+                    Se identificou com esse tema?
                   </h2>
                   <p className="mt-4 text-base leading-8 text-gray-700">
-                    Se voce se identificou com o que leu, o proximo passo e simples. Me mande
-                    uma mensagem no WhatsApp e vamos conversar sobre como posso te ajudar a
-                    encontrar o seu caminho.
+                    Se você se reconheceu no que leu, o próximo passo é simples. Me mande uma
+                    mensagem no WhatsApp e vamos conversar sobre o que você está sentindo —
+                    com calma, sem pressão.
                   </p>
                   <a
                     {...inlineWhatsappProps}
@@ -257,7 +257,7 @@ const PostDetail = () => {
                     rel="noopener noreferrer"
                     className="mt-6 inline-flex rounded-full bg-primary-700 px-6 py-3 font-semibold text-white"
                   >
-                    Falar com a Dra. Larissa no WhatsApp
+                    Quero conversar com a Dra. Larissa
                   </a>
                 </div>
 
@@ -301,7 +301,7 @@ const PostDetail = () => {
       </section>
       <CTASection
         page="blog-article"
-        message={`Ola! Li o artigo "${post.title}" e gostaria de conversar sobre esse tema.`}
+        message={`Olá! Li o artigo "${post.title}" e gostaria de conversar sobre esse tema.`}
       />
     </>
   );

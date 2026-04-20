@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import { createWhatsAppProps } from '../../lib/whatsapp';
 
 const audienceItems = [
-  'Voce sente que esta no piloto automatico e quer encontrar direcao',
-  'Voce esta passando por um momento dificil e precisa de apoio firme',
-  'Voce quer organizar sua vida em torno de propositos claros',
-  'Voce busca uma terapia que da resultados, nao que fica em circulos',
+  'Você sente que se esforça, se doa, e mesmo assim não é vista',
+  'Você guarda mágoa em silêncio — e quando explode, se culpa depois',
+  'Você está cansada de ser forte o tempo todo e não receber o mesmo',
+  'Você quer entender suas emoções em vez de reagir por elas',
 ] as const;
 
 const staggerContainer = {
@@ -64,7 +64,7 @@ const ApproachSection = () => {
   const whatsappProps = createWhatsAppProps({
     page: 'home',
     section: 'approach',
-    message: 'Ola! Quero encontrar meu porque com a ajuda da Dra. Larissa Nunes.',
+    message: 'Olá! Quero saber mais sobre a abordagem da Dra. Larissa Nunes.',
   });
 
   return (
@@ -85,11 +85,12 @@ const ApproachSection = () => {
               Abordagem
             </p>
             <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">
-              Uma terapia que nao fica presa no passado
+              Uma terapia que te escuta e te tira do piloto automático emocional
             </h2>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-700">
-              A Logoterapia e a abordagem do sentido. Em vez de apenas entender por que voce
-              sofre, ela te ajuda a descobrir para que seguir em frente.
+              O Método S.E.R. une escuta clínica profunda e Logoterapia em um processo que
+              não fica revirando o passado — te ajuda a sentir, entender e responder de um
+              jeito novo.
             </p>
           </motion.div>
 
@@ -105,12 +106,13 @@ const ApproachSection = () => {
                 <LoopIcon />
               </div>
               <p className="mt-8 text-xs font-semibold uppercase tracking-[0.25em] text-primary-600">
-                O problema das abordagens convencionais
+                Por que terapia comum nem sempre resolve
               </p>
               <p className="mt-6 text-lg leading-8 text-gray-700">
-                Muita gente desiste da terapia porque sente que fica "revirando" os mesmos
-                assuntos sem sair do lugar. Sessao apos sessao, entende o problema — mas nao
-                encontra direcao.
+                Você já saiu de sessões entendendo tudo racionalmente — e continuou explodindo,
+                se calando, guardando mágoa. Entender não basta: o corpo ainda reage, a culpa
+                ainda vem depois. É por isso que seguir apenas falando do passado não te dá
+                segurança emocional.
               </p>
             </motion.article>
 
@@ -127,20 +129,23 @@ const ApproachSection = () => {
                   <CompassIcon />
                 </div>
                 <p className="mt-8 text-xs font-semibold uppercase tracking-[0.25em] text-amber-300">
-                  O diferencial da Logoterapia
+                  O diferencial do Método S.E.R.
                 </p>
                 <p className="mt-6 text-lg leading-8 text-primary-100">
-                  A Logoterapia parte de um principio simples e poderoso, criado por Viktor Frankl
-                  — um psiquiatra que sobreviveu aos campos de concentracao nazistas:
+                  Em vez de te manter presa tentando explicar por que você sofre, o Método
+                  S.E.R. — Segurança Emocional Reconstruída — trabalha o emocional onde ele
+                  acontece: no momento da explosão, no silêncio da mágoa, na culpa que vem
+                  depois.
                 </p>
                 <blockquote className="mt-8 border-l-4 border-amber-400 pl-4 font-serif text-xl italic leading-tight text-white md:text-2xl">
-                  "Quem tem um porque viver suporta quase qualquer como."
+                  "Quem se sente segura por dentro para de se apagar por fora."
                 </blockquote>
                 <p className="mt-8 text-lg leading-8 text-primary-100">
-                  Em vez de apenas olhar para tras, trabalhamos juntos para encontrar os seus
-                  <strong className="font-bold text-white"> lastros</strong> — os valores,
-                  propositos e razoes concretas que dao sustentacao a sua vida. Quando voce sabe
-                  por que esta de pe, consegue enfrentar qualquer tempestade.
+                  Com base em Logoterapia (Viktor Frankl) e prática clínica, você aprende a
+                  <strong className="font-bold text-white"> sentir</strong> com consciência,
+                  <strong className="font-bold text-white"> entender</strong> a origem e
+                  <strong className="font-bold text-white"> responder</strong> com intenção.
+                  Quando você sabe o que sente, para de reagir pela dor.
                 </p>
               </div>
             </motion.article>
@@ -154,7 +159,7 @@ const ApproachSection = () => {
             className="mt-12"
           >
             <p className="text-center text-sm font-semibold uppercase tracking-[0.25em] text-primary-700">
-              Para quem e
+              Você se reconhece em alguma dessas?
             </p>
 
             <motion.ul
@@ -183,7 +188,7 @@ const ApproachSection = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full bg-primary-700 px-6 py-3 font-semibold text-white transition hover:bg-primary-800"
               >
-                Quero encontrar meu porque
+                Quero me sentir melhor emocionalmente
               </a>
             </div>
           </motion.div>

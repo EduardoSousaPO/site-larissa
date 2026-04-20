@@ -8,18 +8,18 @@ const AboutSection = () => {
     {
       src: '/images/larissa1.png',
       webpSrc: '/images/larissa1.webp',
-      alt: 'Dra. Larissa Nunes em retrato profissional usado na secao Sobre',
+      alt: 'Dra. Larissa Nunes em retrato profissional usado na seção Sobre',
     },
     {
       src: '/images/larissa2.jpeg',
       webpSrc: '/images/larissa2.webp',
-      alt: 'Foto da Dra. Larissa Nunes em ambiente de estudio para apresentacao institucional',
+      alt: 'Foto da Dra. Larissa Nunes em ambiente de estúdio para apresentação institucional',
     },
   ];
   const whatsappProps = createWhatsAppProps({
     page: 'home',
     section: 'about',
-    message: 'Ola! Quero conhecer melhor a abordagem da Dra. Larissa Nunes.',
+    message: 'Olá! Quero conhecer melhor a abordagem da Dra. Larissa Nunes.',
   });
 
   return (
@@ -36,7 +36,7 @@ const AboutSection = () => {
             Sobre
           </p>
           <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">
-            Quem vai caminhar com voce
+            Quem vai te escutar de verdade
           </h2>
         </motion.div>
 
@@ -63,7 +63,9 @@ const AboutSection = () => {
                   Credenciais
                 </p>
                 <p className="mt-2 text-sm leading-7 text-gray-700">{CRP}</p>
-                <p className="text-sm leading-7 text-gray-700">Psicologa clinica especializada em Logoterapia</p>
+                <p className="text-sm leading-7 text-gray-700">
+                  Psicóloga clínica • Criadora do Método S.E.R. • Formação em Logoterapia
+                </p>
               </div>
             </div>
           </motion.div>
@@ -76,23 +78,27 @@ const AboutSection = () => {
             className="space-y-5"
           >
             <p className="text-lg leading-8 text-gray-700">
-              Sou a Dra. Larissa Nunes, psicologa clinica especializada em Logoterapia — a
-              abordagem criada por Viktor Frankl que ajuda pessoas a encontrarem sentido mesmo
-              nos momentos mais dificeis.
+              Sou a Dra. Larissa Nunes, psicóloga clínica. No meu consultório, atendo, na maior
+              parte, <strong className="font-semibold text-gray-900">mulheres que aprenderam a
+              se esforçar demais e a se colocar depois de todo mundo</strong> — e que chegam aqui
+              exaustas de sentir que isso não é valorizado.
             </p>
             <p className="text-lg leading-8 text-gray-700">
-              Nos ultimos anos, acompanhei pessoas passando por situacoes que testam qualquer
-              limite humano: tratamentos de hemodialise, perdas irreparaveis, crises que
-              pareciam nao ter saida.
+              São mulheres que guardam mágoa em silêncio, que se sentem invisíveis dentro da
+              própria casa, que explodem e depois se culpam, que se doam e recebem pouco em
+              troca. Elas chegam cansadas — não do corpo, do emocional.
             </p>
             <p className="text-lg leading-8 text-gray-700">
-              O que aprendi com cada uma delas e que o sofrimento nao precisa ser o fim da
-              historia. Quando voce encontra o seu porque, ate o peso mais pesado fica
-              suportavel.
+              Foi acompanhando essas histórias que desenvolvi o{' '}
+              <strong className="font-semibold text-gray-900">Método S.E.R. —
+              Segurança Emocional Reconstruída</strong>: um processo em três passos que parte
+              da Logoterapia de Viktor Frankl e traduz, em prática clínica, o que precisa
+              acontecer para você voltar a se sentir segura dentro de si.
             </p>
             <p className="text-lg leading-8 text-gray-700">
-              Meu trabalho nao e reviver seu passado. E te ajudar a construir uma direcao clara
-              para o presente — com proposito, com firmeza, com sentido.
+              Meu trabalho não é revirar o passado. É te ajudar a parar de reagir pela dor,
+              entender o que você sente e construir relações mais leves — com os outros e,
+              sobretudo, com você mesma.
             </p>
             <a
               {...whatsappProps}
@@ -100,7 +106,7 @@ const AboutSection = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full border border-primary-200 bg-primary-50 px-6 py-3 font-semibold text-primary-800 transition hover:border-primary-300 hover:bg-primary-100"
             >
-              Quero conhecer essa abordagem
+              Quero conversar com a Dra. Larissa
             </a>
           </motion.div>
         </div>

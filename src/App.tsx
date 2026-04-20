@@ -111,7 +111,7 @@ function App() {
               path="*"
               element={
                 <div className="container py-20 text-center">
-                  <h1 className="text-4xl font-bold text-gray-900">Pagina nao encontrada</h1>
+                  <h1 className="text-4xl font-bold text-gray-900">Página não encontrada</h1>
                 </div>
               }
             />

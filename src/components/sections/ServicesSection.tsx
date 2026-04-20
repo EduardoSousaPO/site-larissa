@@ -5,49 +5,49 @@ const ServicesSection = () => {
   const services = [
     {
       id: 'psychotherapy',
-      icon: '🧠',
-      title: 'Psicoterapia Individual',
+      icon: '💜',
+      title: 'Psicoterapia com Método S.E.R.',
       description:
-        'Para quem precisa de acompanhamento continuo. Sessoes semanais com foco em encontrar sentido, superar crises e construir uma vida com direcao.',
+        'Acompanhamento contínuo em sessões semanais para reconstruir, passo a passo, sua segurança emocional — sentir, entender e responder com intenção em vez de reagir pela dor.',
       bullets: [
-        'Sessao avulsa: R$180',
-        'Pacote mensal (4 sessoes): R$576 (economia de 20%)',
-        'Online ou presencial em Goiania',
+        'Sessão avulsa: R$180',
+        'Pacote mensal (4 sessões): R$576 (20% off — R$144/sessão)',
+        'Online para todo o Brasil ou presencial em Goiânia',
       ],
       price: 'R$180',
-      priceSuffix: '/sessao',
+      priceSuffix: '/sessão',
       badge: 'Pacote mensal R$576 (20% off)',
       featured: true,
-      cta: 'Quero comecar minha terapia',
-      message: 'Ola! Quero comecar minha terapia com a Dra. Larissa Nunes.',
+      cta: 'Quero começar minha mudança',
+      message: 'Olá! Quero começar minha psicoterapia com a Dra. Larissa.',
     },
     {
       id: 'resolution-session',
       icon: '🎯',
-      title: 'Sessao de Resolucao',
+      title: 'Sessão de Resolução',
       description:
-        'Uma sessao pontual para quem esta passando por um momento dificil e precisa de clareza agora. Luto, decisao importante, conflito, crise — uma conversa profunda para te ajudar a enxergar o caminho.',
-      bullets: ['Sessao unica: R$200', 'Online, com horarios flexiveis'],
+        'Uma sessão profunda para quando você precisa de clareza agora — uma discussão que não acaba, um luto sufocando, uma decisão que trava, mágoa acumulada que explodiu. Um espaço para ser ouvida e sair com direção.',
+      bullets: ['Sessão única: R$200', 'Online, com horários flexíveis'],
       price: 'R$200',
-      priceSuffix: '/sessao',
-      badge: 'Sessao unica',
+      priceSuffix: '/sessão',
+      badge: 'Sessão única',
       featured: false,
-      cta: 'Preciso de uma sessao agora',
-      message: 'Ola! Gostaria de agendar uma sessao de resolucao com a Dra. Larissa Nunes.',
+      cta: 'Preciso conversar agora',
+      message: 'Olá! Gostaria de agendar uma sessão de resolução com a Dra. Larissa.',
     },
     {
       id: 'vocational',
       icon: '🧭',
-      title: 'Orientacao Vocacional',
+      title: 'Orientação Vocacional',
       description:
-        'Para quem sente que esta na carreira errada ou nao sabe que direcao seguir. Nao e um teste vocacional — e um processo de descoberta do que realmente importa pra voce.',
+        'Para você que está cansada de uma rotina que não te pertence, ou se sente travada entre o que "os outros esperam" e o que te faz sentir viva. Um processo para reconectar escolha e identidade.',
       bullets: [],
       price: 'Sob consulta',
       priceSuffix: '',
       badge: '',
       featured: false,
-      cta: 'Quero descobrir minha direcao',
-      message: 'Ola! Quero descobrir minha direcao com orientacao vocacional.',
+      cta: 'Quero redescobrir minha direção',
+      message: 'Olá! Quero fazer orientação vocacional com a Dra. Larissa.',
     },
   ] as const;
 
@@ -62,10 +62,10 @@ const ServicesSection = () => {
           className="mb-16 text-center"
         >
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-primary-700">
-            Servicos
+            Serviços
           </p>
           <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">
-            Como posso te ajudar
+            Três formas de voltar a se sentir segura por dentro
           </h2>
         </motion.div>
 

@@ -71,7 +71,7 @@ const BlogAdmin = () => {
         console.error(err);
         setFeedback({
           type: 'error',
-          message: 'Nao foi possivel carregar os artigos do blog.',
+          message: 'Não foi possível carregar os artigos do blog.',
         });
       } finally {
         setIsLoading(false);
@@ -178,13 +178,13 @@ const BlogAdmin = () => {
 
       setFeedback({
         type: 'success',
-        message: 'Artigo excluido com sucesso.',
+        message: 'Artigo excluído com sucesso.',
       });
     } catch (err) {
       console.error(err);
       setFeedback({
         type: 'error',
-        message: 'Nao foi possivel excluir o artigo.',
+        message: 'Não foi possível excluir o artigo.',
       });
     }
   }
@@ -278,13 +278,13 @@ const BlogAdmin = () => {
       setAiFeedback('');
       setFeedback({
         type: 'success',
-        message: 'Artigo gerado pela IA publicado com aprovacao explicita.',
+        message: 'Artigo gerado pela IA publicado com aprovação explícita.',
       });
     } catch (err) {
       console.error(err);
       setFeedback({
         type: 'error',
-        message: err instanceof Error ? err.message : 'Nao foi possivel publicar o artigo gerado.',
+        message: err instanceof Error ? err.message : 'Não foi possível publicar o artigo gerado.',
       });
     } finally {
       setIsSaving(false);
@@ -305,7 +305,7 @@ const BlogAdmin = () => {
           </p>
           <h1 className="mt-3 text-4xl font-bold text-gray-900">Painel de artigos</h1>
           <p className="mt-4 max-w-3xl text-lg leading-8 text-gray-700">
-            Crie rascunhos, publique artigos e use a geracao com IA apenas com revisao humana.
+            Crie rascunhos, publique artigos e use a geração com IA apenas com revisão humana.
           </p>
         </motion.div>
 
@@ -330,7 +330,7 @@ const BlogAdmin = () => {
                     {editor.id ? 'Editar artigo' : 'Novo artigo manual'}
                   </h2>
                   <p className="mt-2 text-sm text-gray-600">
-                    Slug e tempo de leitura sao calculados automaticamente ao salvar.
+                    Slug e tempo de leitura são calculados automaticamente ao salvar.
                   </p>
                 </div>
                 <button
@@ -344,7 +344,7 @@ const BlogAdmin = () => {
 
               <div className="mt-8 grid gap-5 md:grid-cols-2">
                 <label className="text-sm font-medium text-gray-700">
-                  Titulo
+                  Título
                   <input
                     value={editor.title}
                     onChange={(event) => setEditor((prev) => ({ ...prev, title: event.target.value }))}
@@ -380,7 +380,7 @@ const BlogAdmin = () => {
                 </label>
 
                 <label className="text-sm font-medium text-gray-700 md:col-span-2">
-                  Conteudo HTML
+                  Conteúdo HTML
                   <textarea
                     value={editor.content}
                     onChange={(event) => setEditor((prev) => ({ ...prev, content: event.target.value }))}
@@ -412,7 +412,7 @@ const BlogAdmin = () => {
                   <input
                     value={editor.tags}
                     onChange={(event) => setEditor((prev) => ({ ...prev, tags: event.target.value }))}
-                    placeholder="logoterapia, sentido, ansiedade"
+                    placeholder="método S.E.R., segurança emocional, ansiedade"
                     className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
                   />
                 </label>
@@ -476,7 +476,7 @@ const BlogAdmin = () => {
             <div className="rounded-[2rem] border border-stone-200 bg-white p-8 shadow-sm">
               <h2 className="text-2xl font-bold text-gray-900">Novo artigo com IA</h2>
               <p className="mt-2 text-sm text-gray-600">
-                A IA gera um preview. Nada e publicado sem o clique explicito em "Aprovar e publicar".
+                A IA gera um preview. Nada é publicado sem o clique explícito em "Aprovar e publicar".
               </p>
 
               <label className="mt-6 block text-sm font-medium text-gray-700">
@@ -486,7 +486,7 @@ const BlogAdmin = () => {
                   onChange={(event) => setAiTopic(event.target.value)}
                   rows={3}
                   className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
-                  placeholder="Ex.: Crise existencial: o que e e como a Logoterapia pode ajudar"
+                  placeholder="Ex.: Como parar de guardar mágoa dentro do casamento"
                 />
               </label>
 
@@ -545,7 +545,7 @@ const BlogAdmin = () => {
                       onChange={(event) => setAiFeedback(event.target.value)}
                       rows={3}
                       className="mt-2 w-full rounded-2xl border border-stone-300 px-4 py-3"
-                      placeholder="Ex.: deixe o tom mais direto e reforce a secao Como a Logoterapia ajuda"
+                      placeholder="Ex.: deixe o tom mais direto e reforce a seção do Método S.E.R."
                     />
                   </label>
 
@@ -577,7 +577,7 @@ const BlogAdmin = () => {
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">Artigos existentes</h2>
                 <p className="mt-2 text-sm text-gray-600">
-                  Lista com titulo, status e data para edicao rapida.
+                  Lista com título, status e data para edição rápida.
                 </p>
               </div>
             </div>

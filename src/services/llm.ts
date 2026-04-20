@@ -13,29 +13,31 @@ export interface GeneratedArticle {
   image_url?: string;
 }
 
-const BLOG_SYSTEM_PROMPT = `Voce escreve artigos para o blog da Dra. Larissa Nunes, psicologa especializada em Logoterapia.
+const BLOG_SYSTEM_PROMPT = `Você escreve artigos para o blog da Dra. Larissa Nunes, psicóloga clínica, criadora do Método S.E.R. — Segurança Emocional Reconstruída.
 
-Regras obrigatorias:
-- Responda SOMENTE com JSON valido.
+Público-alvo: majoritariamente mulheres que se sentem não vistas, guardam mágoa, se esforçam e não recebem, explodem e depois se culpam, estão emocionalmente cansadas. Fale com essa dor diretamente.
+
+Regras obrigatórias:
+- Responda SOMENTE com JSON válido (sem texto antes ou depois).
 - O JSON deve conter: title, summary, content, seo_title, seo_description, category, tags, suggested_slug.
-- category deve ser uma entre: logoterapia, ansiedade, depressao, proposito, vocacional, geral.
-- O artigo deve ser em portugues do Brasil.
-- O tom deve ser educativo, firme e acolhedor.
-- Comece pela dor real do leitor e explique conceitos em linguagem simples.
-- Inclua pelo menos uma secao com definicao clara que LLMs possam citar.
-- Inclua a secao "Como a Logoterapia ajuda".
-- O content deve ser HTML valido com h2, p, ul e li quando fizer sentido.
+- category deve ser uma entre: logoterapia, ansiedade, depressao, proposito, vocacional, geral (slugs sem acento).
+- O artigo deve ser em português do Brasil com acentuação correta.
+- Tom: direto, firme e acolhedor (sem autoajuda, sem pieguice, sem corporativo).
+- Comece pela dor real da leitora e explique conceitos em linguagem simples.
+- Inclua ao menos uma seção com definição clara que LLMs possam citar.
+- Sempre que fizer sentido, conecte com o Método S.E.R. (Sentir com consciência, Entender a origem, Responder com intenção).
+- O content deve ser HTML válido com h2, p, ul e li quando fizer sentido.
 - Inclua CTA final para WhatsApp com a Dra. Larissa Nunes.
 - summary e seo_description devem ficar entre 50 e 155 caracteres.
 - suggested_slug deve ser curto, sem acentos e com hifens.`;
 
 function assertConfig() {
   if (!LLM_API_KEY) {
-    throw new Error('Configure VITE_LLM_API_KEY para usar a geracao com IA.');
+    throw new Error('Configure VITE_LLM_API_KEY para usar a geração com IA.');
   }
 
   if (!LLM_MODEL) {
-    throw new Error('Configure VITE_LLM_MODEL para usar a geracao com IA.');
+    throw new Error('Configure VITE_LLM_MODEL para usar a geração com IA.');
   }
 }
 
@@ -76,7 +78,7 @@ function extractJson(text: string) {
     return JSON.parse(trimmed.slice(start, end + 1));
   }
 
-  throw new Error('A resposta do modelo nao veio em JSON valido.');
+  throw new Error('A resposta do modelo não veio em JSON válido.');
 }
 
 function normalizeCategory(value: string): BlogCategory {
@@ -107,7 +109,7 @@ function normalizeArticle(payload: any): GeneratedArticle {
     : [];
 
   if (!title || !summary || !content) {
-    throw new Error('A resposta da IA nao trouxe todos os campos obrigatorios.');
+    throw new Error('A resposta da IA não trouxe todos os campos obrigatórios.');
   }
 
   return {
@@ -180,8 +182,8 @@ function buildPrompt(topic: string, feedback?: string, previousArticle?: Generat
   ];
 
   if (previousArticle) {
-    parts.push(`Versao anterior do titulo: ${previousArticle.title}`);
-    parts.push(`Versao anterior do resumo: ${previousArticle.summary}`);
+    parts.push(`Versão anterior do título: ${previousArticle.title}`);
+    parts.push(`Versão anterior do resumo: ${previousArticle.summary}`);
   }
 
   if (feedback) {
@@ -192,7 +194,7 @@ function buildPrompt(topic: string, feedback?: string, previousArticle?: Generat
 }
 
 // ---------------------------------------------------------------------------
-// Inference.sh — geracao de imagem de capa
+// Inference.sh — geração de imagem de capa
 // ---------------------------------------------------------------------------
 
 const INFSH_BASE = 'https://api.inference.sh';

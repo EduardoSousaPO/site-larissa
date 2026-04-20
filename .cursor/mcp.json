@@ -1,8 +1,12 @@
 {
-    "mcpServers": {
-      "supabase": {
-        "url": "https://mcp.supabase.com/mcp",
-        "headers": {}
-      }
+  "mcpServers": {
+    "supabase": {
+      "url": "https://mcp.supabase.com/mcp",
+      "headers": {}
+    },
+    "stitch": {
+      "url": "https://stitch.googleapis.com/mcp",
+      "headers": {}
     }
   }
+}

@@ -21,14 +21,14 @@ const HeroSection = () => {
             className="text-center lg:text-left"
           >
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-primary-200">
-              Logoterapia em Goiania e online
+              Psicoterapia para mulheres que não se sentem vistas
             </p>
             <h1 className="max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-              Quem tem um porque, suporta qualquer como
+              Você se sente não vista, não escutada… e isso está te cansando emocionalmente?
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-primary-200 lg:mx-0">
-              Psicoterapia com Logoterapia para voce que sente que esta vivendo sem rumo.
-              Encontre o sentido que transforma sofrimento em direcao.
+              Psicoterapia com o <strong className="font-semibold text-white">Método S.E.R. — Segurança Emocional Reconstruída</strong>.
+              Para você que quer entender suas emoções, parar de reagir pela dor e construir relações mais leves.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
               <a
@@ -40,11 +40,11 @@ const HeroSection = () => {
                 <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
-                Quero falar com a Dra. Larissa
+                Quero começar minha mudança
               </a>
             </div>
             <p className="mt-4 text-sm text-primary-100/80">
-              Atendimento online para todo o Brasil. Primeira conversa pelo WhatsApp.
+              Primeira conversa leve e sem pressão. Um espaço seguro para você ser ouvida de verdade.
             </p>
           </motion.div>
 
@@ -61,7 +61,7 @@ const HeroSection = () => {
                 <source srcSet="/images/larissa3.webp" type="image/webp" />
                 <img
                   src="/images/larissa3.jpeg"
-                  alt="Dra. Larissa Nunes sorrindo em retrato profissional para a homepage do consultorio"
+                  alt="Dra. Larissa Nunes sorrindo em retrato profissional para a homepage do consultório"
                   width="1024"
                   height="1024"
                   fetchPriority="high"
@@ -79,18 +79,20 @@ const HeroSection = () => {
                 5.0 <span aria-hidden="true">&#9733;</span> Google
               </div>
               <div className="rounded-full bg-white/10 px-3 py-1 text-xs text-white backdrop-blur md:translate-x-6 md:-translate-y-1">
-                Online para todo Brasil
+                Online para todo o Brasil
               </div>
             </div>
 
             <div className="mt-8 rounded-[1.75rem] border border-white/10 bg-white/10 p-6 text-center shadow-xl backdrop-blur-xl md:text-left">
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary-100">
-                Psicoterapia com direcao
+                Para você que sente que…
               </p>
-              <p className="mt-3 text-sm leading-7 text-white/80">
-                A Logoterapia e a abordagem do sentido. Dra. Larissa Nunes trabalha para
-                transformar sofrimento em direcao com um processo firme, acolhedor e claro.
-              </p>
+              <ul className="mt-3 space-y-2 text-sm leading-7 text-white/85">
+                <li>"eu me esforço e não recebo de volta"</li>
+                <li>"guardo mágoa até explodir e depois me culpo"</li>
+                <li>"parece que ninguém realmente me escuta"</li>
+                <li>"estou cansada de ser forte o tempo todo"</li>
+              </ul>
             </div>
           </motion.div>
         </div>

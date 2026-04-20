@@ -40,7 +40,7 @@ const ContactSection = () => {
       // Sucesso
       setSubmitStatus({
         success: true,
-        message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.'
+        message: 'Mensagem enviada com sucesso! Entrarei em contato em breve.'
       });
 
       // Limpar formulário
@@ -72,11 +72,11 @@ const ContactSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Entre em Contato
+            Entre em contato
           </h2>
           <div className="w-24 h-1 bg-primary-500 mx-auto mb-6"></div>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Dê o primeiro passo em direção ao seu bem-estar emocional. 
+            Dê o primeiro passo para voltar a se sentir segura emocionalmente.
             Envie uma mensagem ou agende diretamente sua sessão.
           </p>
         </motion.div>
@@ -90,7 +90,7 @@ const ContactSection = () => {
             className="lg:w-1/2"
           >
             <div className="bg-white rounded-xl shadow-md p-8">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Envie uma Mensagem</h3>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Envie uma mensagem</h3>
               
               {submitStatus.message && (
                 <div className={`p-4 mb-6 rounded-md ${submitStatus.success ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
@@ -150,7 +150,7 @@ const ContactSection = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    placeholder="Como posso ajudar você?"
+                    placeholder="Me conte com suas palavras o que você está sentindo."
                   ></textarea>
                 </div>
                 
@@ -173,7 +173,7 @@ const ContactSection = () => {
             className="lg:w-1/2"
           >
             <div className="bg-white rounded-xl shadow-md p-8 h-full">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Informações de Contato</h3>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Informações de contato</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -227,7 +227,7 @@ const ContactSection = () => {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium text-gray-900 mb-1">Horário de Atendimento</h4>
+                    <h4 className="text-lg font-medium text-gray-900 mb-1">Horário de atendimento</h4>
                     <p className="text-gray-700">
                       Segunda a Sexta: 8h às 18h<br />
                       Sábado: 8h às 12h
@@ -241,7 +241,7 @@ const ContactSection = () => {
                   href="/agendamento" 
                   className="block w-full py-3 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-md text-center font-medium transition-colors"
                 >
-                  Agendar Consulta
+                  Agendar consulta
                 </a>
                 
                 <a 
