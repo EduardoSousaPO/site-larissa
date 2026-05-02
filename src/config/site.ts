@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://site-larissa-three.vercel.app';
+export const SITE_URL = 'https://www.larissanunespsi.com.br';
 export const SITE_NAME = 'Dra. Larissa Nunes';
 export const SITE_TITLE_SUFFIX = 'Dra. Larissa Nunes | Psicóloga';
 export const DEFAULT_AUTHOR = 'Dra. Larissa Nunes';

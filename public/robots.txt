@@ -4,4 +4,4 @@ Disallow: /admin/
 Disallow: /primeira-consulta
 Disallow: /sessao-de-resolucao
 
-Sitemap: https://site-larissa-three.vercel.app/sitemap.xml
+Sitemap: https://www.larissanunespsi.com.br/sitemap.xml

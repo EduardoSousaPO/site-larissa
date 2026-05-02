@@ -129,7 +129,7 @@ const PostDetail = () => {
         name: 'Dra. Larissa Nunes',
         logo: {
           '@type': 'ImageObject',
-          url: `${SITE_URL}/images/logo.png`,
+          url: DEFAULT_OG_IMAGE,
         },
       },
       datePublished: post.published_at || post.created_at,

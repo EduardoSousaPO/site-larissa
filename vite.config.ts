@@ -8,8 +8,8 @@ export default defineConfig({
   plugins: [
     react(),
     sitemap({
-      hostname: 'https://site-larissa-three.vercel.app',
-      dynamicRoutes: ['/', '/blog', '/depoimentos', '/agendamento'],
+      hostname: 'https://www.larissanunespsi.com.br',
+      dynamicRoutes: ['/', '/blog', '/agendamento'],
       exclude: ['/admin', '/admin/login', '/admin/register', '/admin/blog', '/admin/criar-artigos', '/primeira-consulta', '/sessao-de-resolucao'],
       generateRobotsTxt: false,
       readable: true,
