@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLoaderData, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import CTASection from '../components/sections/CTASection';
 import SEOHead from '../components/SEOHead';
@@ -17,20 +17,30 @@ import {
 } from '../services/blogPosts';
 import { trackArticleRead } from '../services/analytics';
 
+type PostLoaderData = { post: BlogPost | null; related: BlogPost[] } | undefined;
+
 const PostDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // Data baked in at build time (SSG) / served as static loader data on the client.
+  const loaderData = useLoaderData() as PostLoaderData;
+  const [post, setPost] = useState<BlogPost | null>(loaderData?.post ?? null);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>(loaderData?.related ?? []);
+  const [isLoading, setIsLoading] = useState(!loaderData);
+  const [error, setError] = useState<string | null>(
+    loaderData && !loaderData.post ? 'Artigo não encontrado.' : null,
+  );
   const [hasTrackedRead, setHasTrackedRead] = useState(false);
   const articleContentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    let active = true;
+
     const run = async () => {
       if (!slug) {
-        setError('Slug do artigo não informado.');
-        setIsLoading(false);
+        if (active) {
+          setError('Slug do artigo não informado.');
+          setIsLoading(false);
+        }
         return;
       }
 
@@ -41,18 +51,35 @@ const PostDetail = () => {
           throw new Error('Artigo não encontrado.');
         }
 
+        if (!active) {
+          return;
+        }
+
         setPost(article);
+        setError(null);
         const related = await getRelatedBlogPosts(article.category, article.id);
-        setRelatedPosts(related);
+        if (active) {
+          setRelatedPosts(related);
+        }
       } catch (err) {
         console.error(err);
-        setError(err instanceof Error ? err.message : 'Erro ao carregar o artigo.');
+        // Keep the pre-rendered article on screen if the live refresh fails.
+        if (active && !loaderData?.post) {
+          setError(err instanceof Error ? err.message : 'Erro ao carregar o artigo.');
+        }
       } finally {
-        setIsLoading(false);
+        if (active) {
+          setIsLoading(false);
+        }
       }
     };
 
     void run();
+
+    return () => {
+      active = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
   useEffect(() => {

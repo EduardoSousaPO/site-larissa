@@ -1,10 +1,13 @@
-import { GA_MEASUREMENT_ID } from '../config/site';
+import { GA_MEASUREMENT_ID, META_PIXEL_ID } from '../config/site';
 
 declare global {
   interface Window {
     dataLayer: unknown[];
     gtag?: (...args: unknown[]) => void;
     __larissaGaInitialized__?: boolean;
+    fbq?: (...args: unknown[]) => void;
+    _fbq?: (...args: unknown[]) => void;
+    __larissaMetaPixelInitialized__?: boolean;
   }
 }
 
@@ -68,8 +71,64 @@ export function trackPageView(path: string) {
   });
 }
 
+export function initMetaPixel(pixelId = META_PIXEL_ID) {
+  if (!canUseDOM() || !pixelId || window.__larissaMetaPixelInitialized__) {
+    return;
+  }
+
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  (function (f: any, b: Document, e: string, v: string, n?: any, t?: any, s?: any) {
+    if (f.fbq) return;
+    n = f.fbq = function (...args: unknown[]) {
+      if (n.callMethod) {
+        n.callMethod.apply(n, args);
+      } else {
+        n.queue.push(args);
+      }
+    };
+    if (!f._fbq) f._fbq = n;
+    n.push = n;
+    n.loaded = true;
+    n.version = '2.0';
+    n.queue = [];
+    t = b.createElement(e);
+    t.async = true;
+    t.src = v;
+    s = b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t, s);
+  })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  /* eslint-enable @typescript-eslint/no-explicit-any */
+
+  window.fbq?.('init', pixelId);
+  window.fbq?.('track', 'PageView');
+
+  window.__larissaMetaPixelInitialized__ = true;
+}
+
+export function trackMetaPageView() {
+  if (!canUseDOM() || !window.fbq) {
+    return;
+  }
+
+  window.fbq('track', 'PageView');
+}
+
+export function trackMetaEvent(name: string, params?: Record<string, unknown>) {
+  if (!canUseDOM() || !window.fbq) {
+    return;
+  }
+
+  window.fbq('track', name, params);
+}
+
 export function trackWhatsAppClick(page: string, section: string) {
   trackEvent('whatsapp_click', {
+    page,
+    section,
+  });
+
+  trackMetaEvent('Contact', {
+    content_name: 'whatsapp_click',
     page,
     section,
   });

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import SEOHead from '../components/SEOHead';
 import { supabase } from '../services/supabase';
 import { CONTACT_PHONE_DIGITS } from '../config/site';
 
@@ -69,7 +70,14 @@ const Agendamento = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <>
+      <SEOHead
+        title="Agende sua consulta com a Dra. Larissa Nunes"
+        description="Agende sua consulta de psicoterapia com a Dra. Larissa Nunes. Atendimento online para todo o Brasil e presencial em Goiânia, com o Método S.E.R. (Segurança Emocional Reconstruída)."
+        path="/agendamento"
+        keywords="agendar consulta psicóloga, agendamento terapia, psicóloga Goiânia, terapia online, Método S.E.R., Dra. Larissa Nunes"
+      />
+      <section className="py-20 bg-gray-50">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -227,7 +235,8 @@ const Agendamento = () => {
           </motion.div>
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 };
 

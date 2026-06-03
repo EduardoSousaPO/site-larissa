@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import CTASection from '../components/sections/CTASection';
 import SEOHead from '../components/SEOHead';
@@ -7,26 +7,45 @@ import { buildArticlePath, formatCategoryLabel, type BlogPost } from '../lib/blo
 import { DEFAULT_OG_IMAGE } from '../config/site';
 import { getPublishedBlogPosts } from '../services/blogPosts';
 
+type BlogListLoaderData = { posts: BlogPost[] } | undefined;
+
 const BlogPage = () => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  // Data baked in at build time (SSG) / served as static loader data on the client.
+  const loaderData = useLoaderData() as BlogListLoaderData;
+  const [posts, setPosts] = useState<BlogPost[]>(loaderData?.posts ?? []);
   const [activeCategory, setActiveCategory] = useState<'all' | BlogPost['category']>('all');
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!loaderData);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let active = true;
+
     const run = async () => {
       try {
         const data = await getPublishedBlogPosts();
-        setPosts(data);
+        if (active) {
+          setPosts(data);
+          setError(null);
+        }
       } catch (err) {
         console.error(err);
-        setError('Não foi possível carregar os artigos agora.');
+        // Keep the pre-rendered posts on screen if the live refresh fails.
+        if (active && (loaderData?.posts?.length ?? 0) === 0) {
+          setError('Não foi possível carregar os artigos agora.');
+        }
       } finally {
-        setIsLoading(false);
+        if (active) {
+          setIsLoading(false);
+        }
       }
     };
 
     void run();
+
+    return () => {
+      active = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const categories = useMemo(() => {

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '../lib/helmet';
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, SITE_TITLE_SUFFIX } from '../config/site';
 
 type SEOHeadProps = {

@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import {
-  BrowserRouter as Router,
   Navigate,
-  Route,
-  Routes,
+  Outlet,
   useLocation,
+  type LoaderFunctionArgs,
 } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import type { RouteRecord } from 'vite-react-ssg';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import Agendamento from './pages/Agendamento';
@@ -18,7 +17,17 @@ import Register from './pages/Register';
 import PrimeiraConsultaPage from './pages/PrimeiraConsultaPage';
 import SessaoResolucaoPage from './pages/SessaoResolucaoPage';
 import { useAuth } from './services/auth';
-import { initGA, trackPageView } from './services/analytics';
+import {
+  getPublishedBlogPostBySlug,
+  getPublishedBlogPosts,
+  getRelatedBlogPosts,
+} from './services/blogPosts';
+import {
+  initGA,
+  initMetaPixel,
+  trackMetaPageView,
+  trackPageView,
+} from './services/analytics';
 
 const ProtectedRoute = ({ children }: { children: React.ReactElement }) => {
   const { currentUser, loading } = useAuth();
@@ -43,11 +52,13 @@ const RouteAnalytics = () => {
 
   useEffect(() => {
     initGA();
+    initMetaPixel();
   }, []);
 
   useEffect(() => {
     const path = `${location.pathname}${location.search}`;
     trackPageView(path);
+    trackMetaPageView();
   }, [location.pathname, location.search]);
 
   useEffect(() => {
@@ -95,53 +106,107 @@ const RouteAnalytics = () => {
   return null;
 };
 
-function App() {
-  return (
-    <HelmetProvider>
-      <Router>
-        <RouteAnalytics />
-        <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="agendamento" element={<Agendamento />} />
-            <Route path="blog" element={<BlogPage />} />
-            <Route path="blog/:slug" element={<PostDetail />} />
+const RootLayout = () => (
+  <>
+    <RouteAnalytics />
+    <Outlet />
+  </>
+);
 
-            <Route
-              path="*"
-              element={
-                <div className="container py-20 text-center">
-                  <h1 className="text-4xl font-bold text-gray-900">Página não encontrada</h1>
-                </div>
-              }
-            />
-          </Route>
+const NotFound = () => (
+  <div className="container py-20 text-center">
+    <h1 className="text-4xl font-bold text-gray-900">Página não encontrada</h1>
+  </div>
+);
 
-          <Route path="/primeira-consulta" element={<PrimeiraConsultaPage />} />
-          <Route path="/sessao-de-resolucao" element={<SessaoResolucaoPage />} />
+// --- Build-time data (SSG) ---------------------------------------------------
+// These loaders run server-side during the SSG build (via React Router's static
+// handler) so the blog content is baked into the HTML. On the client, vite-react-ssg
+// serves the serialized loader data, and the page components also re-fetch live
+// data after hydration to keep content fresh for real visitors.
 
-          <Route path="/admin/login" element={<Login />} />
-          <Route path="/admin/register" element={<Register />} />
-          <Route
-            path="/admin/criar-artigos"
-            element={
-              <ProtectedRoute>
-                <Navigate to="/admin/blog" replace />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/blog"
-            element={
-              <ProtectedRoute>
-                <BlogAdmin />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </Router>
-    </HelmetProvider>
-  );
+export async function blogListLoader() {
+  try {
+    return { posts: await getPublishedBlogPosts() };
+  } catch (error) {
+    console.warn('[ssg] blogListLoader failed, rendering empty list', error);
+    return { posts: [] };
+  }
 }
 
-export default App;
+export async function postLoader({ params }: LoaderFunctionArgs) {
+  const slug = params.slug;
+
+  if (!slug) {
+    return { post: null, related: [] };
+  }
+
+  try {
+    const post = await getPublishedBlogPostBySlug(slug);
+    const related = post ? await getRelatedBlogPosts(post.category, post.id) : [];
+    return { post, related };
+  } catch (error) {
+    console.warn(`[ssg] postLoader failed for slug "${slug}"`, error);
+    return { post: null, related: [] };
+  }
+}
+
+export async function blogStaticPaths() {
+  try {
+    const posts = await getPublishedBlogPosts();
+    return posts.map((post) => `/blog/${post.slug}`);
+  } catch (error) {
+    console.warn('[ssg] blogStaticPaths failed, no article pages will be pre-rendered', error);
+    return [];
+  }
+}
+
+export const routes: RouteRecord[] = [
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      {
+        element: <MainLayout />,
+        children: [
+          { index: true, element: <HomePage /> },
+          { path: 'agendamento', element: <Agendamento /> },
+          {
+            path: 'blog',
+            element: <BlogPage />,
+            loader: blogListLoader,
+            entry: 'src/pages/BlogPage.tsx',
+          },
+          {
+            path: 'blog/:slug',
+            element: <PostDetail />,
+            loader: postLoader,
+            getStaticPaths: blogStaticPaths,
+            entry: 'src/pages/PostDetail.tsx',
+          },
+        ],
+      },
+      { path: 'primeira-consulta', element: <PrimeiraConsultaPage /> },
+      { path: 'sessao-de-resolucao', element: <SessaoResolucaoPage /> },
+      { path: 'admin/login', element: <Login /> },
+      { path: 'admin/register', element: <Register /> },
+      {
+        path: 'admin/criar-artigos',
+        element: (
+          <ProtectedRoute>
+            <Navigate to="/admin/blog" replace />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'admin/blog',
+        element: (
+          <ProtectedRoute>
+            <BlogAdmin />
+          </ProtectedRoute>
+        ),
+      },
+      { path: '*', element: <NotFound /> },
+    ],
+  },
+];

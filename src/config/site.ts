@@ -31,6 +31,8 @@ export const GOOGLE_REVIEW_HIGHLIGHTS = [
 ] as const;
 
 export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() ?? '';
+export const META_PIXEL_ID =
+  import.meta.env.VITE_META_PIXEL_ID?.trim() || '1211076457710598';
 export const LLM_PROVIDER = (import.meta.env.VITE_LLM_PROVIDER?.trim() ?? 'openai') as
   | 'claude'
   | 'openai'
