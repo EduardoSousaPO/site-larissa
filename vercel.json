@@ -35,17 +35,6 @@
       ],
       "destination": "https://www.larissanunespsi.com.br/:path*",
       "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "(?<host>.*\\.vercel\\.app)"
-        }
-      ],
-      "destination": "https://www.larissanunespsi.com.br/:path*",
-      "permanent": true
     }
   ],
   "headers": [
