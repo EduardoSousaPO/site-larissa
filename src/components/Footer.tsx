@@ -66,6 +66,11 @@ const Footer = () => {
                   Blog
                 </Link>
               </li>
+              <li>
+                <Link to="/privacidade" className="transition hover:text-white">
+                  Política de Privacidade
+                </Link>
+              </li>
             </ul>
           </motion.div>
 

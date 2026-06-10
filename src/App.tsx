@@ -15,6 +15,7 @@ import BlogAdmin from './pages/BlogAdmin';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import PrimeiraConsultaPage from './pages/PrimeiraConsultaPage';
+import PrivacidadePage from './pages/PrivacidadePage';
 import SessaoResolucaoPage from './pages/SessaoResolucaoPage';
 import { useAuth } from './services/auth';
 import {
@@ -171,6 +172,7 @@ export const routes: RouteRecord[] = [
         children: [
           { index: true, element: <HomePage /> },
           { path: 'agendamento', element: <Agendamento /> },
+          { path: 'privacidade', element: <PrivacidadePage /> },
           {
             path: 'blog',
             element: <BlogPage />,
