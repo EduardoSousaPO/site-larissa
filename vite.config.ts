@@ -77,14 +77,20 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       dirStyle: 'nested',
       // Load the hydration scripts asynchronously so they don't block first paint.
       script: 'async',
-      // Decide which routes get pre-rendered. We keep every public route, expand the
-      // blog article slugs via getStaticPaths, and explicitly skip the admin area and
-      // the React Router pattern/catch-all routes (they stay client-only).
+      // Pre-render every concrete route — including the admin shells. A route left to
+      // the SPA fallback would be served the home index.html (which carries SSR markers
+      // and the static-loader manifest); vite-react-ssg's client then tries to load
+      // loader data for the wrong path, fetches HTML instead of JSON and throws
+      // ("Unexpected token '<'") plus a hydration mismatch. Giving each route its own
+      // pre-rendered shell avoids that. The admin pages render only an auth gate/spinner
+      // at build time (no sensitive content) and are kept out of the index via the
+      // X-Robots-Tag noindex header for /admin/* in vercel.json.
       includedRoutes(paths: string[]) {
         return paths.filter((rawPath) => {
           // Paths arrive with or without a leading slash depending on nesting depth.
           const path = rawPath.startsWith('/') ? rawPath : `/${rawPath}`
-          return !path.includes(':') && !path.includes('*') && !path.startsWith('/admin')
+          // Skip only React Router pattern routes (`:param`) and the catch-all (`*`).
+          return !path.includes(':') && !path.includes('*')
         })
       },
     },
