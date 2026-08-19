@@ -221,30 +221,17 @@ export default function SobrePage() {
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mx-auto mt-12 max-w-3xl rounded-[2rem] border-2 border-yellow-800 bg-yellow-50 p-8"
-          >
-            <h2 className="text-2xl font-bold text-yellow-800">O que eu não faço</h2>
-            <ul className="mt-5 space-y-4 text-base leading-7 text-gray-700">
-              <li>
-                Não atendo emergência. Em caso de risco à vida, procure o CVV pelo 188, o SAMU
-                192 ou o pronto-socorro mais próximo.
-              </li>
-              <li>
-                Não prescrevo nem oriento sobre medicação. O acompanhamento psicológico é
-                complementar ao tratamento médico e não o substitui.
-              </li>
-              <li>
-                Não emito laudo, parecer ou avaliação para processos judiciais, perícias,
-                concursos ou benefícios.
-              </li>
-              <li>Não atendo crianças e adolescentes, nem terapia de casal.</li>
-            </ul>
-          </motion.div>
+          {/*
+            O bloco "O que eu não faço" saiu a pedido da Dra. Larissa (19/08/2026).
+            Era uma lista de recusas em destaque logo antes do CTA, e a última
+            coisa que a visitante lia antes de decidir.
+
+            O que ele carregava e onde continua vivo:
+            - orientação de emergência (CVV 188, SAMU 192): no rodapé de todas as
+              páginas e em /contato;
+            - "complementar ao tratamento médico e não o substitui": no corpo da
+              LP de doenças crônicas, que é onde a afirmação de fato importa.
+          */}
 
           <div className="mt-12 flex justify-center">
             <WhatsAppCTA
