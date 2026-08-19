@@ -19,6 +19,18 @@
 }
 
 @layer components {
+  /*
+    As landing pages de Google Ads montam uma barra fixa de CTA no rodapé do
+    mobile. O botao flutuante do MainLayout ocupa o mesmo canto e ficaria por
+    cima dela (z-50 contra z-40), entao ele sai de cena enquanto a barra existe.
+    No desktop nao ha barra e o flutuante continua normalmente.
+  */
+  @media (max-width: 767px) {
+    body.lp-has-sticky-cta .whatsapp-float {
+      display: none;
+    }
+  }
+
   .container {
     padding-left: 1rem;
     padding-right: 1rem;

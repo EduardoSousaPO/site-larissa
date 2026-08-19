@@ -10,6 +10,16 @@ type SEOHeadProps = {
   type?: 'website' | 'article';
   schema?: object | object[];
   noindex?: boolean;
+  /**
+   * Suprime o sufixo global do site no <title>.
+   *
+   * O sufixo " | Dra. Larissa Nunes | Psicóloga" custa 33 caracteres, o que
+   * torna impossível manter o title dentro dos ~60 caracteres que o Google
+   * exibe sem truncar. As landing pages de anúncio precisam controlar o title
+   * inteiro, então passam `hideTitleSuffix`. As páginas antigas seguem
+   * inalteradas (default `false`).
+   */
+  hideTitleSuffix?: boolean;
 };
 
 export default function SEOHead({
@@ -21,13 +31,15 @@ export default function SEOHead({
   type = 'website',
   schema,
   noindex = false,
+  hideTitleSuffix = false,
 }: SEOHeadProps) {
   const canonical = path.startsWith('http') ? path : `${SITE_URL}${path}`;
   const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+  const documentTitle = hideTitleSuffix ? title : `${title} | ${SITE_TITLE_SUFFIX}`;
 
   return (
     <Helmet>
-      <title>{`${title} | ${SITE_TITLE_SUFFIX}`}</title>
+      <title>{documentTitle}</title>
       <meta name="description" content={description} />
       {keywords ? <meta name="keywords" content={keywords} /> : null}
       <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />

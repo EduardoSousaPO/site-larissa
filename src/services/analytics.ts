@@ -1,10 +1,17 @@
-import { GA_MEASUREMENT_ID, META_PIXEL_ID } from '../config/site';
+import {
+  GA_MEASUREMENT_ID,
+  GOOGLE_ADS_CONVERSION_LABEL,
+  GOOGLE_ADS_ID,
+  META_PIXEL_ID,
+} from '../config/site';
 
 declare global {
   interface Window {
     dataLayer: unknown[];
     gtag?: (...args: unknown[]) => void;
+    __larissaGtagLoaded__?: boolean;
     __larissaGaInitialized__?: boolean;
+    __larissaGoogleAdsInitialized__?: boolean;
     fbq?: (...args: unknown[]) => void;
     _fbq?: (...args: unknown[]) => void;
     __larissaMetaPixelInitialized__?: boolean;
@@ -23,14 +30,22 @@ function getGtag() {
   return window.gtag;
 }
 
-export function initGA(measurementId = GA_MEASUREMENT_ID) {
-  if (!canUseDOM() || !measurementId || window.__larissaGaInitialized__) {
+/**
+ * Injeta o gtag.js uma única vez e prepara o dataLayer.
+ *
+ * GA4 e Google Ads compartilham o mesmo script; o `id` da URL serve apenas para
+ * inicializar a biblioteca. Cada produto é ativado depois pelo seu próprio
+ * `gtag('config', ...)`. Sem isto, o Ads não funcionaria quando o GA4 estivesse
+ * ausente (e vice-versa), porque quem carregava o script era só o initGA.
+ */
+function ensureGtagLoaded(bootstrapId: string) {
+  if (!canUseDOM() || window.__larissaGtagLoaded__) {
     return;
   }
 
   const script = document.createElement('script');
   script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${bootstrapId}`;
   document.head.appendChild(script);
 
   window.dataLayer = window.dataLayer || [];
@@ -39,11 +54,35 @@ export function initGA(measurementId = GA_MEASUREMENT_ID) {
   };
 
   window.gtag('js', new Date());
-  window.gtag('config', measurementId, {
+
+  window.__larissaGtagLoaded__ = true;
+}
+
+export function initGA(measurementId = GA_MEASUREMENT_ID) {
+  if (!canUseDOM() || !measurementId || window.__larissaGaInitialized__) {
+    return;
+  }
+
+  ensureGtagLoaded(measurementId);
+
+  window.gtag?.('config', measurementId, {
     send_page_view: false,
   });
 
   window.__larissaGaInitialized__ = true;
+}
+
+/** Ativa o Google Ads. No-op silencioso quando VITE_GOOGLE_ADS_ID está vazio. */
+export function initGoogleAds(adsId = GOOGLE_ADS_ID) {
+  if (!canUseDOM() || !adsId || window.__larissaGoogleAdsInitialized__) {
+    return;
+  }
+
+  ensureGtagLoaded(adsId);
+
+  window.gtag?.('config', adsId);
+
+  window.__larissaGoogleAdsInitialized__ = true;
 }
 
 export function trackEvent(name: string, params: Record<string, string>) {
@@ -121,6 +160,33 @@ export function trackMetaEvent(name: string, params?: Record<string, unknown>) {
   window.fbq('track', name, params);
 }
 
+/**
+ * Dispara a conversão do Google Ads.
+ *
+ * No-op silencioso quando `VITE_GOOGLE_ADS_ID` ou o rótulo de conversão não
+ * estão configurados — a Dra. Larissa pode publicar o site antes de criar a
+ * conta de Ads sem que nada quebre.
+ *
+ * Não usa `trackEvent` porque aquela assinatura aceita apenas `Record<string,
+ * string>` e a conversão precisa enviar `value` numérico.
+ */
+export function trackAdsConversion(
+  label = GOOGLE_ADS_CONVERSION_LABEL,
+  params?: { value?: number; currency?: string },
+) {
+  const gtag = getGtag();
+
+  if (!gtag || !GOOGLE_ADS_ID || !label) {
+    return;
+  }
+
+  gtag('event', 'conversion', {
+    send_to: `${GOOGLE_ADS_ID}/${label}`,
+    currency: 'BRL',
+    ...params,
+  });
+}
+
 export function trackWhatsAppClick(page: string, section: string) {
   trackEvent('whatsapp_click', {
     page,
@@ -132,6 +198,8 @@ export function trackWhatsAppClick(page: string, section: string) {
     page,
     section,
   });
+
+  trackAdsConversion();
 }
 
 export function trackArticleRead(articleId: string, title: string, category: string) {

@@ -7,7 +7,7 @@ import FAQSection from '../components/sections/FAQSection';
 import TestimonialsSection from '../components/sections/TestimonialsSection';
 import CTASection from '../components/sections/CTASection';
 import SEOHead from '../components/SEOHead';
-import { FAQ_ITEMS, LOCAL_BUSINESS_SCHEMA, PHYSICIAN_SCHEMA } from '../config/site';
+import { FAQ_ITEMS, LOCAL_BUSINESS_SCHEMA, PROFESSIONAL_SCHEMA } from '../config/site';
 
 const HomePage = () => {
   const faqSchema = {
@@ -30,7 +30,7 @@ const HomePage = () => {
         description="Psicoterapia com o Método S.E.R. (Segurança Emocional Reconstruída) para mulheres que se sentem não vistas, guardam mágoa e estão emocionalmente cansadas. Online para todo o Brasil e presencial em Goiânia."
         path="/"
         keywords="psicóloga Goiânia, terapia para mulher, cansaço emocional, não me sinto vista, Método S.E.R., segurança emocional, logoterapia Goiânia, terapia online, mágoa acumulada, reagir pela dor"
-        schema={[LOCAL_BUSINESS_SCHEMA, PHYSICIAN_SCHEMA, faqSchema]}
+        schema={[LOCAL_BUSINESS_SCHEMA, PROFESSIONAL_SCHEMA, faqSchema]}
       />
       <div className="overflow-hidden">
         <HeroSection />

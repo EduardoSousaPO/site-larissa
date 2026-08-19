@@ -26,8 +26,11 @@ const sections = [
         </li>
         <li>
           <strong>Dados de navegação</strong> — coletados automaticamente por cookies e
-          tecnologias semelhantes (Google Analytics e Pixel da Meta), como páginas visitadas,
-          dispositivo, navegador e interações com o site, de forma agregada.
+          tecnologias semelhantes (Google Analytics, Google Ads e Pixel da Meta), como páginas
+          visitadas, dispositivo, navegador, origem da visita e interações com o site, de forma
+          agregada. Quando você chega por um anúncio, a URL pode conter identificadores de
+          campanha (parâmetros UTM e <em>gclid</em>) usados apenas para medir o desempenho do
+          anúncio.
         </li>
       </ul>
     ),
@@ -48,8 +51,9 @@ const sections = [
     body: (
       <p>
         Não vendemos seus dados. Eles podem ser tratados por operadores que dão suporte à nossa
-        atividade — como Meta Platforms (formulários e anúncios), Google (analytics) e provedores
-        de hospedagem — sempre limitados às finalidades descritas acima. Informações compartilhadas
+        atividade — como Meta Platforms (formulários e anúncios), Google (analytics e
+        publicidade, por meio do Google Analytics e do Google Ads) e provedores de hospedagem —
+        sempre limitados às finalidades descritas acima. Informações compartilhadas
         em sessão de psicoterapia são protegidas pelo sigilo profissional previsto no Código de
         Ética Profissional do Psicólogo e <strong>não</strong> são utilizadas para fins de
         marketing.
@@ -84,9 +88,13 @@ const sections = [
     title: '7. Cookies',
     body: (
       <p>
-        Utilizamos cookies para análise de tráfego (Google Analytics) e mensuração de campanhas
-        (Pixel da Meta). Você pode bloquear ou apagar cookies nas configurações do seu navegador —
-        o site continua funcionando normalmente.
+        Utilizamos cookies para análise de tráfego (Google Analytics) e para mensuração de
+        campanhas de anúncios (Google Ads e Pixel da Meta). Os cookies do Google Ads registram
+        que uma visita veio de um anúncio e que houve um clique para iniciar conversa no
+        WhatsApp, para que seja possível saber quais anúncios funcionam. Não utilizamos esses
+        dados para montar públicos de remarketing a partir de temas de saúde. Você pode bloquear
+        ou apagar cookies nas configurações do seu navegador — o site continua funcionando
+        normalmente.
       </p>
     ),
   },
@@ -95,7 +103,7 @@ const sections = [
     body: (
       <p>
         Esta política pode ser atualizada para refletir mudanças legais ou operacionais. A versão
-        vigente estará sempre disponível nesta página. Última atualização: junho de 2026.
+        vigente estará sempre disponível nesta página. Última atualização: agosto de 2026.
       </p>
     ),
   },

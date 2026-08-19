@@ -7,12 +7,18 @@ const WhatsAppFloat = () => {
     section: 'float',
   });
 
+  // A classe `whatsapp-float` é o gancho usado por src/index.css para esconder
+  // este botão no mobile quando uma landing page monta a barra fixa de CTA —
+  // sem isso os dois elementos flutuantes se sobrepõem no canto inferior.
   return (
     <motion.a
       {...whatsappProps}
       target="_blank"
       rel="noopener noreferrer"
-      className="group fixed bottom-6 right-6 z-50 flex items-center justify-center rounded-full bg-green-500 p-4 text-white shadow-lg transition-all duration-300 hover:bg-green-600"
+      // `green-700` pelo mesmo motivo dos demais CTAs: o ícone branco sobre
+      // `green-500` dá 2,28:1, abaixo dos 3:1 exigidos para componente de
+      // interface não textual.
+      className="whatsapp-float group fixed bottom-6 right-6 z-50 flex items-center justify-center rounded-full bg-green-700 p-4 text-white shadow-lg transition-all duration-300 hover:bg-green-800"
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       whileHover={{ scale: 1.08 }}
