@@ -40,3 +40,10 @@ firebase-debug.*.log
 # Claude Code config (contains API keys)
 .claude.json
 .claude/
+
+.vercel
+
+dist-debug
+test-results
+playwright-report
+.playwright-mcp

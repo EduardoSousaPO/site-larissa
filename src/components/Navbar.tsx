@@ -4,33 +4,56 @@ import { motion } from 'framer-motion';
 import { CRP } from '../config/site';
 import { createWhatsAppProps } from '../lib/whatsapp';
 
-const NAV_LINKS = [
+type NavLink = {
+  to: string;
+  label: string;
+  /**
+   * Tipado explicitamente para que as entradas que não dependem do hash possam
+   * declarar só o primeiro parâmetro — TypeScript aceita função com menos
+   * parâmetros que o contrato, e assim não sobra argumento sem uso.
+   */
+  isActive: (pathname: string, hash: string) => boolean;
+};
+
+const NAV_LINKS: readonly NavLink[] = [
   {
     to: '/',
     label: 'Início',
-    isActive: (pathname: string, hash: string) => pathname === '/' && (!hash || hash === '#'),
+    isActive: (pathname, hash) => pathname === '/' && (!hash || hash === '#'),
   },
   {
     to: '/#metodo',
     label: 'Método S.E.R.',
-    isActive: (pathname: string, hash: string) => pathname === '/' && hash === '#metodo',
+    isActive: (pathname, hash) => pathname === '/' && hash === '#metodo',
   },
   {
-    to: '/#sobre',
+    to: '/sobre',
     label: 'Sobre',
-    isActive: (pathname: string, hash: string) => pathname === '/' && hash === '#sobre',
+    isActive: (pathname) => pathname === '/sobre',
   },
   {
     to: '/#servicos',
     label: 'Serviços',
-    isActive: (pathname: string, hash: string) => pathname === '/' && hash === '#servicos',
+    isActive: (pathname, hash) => pathname === '/' && hash === '#servicos',
   },
   {
     to: '/blog',
     label: 'Blog',
-    isActive: (pathname: string, _hash: string) => pathname.startsWith('/blog'),
+    isActive: (pathname) => pathname.startsWith('/blog'),
   },
-] as const;
+  {
+    to: '/contato',
+    label: 'Contato',
+    isActive: (pathname) => pathname === '/contato',
+  },
+];
+
+// Decisão de navegação: as 4 landing pages de Google Ads NÃO entram aqui.
+// O menu é uma lista plana, sem suporte a submenu, e onze itens estourariam o
+// container no desktop. Elas são alcançadas pelo bloco "Atendimentos" do
+// rodapé, pela página /sobre e pelos links dos artigos do blog — o que já
+// satisfaz o requisito de navegabilidade da política de destino do Google e
+// evita dispersão lateral entre páginas que competem pelo mesmo visitante.
 
 const WhatsAppIcon = () => (
   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -76,8 +99,16 @@ const Navbar = () => {
           <span className="block font-serif text-xl font-bold tracking-tight text-primary-700">
             Dra. Larissa Nunes
           </span>
-          <span className="mt-1 block text-xs text-gray-400">
-            Psicóloga • Método S.E.R. • {CRP}
+          {/*
+            A titulação e o registro precisam ser legíveis, não decorativos: o
+            art. 53 da Res. CFP 003/2007 os torna obrigatórios em toda
+            divulgação. Antes eram `text-xs text-gray-400`, que dá cerca de
+            2,5:1 de contraste sobre branco e reprova em WCAG AA. Agora são
+            `text-sm font-medium text-gray-600`, e o nome do método saiu daqui
+            para não competir em hierarquia com o registro profissional.
+          */}
+          <span className="mt-1 block text-sm font-medium text-gray-600">
+            Psicóloga • {CRP}
           </span>
         </Link>
 
@@ -90,7 +121,7 @@ const Navbar = () => {
                 key={link.to}
                 to={link.to}
                 aria-current={active ? 'page' : undefined}
-                className={`group flex flex-col items-center text-sm font-medium transition ${
+                className={`group flex flex-col items-center whitespace-nowrap text-sm font-medium transition ${
                   active ? 'text-primary-700' : 'text-gray-600 hover:text-primary-700'
                 }`}
               >
@@ -110,7 +141,7 @@ const Navbar = () => {
             {...whatsappProps}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-green-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-800"
           >
             <WhatsAppIcon />
             Falar no WhatsApp
@@ -184,7 +215,7 @@ const Navbar = () => {
             {...whatsappProps}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
+            className="mt-3 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-green-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-800"
           >
             <WhatsAppIcon />
             Falar no WhatsApp

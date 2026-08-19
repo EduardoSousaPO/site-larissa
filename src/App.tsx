@@ -17,6 +17,12 @@ import Register from './pages/Register';
 import PrimeiraConsultaPage from './pages/PrimeiraConsultaPage';
 import PrivacidadePage from './pages/PrivacidadePage';
 import SessaoResolucaoPage from './pages/SessaoResolucaoPage';
+import ContatoPage from './pages/ContatoPage';
+import SobrePage from './pages/SobrePage';
+import AnsiedadePage from './pages/landing/AnsiedadePage';
+import AutoestimaPage from './pages/landing/AutoestimaPage';
+import CriseExistencialPage from './pages/landing/CriseExistencialPage';
+import DoencasCronicasPage from './pages/landing/DoencasCronicasPage';
 import { useAuth } from './services/auth';
 import {
   getPublishedBlogPostBySlug,
@@ -25,6 +31,7 @@ import {
 } from './services/blogPosts';
 import {
   initGA,
+  initGoogleAds,
   initMetaPixel,
   trackMetaPageView,
   trackPageView,
@@ -53,6 +60,7 @@ const RouteAnalytics = () => {
 
   useEffect(() => {
     initGA();
+    initGoogleAds();
     initMetaPixel();
   }, []);
 
@@ -173,6 +181,21 @@ export const routes: RouteRecord[] = [
           { index: true, element: <HomePage /> },
           { path: 'agendamento', element: <Agendamento /> },
           { path: 'privacidade', element: <PrivacidadePage /> },
+          { path: 'sobre', element: <SobrePage /> },
+          { path: 'contato', element: <ContatoPage /> },
+          // Landing pages de Google Ads. Ficam dentro do MainLayout de
+          // propósito: a Navbar e o Footer entregam a navegabilidade e a
+          // identificação do anunciante que a política de destino exige, e o
+          // Footer é onde vivem o CRP e o link da política de privacidade.
+          // Diferente de /primeira-consulta e /sessao-de-resolucao, estas são
+          // indexáveis — precisam ranquear organicamente, não só receber tráfego pago.
+          { path: 'psicologa-online-para-ansiedade', element: <AnsiedadePage /> },
+          { path: 'psicologa-online-para-autoestima', element: <AutoestimaPage /> },
+          {
+            path: 'psicologa-online-para-crise-existencial',
+            element: <CriseExistencialPage />,
+          },
+          { path: 'psicologa-para-doencas-cronicas', element: <DoencasCronicasPage /> },
           {
             path: 'blog',
             element: <BlogPage />,

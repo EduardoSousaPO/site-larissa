@@ -23,6 +23,23 @@ module.exports = {
     },
     extend: {
       colors: {
+        /*
+          Neutro de superfície das landing pages. O branco puro sobre uma tela
+          de celular às 1h da manhã — que é quando a maior parte deste tráfego
+          chega — brilha demais. Estes tons são levemente puxados para o roxo da
+          marca (nenhum neutro do sistema é cinza morto).
+
+          Existe porque `theme.colors` acima SUBSTITUI a paleta padrão do
+          Tailwind: fora de white/gray/primary/secondary/green/red/yellow não há
+          cor nenhuma. `stone-*` e `emerald-*`, usados em alguns componentes
+          antigos, não geram classe e caem em transparente.
+        */
+        canvas: {
+          50: '#faf8fb',
+          100: '#f4f0f7',
+          200: '#e8e1ee',
+          300: '#d5cbdd',
+        },
         primary: {
           50: '#f5f3ff',
           100: '#ede9fe',

@@ -40,7 +40,26 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
 
   // The plugin already emits the home route ('/'), so we only add the remaining
   // public routes plus every published article. De-duplicate just in case.
-  const dynamicRoutes = Array.from(new Set(['/blog', '/agendamento', ...blogRoutes]))
+  //
+  // IMPORTANT: this list is the *only* source of URLs for sitemap.xml — the
+  // plugin does not read the router. A concrete route in App.tsx is still
+  // pre-rendered to dist/<slug>/index.html without being listed here, but it
+  // would be invisible to the sitemap. That is exactly how /privacidade went
+  // missing until now.
+  const dynamicRoutes = Array.from(
+    new Set([
+      '/blog',
+      '/agendamento',
+      '/privacidade',
+      '/sobre',
+      '/contato',
+      '/psicologa-online-para-ansiedade',
+      '/psicologa-online-para-autoestima',
+      '/psicologa-online-para-crise-existencial',
+      '/psicologa-para-doencas-cronicas',
+      ...blogRoutes,
+    ]),
+  )
 
   return {
     plugins: [
@@ -75,8 +94,20 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
     ssgOptions: {
       // /foo -> dist/foo/index.html (clean URLs, friendly for Vercel static hosting).
       dirStyle: 'nested',
-      // Load the hydration scripts asynchronously so they don't block first paint.
-      script: 'async',
+      // Deliberately left at the default ('sync'), which emits a plain
+      // `<script type="module">` — already deferred by the browser, so it does not
+      // block first paint either way.
+      //
+      // Do NOT set `script: 'async'`. vite-react-ssg publishes the manifest hash from
+      // an inline script at the very end of <body>:
+      //   <script>window.__VITE_REACT_SSG_HASH__ = '<hash>'</script>
+      // and the client reads it to fetch `static-loader-data-manifest-<hash>.json`.
+      // With `async`, the module can execute before the parser reaches that inline
+      // script, so the hash is `undefined`, the client requests
+      // `static-loader-data-manifest-undefined.json`, the SPA fallback answers with
+      // index.html, `JSON.parse` fails and React Router renders its error boundary
+      // ("Unexpected token '<'") instead of the page. It is a race, so it only shows
+      // up on some cold loads — exactly the first-visit case that paid traffic lands in.
       // Pre-render every concrete route — including the admin shells. A route left to
       // the SPA fallback would be served the home index.html (which carries SSR markers
       // and the static-loader manifest); vite-react-ssg's client then tries to load

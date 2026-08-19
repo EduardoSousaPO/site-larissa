@@ -8,7 +8,10 @@
     "build": "vite-react-ssg build",
     "build:spa": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "serve:dist": "node scripts/serve-dist.mjs"
   },
   "dependencies": {
     "@inferencesh/sdk": "^0.5.15",
@@ -23,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@playwright/test": "^1.62.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",

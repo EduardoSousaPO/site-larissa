@@ -33,6 +33,16 @@ export const GOOGLE_REVIEW_HIGHLIGHTS = [
 export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() ?? '';
 export const META_PIXEL_ID =
   import.meta.env.VITE_META_PIXEL_ID?.trim() || '1211076457710598';
+
+/**
+ * Google Ads. Ambos ficam vazios quando não configurados e todo o tracking de
+ * conversão vira no-op — nunca quebrar o build nem o SSG por falta de variável.
+ * `GOOGLE_ADS_ID` tem o formato "AW-XXXXXXXXXX"; o label vem do rótulo de
+ * conversão criado no painel do Google Ads (ver docs/ads/02-tracking.md).
+ */
+export const GOOGLE_ADS_ID = import.meta.env.VITE_GOOGLE_ADS_ID?.trim() ?? '';
+export const GOOGLE_ADS_CONVERSION_LABEL =
+  import.meta.env.VITE_GOOGLE_ADS_CONVERSION_LABEL?.trim() ?? '';
 export const LLM_PROVIDER = (import.meta.env.VITE_LLM_PROVIDER?.trim() ?? 'openai') as
   | 'claude'
   | 'openai'
@@ -78,6 +88,9 @@ export const FAQ_ITEMS = [
 export const LOCAL_BUSINESS_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'MedicalBusiness',
+  // `@id` estável para que os vários blocos de JSON-LD espalhados pelo site
+  // apontem para a mesma entidade em vez de criarem um consultório novo por página.
+  '@id': `${SITE_URL}/#consultorio`,
   name: 'Dra. Larissa Nunes - Psicóloga | Método S.E.R. em Goiânia',
   image: DEFAULT_OG_IMAGE,
   description:
@@ -93,7 +106,10 @@ export const LOCAL_BUSINESS_SCHEMA = {
   telephone: CONTACT_PHONE_E164,
   email: CONTACT_EMAIL,
   url: SITE_URL,
-  priceRange: '$$',
+  // `priceRange` foi removido de propósito. O Código de Ética do Psicólogo
+  // (art. 20 "d") veda usar o preço como forma de propaganda, e a Nota Técnica
+  // CFP 1/2022 veda nominalmente termos de vantagem financeira. Uma faixa de
+  // preço em dado estruturado é exatamente isso, em formato legível por máquina.
   areaServed: ['Brasil', 'Goiânia', 'Goiás'],
   openingHoursSpecification: [
     {
@@ -138,14 +154,30 @@ export const LOCAL_BUSINESS_SCHEMA = {
   },
 };
 
-export const PHYSICIAN_SCHEMA = {
+/**
+ * Identificação profissional em dado estruturado.
+ *
+ * Era `@type: 'Physician'` com `medicalSpecialty: [... , 'Método S.E.R.']`.
+ * Isso declarava, em formato legível por máquina, duas coisas falsas: que a
+ * profissional é médica, e que um enquadre autoral é uma especialidade médica
+ * reconhecida. Nenhuma das duas aparecia na tela, então passavam despercebidas
+ * — e são justamente a primeira camada que o Google lê.
+ *
+ * Agora é uma `Person` com o cargo real, o registro no conselho como
+ * `identifier`, e a abordagem em `knowsAbout` (que descreve conhecimento, não
+ * titulação). Coerente com o art. 20 "a" e "b" do Código de Ética.
+ */
+export const PROFESSIONAL_SCHEMA = {
   '@context': 'https://schema.org',
-  '@type': 'Physician',
-  name: 'Dra. Larissa Nunes',
+  '@type': 'Person',
+  '@id': `${SITE_URL}/#psicologa`,
+  name: 'Larissa Nunes',
+  jobTitle: 'Psicóloga',
+  identifier: CRP,
   image: DEFAULT_OG_IMAGE,
   description:
-    'Psicóloga clínica criadora do Método S.E.R. (Segurança Emocional Reconstruída), com base em Logoterapia. Atende online e presencial em Goiânia.',
-  medicalSpecialty: ['Psicologia Clínica', 'Logoterapia', 'Método S.E.R.'],
+    'Psicóloga clínica com formação em Logoterapia. O Método S.E.R. é o enquadre em três etapas com que organiza o acompanhamento, fundamentado nessa abordagem. Atende online para todo o Brasil e presencial em Goiânia.',
+  knowsAbout: ['Psicologia Clínica', 'Logoterapia', 'Psicoterapia de adultos'],
   telephone: CONTACT_PHONE_E164,
   email: CONTACT_EMAIL,
   url: SITE_URL,

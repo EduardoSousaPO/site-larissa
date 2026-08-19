@@ -13,7 +13,28 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+    <!--
+      O itálico da Playfair carrega o trecho de ênfase dos títulos das landing
+      pages. Sem o eixo `ital` o navegador sintetiza uma inclinação falsa, que
+      numa serifada de alto contraste fica visivelmente torta.
+    -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+
+    <!--
+      As seções abaixo da dobra usam animação de entrada do framer-motion, que
+      grava `style="opacity:0"` no HTML pré-renderizado e só desfaz isso na
+      hidratação. Sem JavaScript, a página ficaria com o hero visível e o resto
+      em branco. Esta regra vale apenas no cenário sem JS e devolve o conteúdo
+      inteiro — inclusive para leitores e rastreadores que não executam scripts.
+    -->
+    <noscript>
+      <style>
+        [style*="opacity:0"] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <!-- Meta Pixel (fallback sem JavaScript) -->

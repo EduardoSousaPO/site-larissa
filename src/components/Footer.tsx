@@ -21,7 +21,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-950 text-white">
       <div className="container py-12">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -32,8 +32,17 @@ const Footer = () => {
               <h2 className="text-2xl font-bold">Dra. Larissa Nunes</h2>
             </Link>
             <p className="mt-4 text-sm leading-7 text-gray-400">
-              Psicóloga clínica. Criadora do Método S.E.R. — Segurança Emocional Reconstruída.
-              Atendimento online para todo o Brasil e presencial em Goiânia.
+              {/*
+                Antes dizia "Criadora do Método S.E.R. — Segurança Emocional
+                Reconstruída". Duas violações num texto só, e ele aparece no
+                rodapé de TODAS as páginas: "criadora de método" é divulgação de
+                técnica autoral (CEPP art. 20 "c" e art. 2º "f"), e "Segurança
+                Emocional Reconstruída" afirma o resultado (art. 20 "e").
+                A versão abaixo ancora o método na abordagem reconhecida.
+              */}
+              Psicóloga clínica com formação em Logoterapia. O Método S.E.R. é o enquadre em
+              três etapas com que organizo o acompanhamento, fundamentado nessa abordagem.
+              Atendimento online para todo o Brasil e presencial em Goiânia-GO.
             </p>
             <p className="mt-4 text-sm font-medium text-primary-300">{CRP}</p>
           </motion.div>
@@ -52,9 +61,9 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/#sobre" className="transition hover:text-white">
+                <Link to="/sobre" className="transition hover:text-white">
                   Sobre
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="/#servicos" className="transition hover:text-white">
@@ -67,8 +76,62 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/contato" className="transition hover:text-white">
+                  Contato
+                </Link>
+              </li>
+              <li>
                 <Link to="/privacidade" className="transition hover:text-white">
                   Política de Privacidade
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+
+          {/*
+            Bloco "Atendimentos": é por aqui que as 4 landing pages de Google Ads
+            ficam acessíveis de qualquer página do site. A Navbar não as recebe
+            (ver comentário em Navbar.tsx), então este bloco é o que cumpre o
+            requisito de navegabilidade da política de destino do Google.
+          */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-lg font-semibold">Atendimentos</h3>
+            <ul className="mt-4 space-y-3 text-sm text-gray-400">
+              <li>
+                <Link
+                  to="/psicologa-online-para-ansiedade"
+                  className="transition hover:text-white"
+                >
+                  Psicóloga online para ansiedade
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/psicologa-online-para-autoestima"
+                  className="transition hover:text-white"
+                >
+                  Autoestima e autoconfiança
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/psicologa-online-para-crise-existencial"
+                  className="transition hover:text-white"
+                >
+                  Crise existencial e falta de sentido
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/psicologa-para-doencas-cronicas"
+                  className="transition hover:text-white"
+                >
+                  Apoio em doenças crônicas
                 </Link>
               </li>
             </ul>
@@ -131,7 +194,8 @@ const Footer = () => {
               {...whatsappProps}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center justify-center rounded-full bg-primary-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary-800"
+              aria-label="Falar no WhatsApp com a psicóloga Larissa Nunes"
+              className="mt-6 inline-flex min-h-[48px] items-center justify-center rounded-full bg-primary-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary-800"
             >
               Falar no WhatsApp
             </a>

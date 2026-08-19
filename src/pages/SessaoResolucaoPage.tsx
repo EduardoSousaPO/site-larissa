@@ -5,19 +5,9 @@ import SEOHead from '../components/SEOHead';
 import Footer from '../components/Footer';
 import WhatsAppFloat from '../components/WhatsAppFloat';
 import { createWhatsAppProps } from '../lib/whatsapp';
+import { getUtmParams } from '../lib/utm';
 import { trackLPView } from '../services/analytics';
 
-function getUtmParams() {
-  const params = new URLSearchParams(window.location.search);
-
-  return {
-    utm_source: params.get('utm_source') ?? '',
-    utm_medium: params.get('utm_medium') ?? '',
-    utm_campaign: params.get('utm_campaign') ?? '',
-    utm_content: params.get('utm_content') ?? '',
-    utm_term: params.get('utm_term') ?? '',
-  };
-}
 
 const SessaoResolucaoPage = () => {
   const whatsappProps = createWhatsAppProps({
