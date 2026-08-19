@@ -23,10 +23,10 @@ type SinaisSectionProps = {
  * checkbox, sem placar e sem quiz — autodiagnóstico em página de captação
  * também é vedado pelo art. 18 do Código de Ética.
  *
- * A lista de contraindicação fica num `<details>`: precisa estar na página por
- * dever ético, mas colocá-la aberta no meio do caminho de conversão faz o
- * visitante certo ler cinco parágrafos que não são sobre ele. A única parte que
- * não pode depender de clique é a de emergência, que está fora do disclosure.
+ * A lista de contraindicação saiu a pedido da Dra. Larissa (19/08/2026): era um
+ * bloco de recusas parado no caminho de conversão. A orientação de emergência
+ * ficou, sempre visível — é a única parte que socorre quem chega em crise, e
+ * ela também aparece no rodapé de todas as páginas.
  */
 export default function SinaisSection({
   sintomas,
@@ -35,8 +35,9 @@ export default function SinaisSection({
   message,
 }: SinaisSectionProps) {
   // O primeiro item de `naoIndicado` é sempre a orientação de emergência (CVV,
-  // SAMU, CAPS). Ela sai do disclosure e fica sempre visível.
-  const [emergencia, ...contraindicacoes] = paraQuem.naoIndicado;
+  // SAMU, CAPS). É o único que a página ainda mostra. O resto do array continua
+  // no conteúdo, documentando o escopo de atuação, mas não é renderizado.
+  const [emergencia] = paraQuem.naoIndicado;
 
   return (
     <section className="bg-canvas-50 py-16 md:py-24">
@@ -107,24 +108,6 @@ export default function SinaisSection({
               {emergencia}
             </p>
 
-            <details className="group mt-4 border border-canvas-300 bg-white">
-              <summary className="cursor-pointer list-none p-5 text-sm font-semibold text-gray-900 transition hover:text-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
-                <span className="flex items-center justify-between gap-4">
-                  {paraQuem.naoIndicadoTitle}
-                  <span
-                    aria-hidden="true"
-                    className="text-primary-600 transition group-open:rotate-45"
-                  >
-                    +
-                  </span>
-                </span>
-              </summary>
-              <ul className="space-y-4 px-5 pb-5 text-sm leading-7 text-gray-700">
-                {contraindicacoes.map((item) => (
-                  <li key={item.slice(0, 40)}>{item}</li>
-                ))}
-              </ul>
-            </details>
           </div>
         </div>
       </div>

@@ -83,7 +83,16 @@ export type LandingContent = {
   paraQuem: {
     title: string;
     items: string[];
+    /**
+     * Não é mais renderizado. A lista de contraindicação saiu das páginas a
+     * pedido da Dra. Larissa em 19/08/2026.
+     */
     naoIndicadoTitle: string;
+    /**
+     * Só o primeiro item é renderizado, e é sempre a orientação de emergência
+     * (CVV, SAMU, CAPS). Os demais continuam aqui documentando o escopo de
+     * atuação, e voltam à tela se a decisão for revista.
+     */
     naoIndicado: string[];
     ctaLabel: string;
   };
